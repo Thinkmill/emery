@@ -14,7 +14,7 @@ Granted, they've have gotten better over time, and we hope they continue to do s
 
 This is not a library of utility types, that problem is [largely](https://github.com/sindresorhus/type-fest) [solved](https://github.com/millsp/ts-toolbelt).
 
-This is not, in any way, a replacement for static types; we expect this library to complement your TS implementations.
+This is not, in any way, a replacement for static types. We expect this library to complement your TS implementations.
 
 ### What it is
 
@@ -45,25 +45,23 @@ type NonNegativeInteger<T extends number> = number extends T
 
 ## How?
 
-Static type checking should always be the source-of-truth, but we can also surface a more palatable error message for consumers. A potential approach might be:
+Static type checking should always be the source-of-truth. However, we can also surface a more palatable error message for consumers. A potential approach might be:
 
 ```ts
 function getThingByIndex<N extends number>(index: NonNegativeInteger<N>) {
-  typeInvariant(isNonNegativeInteger, index);
-
-  const things = ["foo", "bar", "baz"];
-  return things[index];
+  typeInvariant(isNonNegativeInteger(index), `The 'index' argument must be a non-negative integer.`);
+  ...
 }
 ```
 
-Which would yield a runtime error in development, that may look something like:
+Which would yield a runtime error in development.
 
 > The 'index' argument must be a non-negative integer.
 
-That's a bit nicer, right?
+That's a bit easier to understand, right?
 
 ## Who?
 
 It's expected that this library will mainly be useful for authors that must employ complex types, whose audience aren't necessarily TypeScript experts.
 
-The desire for an alternative approach was born from maintaining design system component libraries. In an environment that's already rife with obstacles it's prudent to mitigate friction wherever possible. The hours saved avoiding TS error message questions from consumers doesn't hurt either.
+The desire for an alternative approach was born from maintaining design system component libraries. In an environment that's already rife with obstacles it's prudent to mitigate friction wherever possible. Over the lifetime of a project, you're also likely to save a bunch of time by avoiding questions about obscure TS error messages.
