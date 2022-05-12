@@ -49,7 +49,10 @@ Static type checking should always be the source-of-truth. However, we can also 
 
 ```ts
 function getThingByIndex<N extends number>(index: NonNegativeInteger<N>) {
-  typeInvariant(isNonNegativeInteger(index), `The 'index' argument must be a non-negative integer.`);
+  typeInvariant(
+    isNonNegativeInteger(index),
+    `The 'index' argument must be a non-negative integer.`
+  );
   ...
 }
 ```
