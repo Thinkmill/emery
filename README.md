@@ -14,7 +14,7 @@ Granted, these messages have gotten better over time, and we hope they continue 
 
 This is not a library of utility types, that problem is [largely](https://github.com/sindresorhus/type-fest) [solved](https://github.com/millsp/ts-toolbelt). This is not in any way a replacement for static types, we expect this library to complement your TS implementations.
 
-## What it is
+### What it is
 
 This library is an experiment to see if we can patch "the parts that TS forgot", without sacrificing the developer experience. When you encounter a type error the last thing you need is more work, researching some mysterious incantation. You should be presented with a message that tells you exactly what went wrong, and ideally how to fix it.
 
@@ -54,7 +54,7 @@ function getThingByIndex<N extends number>(index: NonNegativeInteger<N>) {
 }
 ```
 
-With a runtime error the could look something like:
+With a runtime error that could look something like:
 
 > The 'index' argument must be a non-negative integer.
 
@@ -62,4 +62,4 @@ With a runtime error the could look something like:
 
 It's expected that this library will mainly be useful for authors that must employ complex types, whose audience aren't necessarily TypeScript experts.
 
-The desire for an alternative approach was born from maintaining design system component libraries. In an environment that's already rife with obstacles it's prudent to mitigate friction wherever possible. The hours saved by avoiding error message queries from consumers doesn't hurt either.
+The desire for an alternative approach was born from maintaining design system component libraries. In an environment that's already rife with obstacles it's prudent to mitigate friction wherever possible. The hours saved by avoiding TS error message queries from consumers doesn't hurt either.
