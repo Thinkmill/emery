@@ -4,15 +4,17 @@ Utility functions to improve TypeScript DX at runtime.
 
 ## Why?
 
-TypeScript errors are famously cryptic. There's articles about [how to understand them](https://betterprogramming.pub/understanding-typescript-errors-for-beginners-65d15f3e3561), there's [libraries attempting to give you insights](https://github.com/mattpocock/ts-error-translator) into these arcane texts, and even [a page on the TS docs](https://www.typescriptlang.org/docs/handbook/2/understanding-errors.html) dedicated to interpreting TypeScript error messages.
+TypeScript errors are famously cryptic. There's articles about [how to understand them](https://betterprogramming.pub/understanding-typescript-errors-for-beginners-65d15f3e3561), some pioneering [libraries attempting to give insights](https://github.com/mattpocock/ts-error-translator) into these arcane texts, and [a page on the TS docs](https://www.typescriptlang.org/docs/handbook/2/understanding-errors.html) dedicated to interpreting error messages.
 
-Granted, these messages have gotten better over time, and we hope they continue to do so. It makes you wonder though, what if there was a way to improve the experience of your consumers today?
+Granted, they've have gotten better over time, and we hope they continue to do so. It makes you wonder though, what if there was a simple way to improve the experience of your consumers today?
 
 ## What?
 
 ### What it is NOT
 
-This is not a library of utility types, that problem is [largely](https://github.com/sindresorhus/type-fest) [solved](https://github.com/millsp/ts-toolbelt). This is not in any way a replacement for static types, we expect this library to complement your TS implementations.
+This is not a library of utility types, that problem is [largely](https://github.com/sindresorhus/type-fest) [solved](https://github.com/millsp/ts-toolbelt).
+
+This is not, in any way, a replacement for static types; we expect this library to complement your TS implementations.
 
 ### What it is
 
@@ -33,8 +35,8 @@ There's already bugs, that was quick! The consumer can supply an "index" of `1.2
 type NonNegativeInteger<T extends number> = number extends T
   ? never
   : `${T}` extends `-${string}` | `${string}.${string}`
-  ? never
-  : T;
+    ? never
+    : T;
 ```
 
 ...but the errors are almost impossible to decipher. Nobody deserves this in their day:
@@ -43,7 +45,7 @@ type NonNegativeInteger<T extends number> = number extends T
 
 ## How?
 
-Static type checking should still be the source-of-truth, but we can also surface a more palatable error message to consumers. A potential approach might be:
+Static type checking should always be the source-of-truth, but we can also surface a more palatable error message for consumers. A potential approach might be:
 
 ```ts
 function getThingByIndex<N extends number>(index: NonNegativeInteger<N>) {
@@ -54,12 +56,14 @@ function getThingByIndex<N extends number>(index: NonNegativeInteger<N>) {
 }
 ```
 
-With a runtime error that could look something like:
+Which would yield a runtime error in development, that may look something like:
 
 > The 'index' argument must be a non-negative integer.
+
+That's a bit nicer, right?
 
 ## Who?
 
 It's expected that this library will mainly be useful for authors that must employ complex types, whose audience aren't necessarily TypeScript experts.
 
-The desire for an alternative approach was born from maintaining design system component libraries. In an environment that's already rife with obstacles it's prudent to mitigate friction wherever possible. The hours saved by avoiding TS error message queries from consumers doesn't hurt either.
+The desire for an alternative approach was born from maintaining design system component libraries. In an environment that's already rife with obstacles it's prudent to mitigate friction wherever possible. The hours saved avoiding TS error message questions from consumers doesn't hurt either.
