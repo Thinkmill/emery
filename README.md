@@ -24,13 +24,14 @@ Consider this contrived code snippet:
 
 ```ts
 function getThingByIndex(index: number) {
-  const things = ["foo", "bar", "baz"];
+  const things = ['foo', 'bar', 'baz'];
   return things[index];
 }
 ```
 
 There's already bugs, that was quick! The consumer can supply an "index" of `1.23` or `-5`, while adhering to the type declaration. An `integer` type would be nice, but it doesn't solve the problem. We could write [some fancy type](https://www.typescriptlang.org/play?#code/C4TwDgpgBAcg9gOxhA5gQ2ASwG4QJILCoQBOAPACpQQAeRCAJgM5QICuAtgEakB8UAXgBQUUa048S1OhEYsqIsUoD8rCLimKlogFxQABgBIA3hQC++6fWYGAtCabASmBCgtQAPgYdOXbgHQ+zq4WWtoqahpQYeG6UBQA3EJCAGZsCADGWIhQKBDAFAAWfgBCIAQMtGQwVrI27Nx8ABQulTR68EioGDj4hMTkMLwAlFDGihmIjlDAxa4sAlAA2gDkKXBwKwA0UCtcaCTbu-sAXisAuook+WwkCDNzKExLrbSXZsmTCExwADYQ-l+cBQTTyBUeZQqtCaAEZhsMhF8fv9AcDQfkiqVyoxobYAKzwxFTP4AoEgsGY1yQnE0WH+ABMAGZ4UA) that accurately expresses the intent:
 
+<!-- prettier-ignore -->
 ```ts
 type NonNegativeInteger<T extends number> = number extends T
   ? never
@@ -38,6 +39,8 @@ type NonNegativeInteger<T extends number> = number extends T
     ? never
     : T;
 ```
+
+<!-- prettier-ignore-end -->
 
 ...but the errors are almost impossible to decipher. Nobody deserves this in their day:
 
