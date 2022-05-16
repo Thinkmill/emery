@@ -1,12 +1,13 @@
+import { UnaryPredicate } from '../types';
 import { checkAll, negate } from '../utils/predicates';
 
 // Core
 // ------------------------------
 
-export const isFinite = (value: number) => Number.isFinite(value);
+export const isFinite: UnaryPredicate<number> = Number.isFinite;
 export const isInfinite = negate(isFinite);
 
-export const isInteger = (value: number) => Number.isInteger(value);
+export const isInteger: UnaryPredicate<number> = Number.isInteger;
 export const isFloat = negate(isInteger);
 
 export const isNegativeZero = (value: number) => 1 / value === Number.NEGATIVE_INFINITY;
