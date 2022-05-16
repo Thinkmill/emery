@@ -10,13 +10,12 @@ const isProduction = process.env.NODE_ENV === 'production';
  * type errors are expected to complement type definitions, not replace them.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function typeInvariant(condition: any, message: string): void {
-  // bail in production — wrapping check for dead-code elimination
+export function typeInvariant(condition: any, message: string): asserts condition {
   if (!isProduction) {
     if (condition) {
       return;
     }
 
-    throw TypeError(message);
+    throw new TypeError(message);
   }
 }
