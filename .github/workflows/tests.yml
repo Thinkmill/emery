@@ -7,27 +7,8 @@ on:
   pull_request:
 
 jobs:
-  should_run_tests:
-    name: Should run tests
-    runs-on: ubuntu-latest
-    outputs:
-      shouldRunTests: ${{ env.SHOULD_RUN_TESTS }}
-    steps:
-      - uses: dorny/paths-filter@v2
-        id: filter
-        if: github.event_name == 'pull_request'
-
-      - run: echo "SHOULD_RUN_TESTS=$SHOULD_RUN" >> $GITHUB_ENV
-        if: github.event_name == 'pull_request'
-        env:
-          SHOULD_RUN: ${{ steps.filter.outputs.shouldRunTests }}
-
-      - run: echo "SHOULD_RUN_TESTS=true" >> $GITHUB_ENV
-        if: github.event_name != 'pull_request'
-
   tests:
     name: Tests
-    needs: should_run_tests
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
