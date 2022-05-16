@@ -8,15 +8,15 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "format": "prettier --write ./src",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --collect-coverage",
-    "test:ci": "yarn test:coverage --maxWorkers=2",
     "open:coverage": "open coverage/lcov-report/index.html",
-    "lint": "eslint ./src --ext .js,.ts",
-    "prettier:check": "prettier --check ./src",
-    "prettier:write": "prettier --write ./src",
-    "static": "yarn prettier:check && yarn lint && yarn tsc --noEmit"
+    "lint:eslint": "eslint ./src --ext .js,.ts",
+    "lint:prettier": "prettier --check ./src",
+    "lint:types": "tsc --noEmit",
+    "lint": "yarn lint:prettier && yarn lint:eslint && yarn lint:types"
   },
   "jest": {
     "preset": "ts-jest",
