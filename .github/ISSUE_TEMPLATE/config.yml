@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Ask a Question (GitHub)
-    url: https://github.com/thinkmill/ts-runtime-dx/discussions/categories/questions
+    url: /discussions/categories/questions
     about: Ask the community for help
   - name: Request a Feature (GitHub)
-    url: https://github.com/thinkmill/ts-runtime-dx/discussions/categories/ideas
+    url: /discussions/categories/ideas
     about: Share ideas for new features
