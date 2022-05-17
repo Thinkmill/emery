@@ -1,6 +1,6 @@
-import { isBoolean, isFunction, isNumber, isString } from './primitive';
+import { isBoolean, isFunction, isNumber, isString } from './guards';
 
-describe('type-check/primitive', () => {
+describe('type-check/guards', () => {
   const mockFn = jest.fn();
 
   beforeEach(() => {

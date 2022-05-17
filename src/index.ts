@@ -1,4 +1,6 @@
-export { isBoolean, isFunction, isNumber, isString } from './type-check/primitive';
+export { typeInvariant } from './invariant/typeInvariant';
+
+export { isBoolean, isFunction, isNumber, isString } from './type-check/guards';
 export {
   isFinite,
   isFloat,
@@ -17,6 +19,6 @@ export {
   isPositiveFloat,
   isPositiveInteger,
 } from './type-check/number';
+export { checkAll, checkAllWith, negate } from './type-check/utils';
 
-export { checkAll, checkAllWith, negate } from './utils/predicates';
-export { typeInvariant } from './utils/typeInvariant';
+export { typedEntries, typedKeys } from './utils/object';

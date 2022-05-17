@@ -1,6 +1,6 @@
-import { checkAll, checkAllWith, negate } from './predicates';
+import { checkAll, checkAllWith, negate } from './utils';
 
-describe('utils/predicates', () => {
+describe('type-check/utils', () => {
   const isEven = jest.fn(x => x % 2 === 0);
   const isNumberish = jest.fn(x => typeof x === 'number');
   const lessThanTen = jest.fn(x => x < 10);
@@ -45,6 +45,13 @@ describe('utils/predicates', () => {
 
       expect(checker).toHaveBeenCalledWith(25);
       expect(bool).toEqual(false);
+    });
+    it('should support built-ins', () => {
+      const checker = jest.fn(checkAll(Array.isArray));
+      const bool = checker([]);
+
+      expect(checker).toHaveBeenCalledWith([]);
+      expect(bool).toEqual(true);
     });
   });
 
