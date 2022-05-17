@@ -2,11 +2,16 @@
   "name": "ts-runtime-dx",
   "version": "1.0.0",
   "description": "Utility functions to improve TypeScript DX at runtime.",
-  "main": "src/index.ts",
+  "main": "dist/ts-runtime-dx.cjs.js",
+  "module": "dist/ts-runtime-dx.esm.js",
   "repository": "https://github.com/Thinkmill/ts-runtime-dx.git",
   "author": "jossmac <jossmac@users.noreply.github.com>",
   "license": "MIT",
   "private": false,
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "format": "prettier --write ./src",
     "test": "jest",
@@ -15,8 +20,11 @@
     "open:coverage": "open coverage/lcov-report/index.html",
     "lint:eslint": "eslint ./src --ext .js,.ts",
     "lint:prettier": "prettier --check ./src",
-    "lint:types": "tsc --noEmit",
-    "lint": "yarn lint:prettier && yarn lint:eslint && yarn lint:types"
+    "lint:types": "tsc",
+    "lint": "yarn lint:prettier && yarn lint:eslint && yarn lint:types",
+    "docs:dev": "next dev docs",
+    "docs:build": "next build docs",
+    "prepublishOnly": "preconstruct build"
   },
   "jest": {
     "preset": "ts-jest",
@@ -27,14 +35,21 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.17.12",
+    "@babel/preset-env": "^7.17.12",
+    "@babel/preset-typescript": "^7.17.12",
+    "@preconstruct/cli": "^2.1.5",
     "@types/jest": "^27.5.1",
+    "@types/react": "^18.0.9",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
     "eslint": "^8.15.0",
     "jest": "^28.1.0",
+    "next": "^12.1.6",
     "prettier": "2.6.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "ts-jest": "^28.0.2",
     "typescript": "^4.6.4"
-  },
-  "dependencies": {}
+  }
 }
