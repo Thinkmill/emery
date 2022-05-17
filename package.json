@@ -22,9 +22,9 @@
     "lint:prettier": "prettier --check ./src",
     "lint:types": "tsc",
     "lint": "yarn lint:prettier && yarn lint:eslint && yarn lint:types",
-    "prepublishOnly": "preconstruct build",
-    "site:dev": "next dev site",
-    "site:build": "next build site"
+    "docs:dev": "next dev docs",
+    "docs:build": "next build docs",
+    "prepublishOnly": "preconstruct build"
   },
   "jest": {
     "preset": "ts-jest",

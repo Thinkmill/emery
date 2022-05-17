@@ -1,3 +1,3 @@
 export default function Index() {
-  return '...';
+  return <h1>ts-runtime-dx</h1>;
 }
