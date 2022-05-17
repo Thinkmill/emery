@@ -1,23 +1,29 @@
 import { typeInvariant } from './typeInvariant';
 
 describe('utils/typeInvariant', () => {
-  it('should throw when provided a falsy value', () => {
-    expect(() => typeInvariant(null, '')).toThrowError();
-    expect(() => typeInvariant(undefined, '')).toThrowError();
-    expect(() => typeInvariant(false, '')).toThrowError();
-    expect(() => typeInvariant(0, '')).toThrowError();
-    expect(() => typeInvariant(null, 'Error message')).toThrow('Error message');
+  it('should throw when the condition is "falsy"', () => {
+    expect(() => typeInvariant(false, '')).toThrow();
+    expect(() => typeInvariant(+0, '')).toThrow();
+    expect(() => typeInvariant(-0, '')).toThrow();
+    expect(() => typeInvariant('', '')).toThrow();
+    expect(() => typeInvariant(null, '')).toThrow();
+    expect(() => typeInvariant(undefined, '')).toThrow();
+    expect(() => typeInvariant(NaN, '')).toThrow();
+
+    expect(() => typeInvariant(false, 'Custom message')).toThrow('Custom message');
   });
 
-  it('should NOT throw when provided a truthy value', () => {
+  it('should NOT throw when the condition is "truthy"', () => {
     const mockFn = jest.fn();
 
-    expect(typeInvariant(true, '')).toBeUndefined();
-    expect(typeInvariant(123, '')).toBeUndefined();
-    expect(typeInvariant('Test', '')).toBeUndefined();
-    expect(typeInvariant({}, '')).toBeUndefined();
-    expect(typeInvariant([], '')).toBeUndefined();
-    expect(typeInvariant(mockFn, '')).toBeUndefined();
+    expect(() => typeInvariant(true, '')).not.toThrow();
+    expect(() => typeInvariant(1, '')).not.toThrow();
+    expect(() => typeInvariant(-1, '')).not.toThrow();
+    expect(() => typeInvariant('test', '')).not.toThrow();
+    expect(() => typeInvariant({}, '')).not.toThrow();
+    expect(() => typeInvariant([], '')).not.toThrow();
+
+    expect(() => typeInvariant(mockFn, '')).not.toThrow();
     expect(mockFn).toBeCalledTimes(0);
   });
 });
