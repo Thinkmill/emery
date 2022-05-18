@@ -4,22 +4,14 @@ import {
   isInfinite,
   isInteger,
   isNegative,
-  isNegativeFloat,
-  isNegativeInteger,
   isNegativeZero,
   isNonNegative,
-  isNonNegativeFloat,
-  isNonNegativeInteger,
   isNonPositive,
-  isNonPositiveFloat,
-  isNonPositiveInteger,
   isPositive,
-  isPositiveFloat,
-  isPositiveInteger,
-} from './number';
+} from './checks';
 
-describe('type-check/number', () => {
-  describe('core', () => {
+describe('checks', () => {
+  describe('number', () => {
     it('`isFinite` should correctly evaluate values', () => {
       expect(isFinite(1)).toBe(true);
       expect(isFinite(123e4 / 12.3)).toBe(true);
@@ -79,66 +71,8 @@ describe('type-check/number', () => {
       expect(isNonPositive(0)).toBe(true);
       expect(isNonPositive(-0)).toBe(true);
       expect(isNonPositive(-1)).toBe(true);
-      expect(isNonPositive(-1.23)).toBe(true);
       expect(isNonPositive(1)).toBe(false);
       expect(isNonPositive(1.23)).toBe(false);
-    });
-  });
-
-  describe('convenience', () => {
-    it('`isNegativeInteger` should correctly evaluate values', () => {
-      expect(isNegativeInteger(-1)).toBe(true);
-      expect(isNegativeInteger(1)).toBe(false);
-      expect(isNegativeInteger(1.23)).toBe(false);
-      expect(isNegativeInteger(-1.23)).toBe(false);
-    });
-    it('`isPositiveInteger` should correctly evaluate values', () => {
-      expect(isPositiveInteger(1)).toBe(true);
-      expect(isPositiveInteger(-1)).toBe(false);
-      expect(isPositiveInteger(1.23)).toBe(false);
-      expect(isPositiveInteger(-1.23)).toBe(false);
-    });
-    it('`isNonNegativeInteger` should correctly evaluate values', () => {
-      expect(isNonNegativeInteger(0)).toBe(true);
-      expect(isNonNegativeInteger(-0)).toBe(true);
-      expect(isNonNegativeInteger(1)).toBe(true);
-      expect(isNonNegativeInteger(1.23)).toBe(false);
-      expect(isNonNegativeInteger(-1)).toBe(false);
-    });
-    it('`isNonPositiveInteger` should correctly evaluate values', () => {
-      expect(isNonPositiveInteger(-0)).toBe(true);
-      expect(isNonPositiveInteger(0)).toBe(true);
-      expect(isNonPositiveInteger(-1)).toBe(true);
-      expect(isNonPositiveInteger(-1.23)).toBe(false);
-      expect(isNonPositiveInteger(1)).toBe(false);
-    });
-
-    it('`isNegativeFloat` should correctly evaluate values', () => {
-      expect(isNegativeFloat(-1.23)).toBe(true);
-      expect(isNegativeFloat(0)).toBe(false);
-      expect(isNegativeFloat(1)).toBe(false);
-      expect(isNegativeFloat(-1)).toBe(false);
-    });
-    it('`isPositiveFloat` should correctly evaluate values', () => {
-      expect(isPositiveFloat(1.23)).toBe(true);
-      expect(isPositiveFloat(0)).toBe(false);
-      expect(isPositiveFloat(1)).toBe(false);
-      expect(isPositiveFloat(-1)).toBe(false);
-      expect(isPositiveFloat(-1.23)).toBe(false);
-    });
-    it('`isNonNegativeFloat` should correctly evaluate values', () => {
-      expect(isNonNegativeFloat(1.23)).toBe(true);
-      expect(isNonNegativeFloat(0)).toBe(false);
-      expect(isNonNegativeFloat(1)).toBe(false);
-      expect(isNonNegativeFloat(-1)).toBe(false);
-      expect(isNonNegativeFloat(-1.23)).toBe(false);
-    });
-    it('`isNonPositiveFloat` should correctly evaluate values', () => {
-      expect(isNonPositiveFloat(-1.23)).toBe(true);
-      expect(isNonPositiveFloat(0)).toBe(false);
-      expect(isNonPositiveFloat(1)).toBe(false);
-      expect(isNonPositiveFloat(-1)).toBe(false);
-      expect(isNonPositiveFloat(1.23)).toBe(false);
     });
   });
 });
