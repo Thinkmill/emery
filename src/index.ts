@@ -1,24 +1,27 @@
-export { typeInvariant } from './invariant/typeInvariant';
+export { assert, assertNever } from './assertions';
 
-export { isBoolean, isFunction, isNumber, isString } from './type-check/guards';
 export {
   isFinite,
   isFloat,
   isInteger,
   isNegative,
-  isNegativeFloat,
-  isNegativeInteger,
   isNegativeZero,
   isNonNegative,
-  isNonNegativeFloat,
-  isNonNegativeInteger,
   isNonPositive,
-  isNonPositiveFloat,
-  isNonPositiveInteger,
   isPositive,
-  isPositiveFloat,
-  isPositiveInteger,
-} from './type-check/number';
-export { checkAll, checkAllWith, negate } from './type-check/utils';
+} from './checks';
 
-export { typedEntries, typedKeys } from './utils/object';
+export {
+  isBoolean,
+  isNonEmptyArray,
+  isNonNullish,
+  isNull,
+  isNullish,
+  isNumber,
+  isString,
+  isUndefined,
+} from './guards';
+
+export { checkAll, checkAllWith, negate } from './runtime';
+
+export { typedEntries, typedKeys } from './utils';

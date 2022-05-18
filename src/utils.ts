@@ -1,4 +1,4 @@
-import { ObjectEntry } from '../types';
+import { ObjectEntry } from './types';
 
 /**
  * An alternative to `Object.entries()` that avoids type widening.
