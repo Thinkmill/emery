@@ -16,7 +16,7 @@ While the available checks are useful for specific cases, we expose a handful of
 Returns a new function for checking _all_ cases against a value, a bit like `pipe` for predicates.
 
 ```ts
-function checkAll<T>(...predicates: UnaryPredicate<T>[]): (value: T) => boolean;
+function checkAll<T>(...predicates: UnaryPredicate<T>[]): UnaryPredicate<T>;
 ```
 
 Useful for creating a new predicate that combines all those provided, which can be called elsewhere in your program.
@@ -65,7 +65,7 @@ function getThingByIndex(index: number) {
 Returns a new negated version of the stated predicate function.
 
 ```ts
-function negate<T>(predicate: UnaryPredicate<T>): (value: T) => boolean;
+function negate<T>(predicate: UnaryPredicate<T>): UnaryPredicate<T>;
 ```
 
 Useful for inverting an existing predicate:
@@ -81,7 +81,7 @@ Common checks for `number` types.
 
 ### isFinite
 
-Checks whether a number is a finite.
+Checks whether a number is finite.
 
 ```ts
 isFinite(1); // → true
@@ -91,7 +91,7 @@ isFinite(Number.NEGATIVE_INFINITY); // → false
 
 ### isInfinite
 
-Checks whether a number is a infinite.
+Checks whether a number is infinite.
 
 ```ts
 isInfinite(Number.POSITIVE_INFINITY); // → true
@@ -171,7 +171,7 @@ isPositive(-1); // → false
 
 ### isNonNegative
 
-Checks whether a number is non-negative.
+Checks whether a number is **not** negative.
 
 ```ts
 isNonNegative(1); // → true
@@ -181,7 +181,7 @@ isNonNegative(-1); // → false
 
 ### isNonPositive
 
-Checks whether a number is non-positive.
+Checks whether a number is **not** positive.
 
 ```ts
 isNonPositive(-1); // → true
