@@ -1,15 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import copy from 'copy-to-clipboard';
-import PrismHighlight, { Prism, Language } from 'prism-react-renderer';
+import PrismHighlight, { Prism } from 'prism-react-renderer';
 // import theme from 'prism-react-renderer/themes/dracula';
 
 import { Icon } from './Icon';
 
-type CodeFenceProps = { children: string; language: Language };
-
-export const CodeFence = ({ children, language }: CodeFenceProps) => {
+export const CodeFence = ({ children, language }) => {
   const [copied, setCopied] = useState(false);
-  const ref = useRef<HTMLPreElement>(null);
+  const ref = useRef(null);
 
   useEffect(() => {
     const preEl = ref.current;
@@ -48,6 +46,6 @@ export const CodeFence = ({ children, language }: CodeFenceProps) => {
 };
 
 // Prism or Markdoc is adding an empty line at the end of each snippet...
-function removeEmptyLine(str: string) {
+function removeEmptyLine(str) {
   return str.replace(/\n$/, '');
 }

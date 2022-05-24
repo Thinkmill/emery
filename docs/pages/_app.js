@@ -1,19 +1,13 @@
 import React from 'react';
-import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { Node } from '@markdoc/markdoc';
 
-import { Container, Footer, SideNav, TableOfContents, Header } from '../components/Shell';
+import { Footer, SideNav, TableOfContents, Header } from '../components/Shell';
 
 import '../public/global.css';
 
 const TITLE = 'TS Runtime DX';
 
-interface AdjustedNode extends Node {
-  title?: string;
-  name?: string;
-}
-function collectHeadings(node: AdjustedNode, sections: AdjustedNode[] = []) {
+function collectHeadings(node, sections = []) {
   if (node) {
     if (node.name === 'Heading') {
       const title = node.children[0];
@@ -34,7 +28,7 @@ function collectHeadings(node: AdjustedNode, sections: AdjustedNode[] = []) {
   return sections;
 }
 
-export default function MyApp(props: AppProps) {
+export default function MyApp(props) {
   const { Component, pageProps } = props;
   const { markdoc } = pageProps;
 
@@ -127,7 +121,7 @@ export default function MyApp(props: AppProps) {
   );
 }
 /* https://webaim.org/techniques/skipnav/ */
-function SkipNav({ id }: { id: string }) {
+function SkipNav({ id }) {
   return (
     <>
       <a href={`#${id}`} className="skip-nav">
