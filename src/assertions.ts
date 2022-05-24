@@ -16,12 +16,12 @@ export function assert(condition: any, message = 'Assert failed'): asserts condi
  *
  * @throws always.
  */
-export function assertNever(value: never): never {
+export function assertNever(condition: never): never {
   developmentDebugger();
-  throw new Error(`Unexpected call to assertNever: ${value}`);
+  throw new Error(`Unexpected call to assertNever: ${condition}`);
 }
 
-/** @private Pause execution in development to aid debugging. */
+/** Pause execution in development to aid debugging. */
 function developmentDebugger() {
   if (process.env.NODE_ENV === 'production') {
     return;
