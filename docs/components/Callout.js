@@ -42,10 +42,10 @@ export function Callout({ children, type }) {
           .content {
             color: var(--dark);
             font-weight: 500;
-            padding-top: 4px;
+            // font-size: 0.9rem;
           }
           .icon {
-            font-size: 2rem;
+            font-size: 1.6rem;
           }
         `}
       </style>

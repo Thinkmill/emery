@@ -71,8 +71,8 @@ function negate<T>(predicate: UnaryPredicate<T>): (value: T) => boolean;
 Useful for inverting an existing predicate:
 
 ```ts
-const isEven = (value: number) => value % 2 === 0;
-const isOdd = negate(isEven);
+const hasSpaces = (value: string) => /\s/g.test(value);
+const hasNoSpaces = negate(hasSpaces);
 ```
 
 ## Number
@@ -81,47 +81,113 @@ Common checks for `number` types.
 
 ### isFinite
 
-Checks whether a number is a finite
+Checks whether a number is a finite.
+
+```ts
+isFinite(1); // → true
+isFinite(Number.POSITIVE_INFINITY); // → false
+isFinite(Number.NEGATIVE_INFINITY); // → false
+```
 
 ### isInfinite
 
-Checks whether a number is a infinite
+Checks whether a number is a infinite.
+
+```ts
+isInfinite(Number.POSITIVE_INFINITY); // → true
+isInfinite(Number.NEGATIVE_INFINITY); // → true
+isInfinite(1); // → false
+```
 
 ### isInteger
 
-Checks whether a number is an integer
+Checks whether a number is an integer.
+
+```ts
+isInteger(1); // → true
+isInteger(Number.MAX_SAFE_INTEGER); // → true
+isInteger(1.2); // → false
+```
 
 ### isFloat
 
-Checks whether a number is a float
+Checks whether a number is a float.
+
+```ts
+isFloat(1.2); // → true
+isFloat(-1.2); // → true
+isFloat(1); // → false
+```
 
 ### isEven
 
-Checks whether a number is even
+Checks whether a number is even.
+
+```ts
+isEven(2); // → true
+isEven(-2); // → true
+isEven(1); // → false
+```
 
 ### isOdd
 
-Checks whether a number is odd
+Checks whether a number is odd.
+
+```ts
+isOdd(1); // → true
+isOdd(-1); // → true
+isOdd(2); // → false
+```
 
 ### isNegativeZero
 
-Checks whether a number is negative zero
+Checks whether a number is negative zero.
+
+```ts
+isNegativeZero(-0); // → true
+isNegativeZero(0); // → false
+isNegativeZero(1); // → false
+```
 
 ### isNegative
 
-Checks whether a number is negative
+Checks whether a number is negative.
+
+```ts
+isNegative(-1); // → true
+isNegative(0); // → false
+isNegative(1); // → false
+```
 
 ### isPositive
 
-Checks whether a number is positive
+Checks whether a number is positive.
+
+```ts
+isPositive(1); // → true
+isPositive(0); // → false
+isPositive(-1); // → false
+```
 
 ### isNonNegative
 
-Checks whether a number is non-negative
+Checks whether a number is non-negative.
+
+```ts
+isNonNegative(1); // → true
+isNonNegative(0); // → true
+isNonNegative(-1); // → false
+```
 
 ### isNonPositive
 
-Checks whether a number is non-positive
+Checks whether a number is non-positive.
+
+```ts
+isNonPositive(-1); // → true
+isNonPositive(0); // → true
+isNonPositive(1); // → false
+```
 
 ## Opaque types
 

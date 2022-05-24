@@ -2,8 +2,6 @@
 
 Utility functions to improve TypeScript DX at runtime.
 
-Here's a [link to the docs](/docs/getting-started).
-
 ```ts
 const isNonNegativeInteger = checkAll(isNonNegative, isInteger);
 // → (value: number) => boolean
@@ -19,9 +17,11 @@ TS Runtime DX improves the developer experience of TypeScript by taking the hass
 
 TS Runtime DX's utility functions are great for:
 
-- Casting types to improve usability
-- Narrowing & checking types
-- Providing human readable error messages
+- Casting types to improve usability — [utils](/docs/utils)
+- Narrowing & checking types — [checks](/docs/checks) and [guards](/docs/guards)
+- Providing human readable error messages — [assertions](/docs/assertions)
+
+{% comment %}
 
 ## Related libraries
 
@@ -30,3 +30,5 @@ Libraries that solve similar problems:
 - [ts-error-translator](https://github.com/mattpocock/ts-error-translator) — TypeScript errors in plain English
 - [runtypes](https://github.com/pelotom/runtypes) — Runtime validation for static types
 - [tiny-invariant](https://github.com/alexreardon/tiny-invariant) — A tiny invariant function
+
+{% /comment %}

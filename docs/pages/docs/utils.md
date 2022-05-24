@@ -23,7 +23,7 @@ Uses a [type assertion](https://www.typescriptlang.org/docs/handbook/2/everyday-
 function typedEntries<T extends Record<string, unknown>>(value: T): ObjectEntry<T>[];
 ```
 
-Now the key parameter in the find method is a union type of the objects keys, so everything works as expected.
+Differences:
 
 ```ts
 Object.entries({ foo: 1, bar: 2 });
@@ -40,7 +40,7 @@ An alternative to `Object.keys()` that avoids type widening.
 function typedKeys<T extends Record<string, unknown>>(value: T): Array<keyof T>;
 ```
 
-Differences
+Differences:
 
 ```ts
 Object.keys({ foo: 1, bar: 2 });
@@ -49,13 +49,14 @@ typedKeys({ foo: 1, bar: 2 });
 // →  ("foo" | "bar")[]
 ```
 
-Usage
+Example use case:
 
 ```ts
-const r = Object.keys(obj).find(key => {
-  // ⛔️ Error:  No index signature with a parameter of
-  // type 'string' was found on type
-  // '{ name: string; department: string; country: string; }'.
-  return obj[key] === 'accounting';
+const obj = { foo: 1, bar: 2 };
+const thing = Object.keys(obj).map(key => {
+  return obj[key];
+  //     ~~~~~~~~
+  //     Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ foo: number; bar: number; }'.
+  //       No index signature with a parameter of type 'string' was found on type '{ foo: number; bar: number; }'.
 });
 ```

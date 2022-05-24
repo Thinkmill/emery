@@ -6,7 +6,6 @@ const items = [
   {
     title: 'About',
     links: [
-      { href: '/docs/overview', children: 'What is this?' },
       { href: '/docs/getting-started', children: 'Getting started' },
       { href: '/docs/origin-story', children: 'Origin story' },
     ],

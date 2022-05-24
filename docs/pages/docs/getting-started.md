@@ -5,11 +5,11 @@ description: How to get started with TS Runtime DX
 
 # {% $markdoc.frontmatter.title %}
 
-Follow the instructions below to use TS Runtime DX in your app.
+Follow the instructions below to use TS Runtime DX in your application.
 
 ## Install
 
-Install the TS Runtime DX library:
+Install the library:
 
 ```shell
 npm install ts-runtime-dx
@@ -23,7 +23,7 @@ yarn add ts-runtime-dx
 
 ## Import
 
-Import the library in your app:
+Import the library:
 
 ```js
 const tsrdx = require('ts-runtime-dx');
@@ -35,13 +35,22 @@ If you're using ESM:
 import tsrdx from 'ts-runtime-dx';
 ```
 
-### Module formats
+### Modules
 
-Grab the parts you need without bloating your bundle.
+This library is already tiny, but if you prefer, just grab the parts you need:
 
 ```ts
+// # assertions
 import { assert, assertNever } from 'ts-runtime-dx/assertions';
-import { checkAll, checkAllWith, negate } from 'ts-runtime-dx/checks';
+
+// # checks
+import * as checkModules from 'ts-runtime-dx/checks';
+const { checkAll, checkAllWith, negate, ...check } = checkModules;
+// e.g. `check.isNonNegative()`
+
+// # guards
 import * as guards from 'ts-runtime-dx/guards';
+
+// # utils
 import { typedEntries, typedKeys } from 'ts-runtime-dx/utils';
 ```

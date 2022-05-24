@@ -4,54 +4,16 @@ import { useRouter } from 'next/router';
 export function Heading({ id = '', level = 1, children, className }) {
   const router = useRouter();
   const Component = `h${level}`;
-
   const isDocs = router.pathname.startsWith('/docs');
+  const link =
+    isDocs && level !== 1 ? (
+      <a href={`#${id}`} aria-label="Anchor" className="heading-link" />
+    ) : null;
 
-  const link = (
-    <Component className={['heading', className].filter(Boolean).join(' ')}>
-      <div id={id} />
-      {children}
-      <style jsx>
-        {`
-          a {
-            text-decoration: none;
-          }
-          a:hover {
-            opacity: 1;
-          }
-          div {
-            position: absolute;
-            top: calc(-1 * (var(--header-height) + 44px));
-          }
-        `}
-      </style>
-    </Component>
-  );
-
-  return isDocs && level !== 1 ? (
-    <a href={`#${id}`}>
+  return (
+    <Component className={['heading', className].filter(Boolean).join(' ')} id={id}>
       {link}
-      <style jsx>
-        {`
-          a {
-            text-decoration: none;
-          }
-          a:hover {
-            opacity: 1;
-          }
-          a :global(.heading::after) {
-            opacity: 0;
-            color: var(--gray-medium);
-            content: '  #';
-            transition: opacity 250ms ease;
-          }
-          a :global(.heading:hover::after) {
-            opacity: 1;
-          }
-        `}
-      </style>
-    </a>
-  ) : (
-    link
+      <span>{children}</span>
+    </Component>
   );
 }

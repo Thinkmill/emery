@@ -161,10 +161,34 @@ blockquote {
 .heading {
   color: var(--heading);
 }
+.heading-link {
+  left: 0;
+  opacity: 0;
+  padding-right: 0.5rem;
+  position: absolute;
+  text-decoration: none;
+  transform: translateX(-100%);
+  transition: opacity 250ms ease;
+}
+.heading-link::after {
+  content: '#';
+}
+.heading:hover .heading-link {
+  opacity: 0.5;
+}
+.heading .heading-link:hover {
+  opacity: 1;
+}
+
+h2,
+h3,
+h4 {
+  scroll-margin-top: calc(var(--header-height) + 2rem);
+}
 
 p {
   text-rendering: optimizeLegibility;
-  font-size: var(--font-size-3);
+  /* font-size: var(--font-size-3); */
   line-height: var(--line-height-3);
 }
 
@@ -322,7 +346,6 @@ Syntax highlighting
 code {
   background: var(--code-background);
   border-radius: 3px;
-  color: var(--purple);
   font-family: var(--mono);
   font-size: 0.85rem;
 }
@@ -413,16 +436,6 @@ pre[class*='language-'] {
 .token.attr-name,
 .token.variable {
   color: var(--green);
-}
-
-@media screen and (max-width: 600px) {
-  p {
-    font-size: var(--font-size-3);
-    line-height: var(--line-height-3);
-  }
-  blockquote {
-    margin: 0.75rem 0;
-  }
 }
 
 @media (prefers-reduced-motion) {

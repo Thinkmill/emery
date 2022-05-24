@@ -8,10 +8,10 @@ description: Common guards for narrowing the type of a value
 Type guards allow you to [narrow the type](https://www.typescriptlang.org/docs/handbook/2/narrowing.html) of a value:
 
 ```ts
-function doSomething(x: number | string) {
-  if (isString(x)) {
+function doThing(x: number | string) {
+  if (typeof x === 'string') {
     // `x` is string
-    return x.substr(1);
+    return x.substring(1);
   }
 
   // `x` is number
@@ -21,9 +21,11 @@ function doSomething(x: number | string) {
 
 ## Primitve
 
-Guards for primitive types.
+Guards for [primitive](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) types.
 
 ### isBoolean
+
+Checks whether a value is `boolean`.
 
 ```ts
 function isBoolean(value: unknown): value is boolean;
@@ -31,11 +33,19 @@ function isBoolean(value: unknown): value is boolean;
 
 ### isNull
 
+Checks whether a value is `null`.
+
 ```ts
 function isNull(value: unknown): value is null;
 ```
 
 ### isNumber
+
+Checks whether a value is a `number`.
+
+{% callout type="warning" %}
+`isNumber` does not consider `NaN` a valid value.
+{% /callout %}
 
 ```ts
 function isNumber(value: unknown): value is number;
@@ -43,11 +53,15 @@ function isNumber(value: unknown): value is number;
 
 ### isString
 
+Checks whether a value is a `string`.
+
 ```ts
 function isString(value: unknown): value is string;
 ```
 
 ### isUndefined
+
+Checks whether a value is `undefined`.
 
 ```ts
 function isUndefined(value: unknown): value is undefined;
@@ -59,11 +73,15 @@ Guards for [nullish](https://developer.mozilla.org/en-US/docs/Glossary/Nullish) 
 
 ### isNullish
 
+Checks whether a value is `null` or `undefined`.
+
 ```ts
 function isNullish(value: unknown): value is Nullish;
 ```
 
 ### isNonNullish
+
+Checks whether a value is **not** `null` or `undefined`.
 
 ```ts
 function isNonNullish<T>(value: T | Nullish): value is T;
@@ -71,9 +89,11 @@ function isNonNullish<T>(value: T | Nullish): value is T;
 
 ## Array
 
-Guards for array types.
+Guards for [array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) types.
 
 ### isNonEmptyArray
+
+Checks whether an array is **not** empty.
 
 ```ts
 function isNonEmptyArray<T>(arr: T[]): arr is [T, ...T[]];
