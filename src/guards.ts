@@ -45,6 +45,6 @@ export function isNullish(value: unknown): value is Nullish {
 }
 
 /** Checks whether a value is defined */
-export function isNonNullish<T>(value: T | undefined | null): value is T {
+export function isNonNullish<T>(value: T | Nullish): value is T {
   return value != null;
 }
