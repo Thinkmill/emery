@@ -64,7 +64,7 @@ Without a way to influence TypeScript in a way that would surface more useful me
 
 We can improve DX without compromising static types by including an [assertion](/docs/assertions) that yields a more _human friendly_ error message.
 
-```ts {1,2,3-4}
+```ts
 const Thing = (props: ThingProps) => {
   validateProps(props);
   return; /* omitted for brevity */
