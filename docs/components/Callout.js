@@ -46,6 +46,7 @@ export function Callout({ children, type }) {
           }
           .icon {
             font-size: 1.6rem;
+            line-height: 1;
           }
         `}
       </style>

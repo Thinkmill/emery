@@ -146,16 +146,17 @@ export function ThemeToggle() {
             height: 2rem;
             white-space: nowrap;
             width: 120px;
+
+            background: var(--surface);
+            color: var(--text-muted);
           }
 
-          .dark {
-            background: var(--contrast-dark);
-            color: var(--white);
+          button:hover {
+            background: var(--surface-prominent);
+            color: var(--text-prominent);
           }
-
-          .light {
-            background: var(--gray-light);
-            color: var(--black);
+          button:active {
+            background: var(--surface);
           }
 
           button:active :global(svg) {

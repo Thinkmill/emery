@@ -4,14 +4,11 @@ import { AppLink as Link } from '../AppLink';
 import { ThemeToggle } from '.';
 
 export function Footer() {
-  const copyright = <Link href="https://www.thinkmill.com.au">by Thinkmill</Link>;
-  const toggle = <ThemeToggle />;
-
   return (
     <div className="footer-bar">
       <footer className="footer">
-        <div className="left gap">{copyright}</div>
-        <div className="right gap">{toggle}</div>
+        <Link href="https://www.thinkmill.com.au">by Thinkmill</Link>
+        <ThemeToggle />
       </footer>
       <style jsx>
         {`
