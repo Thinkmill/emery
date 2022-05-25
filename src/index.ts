@@ -13,8 +13,8 @@ export {
 
 export {
   isBoolean,
+  isDefined,
   isNonEmptyArray,
-  isNonNullish,
   isNull,
   isNullish,
   isNumber,

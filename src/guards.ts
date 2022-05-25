@@ -41,10 +41,10 @@ export function isNonEmptyArray<T>(arr: T[]): arr is [T, ...T[]] {
 
 /** Checks whether a value is null or undefined */
 export function isNullish(value: unknown): value is Nullish {
-  return value == null;
+  return value === null || value === undefined;
 }
 
 /** Checks whether a value is defined */
-export function isNonNullish<T>(value: T | Nullish): value is T {
-  return value != null;
+export function isDefined<T>(value: T | Nullish): value is NonNullable<T> {
+  return !isNullish(value) && !Number.isNaN(value);
 }

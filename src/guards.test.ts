@@ -1,7 +1,7 @@
 import {
   isBoolean,
+  isDefined,
   isNonEmptyArray,
-  isNonNullish,
   isNull,
   isNullish,
   isNumber,
@@ -76,12 +76,13 @@ describe('guards', () => {
         expect(isNullish(val)).toBe(false);
       });
     });
-    it('isNonNullish should validate assumed values', () => {
-      expect(isNonNullish(null)).toBe(false);
-      expect(isNonNullish(undefined)).toBe(false);
+    it('isDefined should validate assumed values', () => {
+      expect(isDefined(null)).toBe(false);
+      expect(isDefined(undefined)).toBe(false);
+      expect(isDefined(NaN)).toBe(false);
 
       getValuesByTypeWithout(['null', 'undefined']).forEach(val => {
-        expect(isNonNullish(val)).toBe(true);
+        expect(isDefined(val)).toBe(true);
       });
     });
   });

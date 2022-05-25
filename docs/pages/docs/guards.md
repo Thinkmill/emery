@@ -79,12 +79,12 @@ Checks whether a value is `null` or `undefined`.
 function isNullish(value: unknown): value is Nullish;
 ```
 
-### isNonNullish
+### isDefined
 
-Checks whether a value is **not** `null` or `undefined`.
+Checks whether a value is **not** `null`, `undefined`, or `NaN`.
 
 ```ts
-function isNonNullish<T>(value: T | Nullish): value is T;
+function isDefined<T>(value: T | Nullish): value is NonNullable<T>;
 ```
 
 ## Array
