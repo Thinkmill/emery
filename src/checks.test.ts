@@ -1,4 +1,5 @@
 import {
+  isEven,
   isFinite,
   isFloat,
   isInfinite,
@@ -7,6 +8,7 @@ import {
   isNegativeZero,
   isNonNegative,
   isNonPositive,
+  isOdd,
   isPositive,
 } from './checks';
 
@@ -28,6 +30,7 @@ describe('checks', () => {
       expect(isInfinite(Number.MAX_SAFE_INTEGER)).toBe(false);
       expect(isInfinite(Number.MIN_SAFE_INTEGER)).toBe(false);
     });
+
     it('`isInteger` should correctly evaluate values', () => {
       expect(isInteger(1)).toBe(true);
       expect(isInteger(-1)).toBe(true);
@@ -40,11 +43,26 @@ describe('checks', () => {
       expect(isFloat(1)).toBe(false);
       expect(isFloat(-1)).toBe(false);
     });
+
+    it('`isEven` should correctly evaluate values', () => {
+      expect(isEven(2)).toBe(true);
+      expect(isEven(-22)).toBe(true);
+      expect(isEven(1)).toBe(false);
+      expect(isEven(2.2)).toBe(false);
+    });
+    it('`isOdd` should correctly evaluate values', () => {
+      expect(isOdd(1)).toBe(true);
+      expect(isOdd(-11)).toBe(true);
+      expect(isOdd(2)).toBe(false);
+      expect(isOdd(1.1)).toBe(false);
+    });
+
     it('`isNegativeZero` should correctly evaluate values', () => {
       expect(isNegativeZero(-0)).toBe(true);
       expect(isNegativeZero(1)).toBe(false);
       expect(isNegativeZero(0)).toBe(false);
     });
+
     it('`isNegative` should correctly evaluate values', () => {
       expect(isNegative(-1)).toBe(true);
       expect(isNegative(-1.23)).toBe(true);
@@ -59,6 +77,7 @@ describe('checks', () => {
       expect(isPositive(0)).toBe(false);
       expect(isPositive(-0)).toBe(false);
     });
+
     it('`isNonNegative` should correctly evaluate values', () => {
       expect(isNonNegative(0)).toBe(true);
       expect(isNonNegative(-0)).toBe(true);

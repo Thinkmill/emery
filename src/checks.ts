@@ -20,6 +20,12 @@ export const isInteger: UnaryPredicate<number> = Number.isInteger;
 /** Checks whether a number is a float */
 export const isFloat = negate(isInteger);
 
+/** Checks whether a number is even. */
+export const isEven = (value: number) => value % 2 === 0;
+
+/** Checks whether a number is odd. */
+export const isOdd = (value: number) => Math.abs(value % 2) === 1;
+
 /** Checks whether a number is negative zero */
 export const isNegativeZero = (value: number) => 1 / value === Number.NEGATIVE_INFINITY;
 
