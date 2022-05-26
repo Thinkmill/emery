@@ -17,6 +17,7 @@ const items = [
       { href: '/docs/checks', children: 'Checks' },
       { href: '/docs/errors', children: 'Errors' },
       { href: '/docs/guards', children: 'Guards' },
+      { href: '/docs/opaques', children: 'Opaques' },
       { href: '/docs/utils', children: 'Utils' },
     ],
   },

@@ -386,12 +386,16 @@ pre > code {
   border: none;
   color: var(--text-muted);
   font-size: 15px;
+  opacity: 0;
   position: absolute;
   right: 0.5rem;
   top: 1rem;
 }
-.code-block button:hover,
-.code-block button:focus {
+.code-block:hover button {
+  opacity: 1;
+  transition: 150ms linear;
+}
+.code-block button:hover {
   color: var(--text);
 }
 

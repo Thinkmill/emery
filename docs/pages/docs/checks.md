@@ -5,7 +5,7 @@ description: Checks are predicates that cannot easily be expressed as type guard
 
 # {% $markdoc.frontmatter.title %}
 
-This library considers "checks" predicates that cannot be expressed as [type guards](/docs/guards), without enforcing some [opaque type](#opaque-types).
+This library considers "checks" predicates that cannot be expressed as [type guards](/docs/guards), without enforcing [opaque types](/docs/opaques). While we recommend opaque types where appropriate, we can't make assumptions about your program's requirements.
 
 ## Utils
 
@@ -188,28 +188,3 @@ isNonPositive(-1); // → true
 isNonPositive(0); // → true
 isNonPositive(1); // → false
 ```
-
-## Opaque types
-
-In TypeScript, types are transparent by default — if two types are structurally identical they are deemed to be compatible. For example:
-
-```ts
-type Username = string;
-type Password = string;
-```
-
-`Username` and `Password` are both strings, so they are equivalent as far as TypeScript is concerned, even though they represent different concepts. Transparent types can ensure type safety, but they don’t encode any information about the program semantics.
-
-An opaque type's true structure is obfuscated to the compiler at compile-time. The tend to look something like:
-
-```ts
-type SomeType = string & { __opaque: 'SomeType' };
-
-function createSomeType(input: string): SomeType {
-  // validation logic
-  // - pass: return `input` with type assertion
-  // - fail: throw error
-}
-```
-
-While we recommend opaque types where appropriate, we can't make assumptions about your program's requirements.

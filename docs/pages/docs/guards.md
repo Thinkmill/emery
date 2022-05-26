@@ -1,5 +1,5 @@
 ---
-title: Guards
+title: Type guards
 description: Common guards for narrowing the type of a value
 ---
 
