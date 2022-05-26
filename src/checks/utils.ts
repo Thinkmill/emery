@@ -1,4 +1,4 @@
-import { UnaryPredicate } from './types';
+import { UnaryPredicate } from '../types';
 
 /**
  * Returns a new function for checking *all* cases against a value, a bit

@@ -12,9 +12,8 @@ export {
   isNonNegative,
   isNonPositive,
   isPositive,
-} from './checks';
-
-export { getErrorMessage } from './errors';
+} from './checks/number';
+export { checkAll, checkAllWith, negate } from './checks/utils';
 
 export {
   isBoolean,
@@ -29,9 +28,8 @@ export {
 
 export { toOpaque, toTransparent } from './opaques';
 
-export { checkAll, checkAllWith, negate } from './runtime';
-
-export { typedEntries, typedKeys } from './utils';
+export { getErrorMessage } from './utils/error';
+export { typedEntries, typedKeys } from './utils/object';
 
 // Types
 // ------------------------------

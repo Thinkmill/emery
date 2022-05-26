@@ -1,4 +1,4 @@
-import { typedKeys } from './utils';
+import { typedKeys } from './utils/object';
 
 const obj = { a: 1, b: 2, c: 'three' };
 const arr = Object.values(obj);

@@ -1,6 +1,6 @@
-import { checkAll, checkAllWith, negate } from './runtime';
+import { checkAll, checkAllWith, negate } from './utils';
 
-describe('runtime', () => {
+describe('checks/utils', () => {
   const isEven = jest.fn(x => x % 2 === 0);
   const isNumberish = jest.fn(x => typeof x === 'number');
   const lessThanTen = jest.fn(x => x < 10);
