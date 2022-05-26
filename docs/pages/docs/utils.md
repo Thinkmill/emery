@@ -3,7 +3,7 @@ title: Utils
 description: Utility functions for overiding TypeScript's default behaviour
 ---
 
-# Utils
+# {% $markdoc.frontmatter.title %}
 
 Utility functions for overiding TypeScript's default behaviour
 

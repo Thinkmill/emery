@@ -35,7 +35,7 @@ type ThingThree = Opaque<string, 'ThingTwo'>;
 // 🚨 Non-unique `Token` parameter
 ```
 
-As a side note, you can (and should) use recursive types for your opaque types to make them stronger and hopefully easier to type.
+You can, and should, use recursive types for your opaque types to make them stronger and hopefully easier to type.
 
 ```ts
 type Person = {
@@ -66,28 +66,46 @@ A generic helper function that takes a primitive value, and returns the value af
 function toOpaque<OpaqueType>(value: bigint | number | string | symbol): OpaqueType;
 ```
 
-Must be used in combination with the `Opaque` [generic type](#opaque).
+Opaque types cannot be assigned to variables with standard type declarations—this is by design, ensuring that opaquely typed values flow through the program without degrading.
 
 ```ts
-type NumericThing = Opaque<number, 'NumericThing'>;
+const value: AccountNumber = 123;
+//    ~~~~~
+//    Type 'number' is not assignable to type 'AccountNumber'.
+```
+
+Instead use `toOpaque` to create values of opaque types.
+
+```ts
+type AccountNumber = Opaque<number, 'AccountNumber'>;
 
 const value = 123;
 // → 'value' is 'number'
-const opaqueValue = toOpaque<NumericThing>(value);
-// → 'opaqueValue' is 'NumericThing'
+const opaqueValue = toOpaque<AccountNumber>(value);
+// → 'opaqueValue' is 'AccountNumber'
 ```
 
-Ensures basic type safety before casting.
+Ideally, each opaque type would have a companion function for managing their creation.
 
 ```ts
-const thingTwo = toOpaque<NumericThing>('123');
-//                                      ~~~~~
-//                                      Argument of type 'string' is not assignable to parameter of type 'number'.
+export type AccountNumber = Opaque<number, 'AccountNumber'>;
+
+export function createAccountNumber(value: number) {
+  return toOpaque<AccountNumber>(value);
+}
+```
+
+Ensures basic type safety before casting to avoid invalid primitive assignment.
+
+```ts
+const value = toOpaque<AccountNumber>('123');
+//                                    ~~~~~
+//                                    Argument of type 'string' is not assignable to parameter of type 'number'.
 ```
 
 ### toTransparent
 
-A generic helper function that takes an opaquely typed value, and returns the value after widening it to the primitive transparent type.
+A generic helper function that takes an opaquely typed value, and returns the value after widening it to the transparent primitive type.
 
 ```ts
 function toTransparent<OpaqueType>(value: OpaqueType): bigint | number | string | symbol;
