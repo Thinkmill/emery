@@ -15,6 +15,7 @@ const items = [
     links: [
       { href: '/docs/assertions', children: 'Assertions' },
       { href: '/docs/checks', children: 'Checks' },
+      { href: '/docs/errors', children: 'Errors' },
       { href: '/docs/guards', children: 'Guards' },
       { href: '/docs/utils', children: 'Utils' },
     ],

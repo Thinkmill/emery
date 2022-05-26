@@ -126,11 +126,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body ::selection,
+/* body ::selection,
 body.dark ::selection {
   color: var(--neutral-0) !important;
   background: var(--brand) !important;
-}
+} */
 
 a {
   color: var(--dark);

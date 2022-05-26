@@ -1,4 +1,5 @@
 import { assert, assertNever } from './assertions';
+import { getErrorMessage } from './errors';
 
 describe('assertions', () => {
   describe('assert', () => {
@@ -29,16 +30,14 @@ describe('assertions', () => {
       try {
         assert(false);
       } catch (error) {
-        assert(error instanceof TypeError);
-        expect(error.message).toBe('Assert failed');
+        expect(getErrorMessage(error)).toBe('Assert failed');
       }
     });
     it('should throw a TypeError with the consumer message, when provided', () => {
       try {
         assert(false, 'Custom message');
       } catch (error) {
-        assert(error instanceof TypeError);
-        expect(error.message).toBe('Custom message');
+        expect(getErrorMessage(error)).toBe('Custom message');
       }
     });
   });
