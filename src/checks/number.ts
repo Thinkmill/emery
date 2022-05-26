@@ -1,12 +1,6 @@
-import { negate } from './runtime';
-import { UnaryPredicate } from './types';
+import { UnaryPredicate } from '../types';
 
-// ==============================================================
-// NOTE: Checks are predicates that cannot be expressed as guards
-// ==============================================================
-
-// Number
-// ------------------------------
+import { negate } from './utils';
 
 /** Checks whether a number is a finite */
 export const isFinite: UnaryPredicate<number> = Number.isFinite;
