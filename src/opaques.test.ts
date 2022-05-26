@@ -21,10 +21,12 @@ describe('opaques', () => {
     });
     it('should expect TS error when Token parameter omitted', () => {
       // @ts-expect-error the second parameter `Token` is required
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       type AccountNumber = Opaque<number>;
     });
     it('should expect TS error when variable assigned with type declaration', () => {
       // @ts-expect-error variable with type declaration not allowed
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const value: OpaqueNumber = 123;
     });
     it('should expect TS error when called without explicit type', () => {
