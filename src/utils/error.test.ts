@@ -1,6 +1,6 @@
-import { getErrorMessage } from './errors';
+import { getErrorMessage } from './error';
 
-describe('errors', () => {
+describe('utils/errors', () => {
   describe('getErrorMessage', () => {
     it('should validate real errors', () => {
       expect(getErrorMessage(new Error('Error text'))).toBe('Error text');

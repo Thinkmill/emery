@@ -1,5 +1,5 @@
 import { assert, assertNever } from './assertions';
-import { getErrorMessage } from './errors';
+import { getErrorMessage } from './utils/error';
 
 describe('assertions', () => {
   describe('assert', () => {

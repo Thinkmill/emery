@@ -1,4 +1,4 @@
-type ErrorLike = { message: string };
+import { ErrorLike } from '../types';
 
 /**
  * Simplifies `error` handling in `try...catch` statements.
