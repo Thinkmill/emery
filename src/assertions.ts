@@ -1,10 +1,15 @@
 /**
- * Asserts that a condition is ["truthy"](https://developer.mozilla.org/en-US/docs/Glossary/Truthy).
+ * Asserts that a condition is `true`, ensuring that whatever condition is being
+ * checked must be true for the remainder of the containing scope.
  *
- * @throws when given a ["falsy"](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) condition.
+ * @throws when the condition is `false`
+ * @returns void
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function assert(condition: any, message = 'Assert failed'): asserts condition {
+// NOTE: The narrow type of `boolean` instead of something like `unknown` is an
+// intentional design decision. The goal is to promote consideration from
+// consumers when dealing with potentially ambiguous conditions like `0` or
+// `''`, which can introduce "subtle" bugs.
+export function assert(condition: boolean, message = 'Assert failed'): asserts condition {
   if (!condition) {
     developmentDebugger();
     throw new TypeError(message);
@@ -14,11 +19,12 @@ export function assert(condition: any, message = 'Assert failed'): asserts condi
 /**
  * Asserts that allegedly unreachable code has been executed.
  *
- * @throws always.
+ * @throws always
+ * @returns void
  */
 export function assertNever(condition: never): never {
   developmentDebugger();
-  throw new Error(`Unexpected call to assertNever: ${condition}`);
+  throw new Error(`Unexpected call to assertNever: '${condition}'`);
 }
 
 /** Pause execution in development to aid debugging. */

@@ -2,11 +2,14 @@ import React from 'react';
 import Link from 'next/link';
 
 export function TableOfContents({ toc }) {
+  const headingId = 'toc-heading';
   const items = toc.filter(
     item => item.id && (item.level === 2 || item.level === 3) && item.title !== 'Next steps',
   );
+
   return (
     <nav className="toc">
+      <h3 id={headingId}>On this page</h3>
       {items.length > 1 ? (
         <ul className="flex column">
           {items.map(item => {
@@ -38,7 +41,15 @@ export function TableOfContents({ toc }) {
             align-self: flex-start;
             margin-bottom: 1rem;
             padding: 0.25rem 0 0;
-            border-left: 1px solid var(--border);
+            // border-left: 1px solid var(--border);
+          }
+          h3 {
+            color: var(--text-prominent);
+            font-weight: 500;
+            font-size: 1rem;
+            margin: 0;
+            padding-bottom: 0.75rem;
+            padding-left: 1.5rem;
           }
           ul {
             margin: 0;

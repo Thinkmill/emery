@@ -26,7 +26,7 @@ export {
   isUndefined,
 } from './guards';
 
-export { toOpaque, toTransparent } from './opaques';
+export { castToOpaque } from './opaques';
 
 export { getErrorMessage } from './utils/error';
 export { typedEntries, typedKeys } from './utils/object';
@@ -34,11 +34,4 @@ export { typedEntries, typedKeys } from './utils/object';
 // Types
 // ------------------------------
 
-export type {
-  GuardedPredicate,
-  Nullish,
-  Opaque,
-  Predicate,
-  Transparent,
-  UnaryPredicate,
-} from './types';
+export type { Nullish, Opaque, UnaryPredicate } from './types';

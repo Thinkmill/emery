@@ -28,6 +28,11 @@ export function Footer() {
             position: relative;
             z-index: 100;
           }
+
+          // brand
+          .footer :global(a) {
+            font-size: 0.85rem;
+          }
         `}
       </style>
     </div>

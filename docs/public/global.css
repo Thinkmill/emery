@@ -146,6 +146,11 @@ a:hover {
   text-decoration-thickness: 2px;
 }
 
+/* Indicate external links */
+article a[href^='http'] {
+  color: var(--blue);
+}
+
 button {
   cursor: pointer;
   appearance: none;
@@ -377,6 +382,7 @@ pre > code {
 
 .code-block {
   margin: 0 0 var(--default-vertical-spacing);
+  margin: 0.25rem 0 1rem;
   position: relative;
 }
 .code-block button {

@@ -79,7 +79,6 @@ describe('guards', () => {
     it('isDefined should validate assumed values', () => {
       expect(isDefined(null)).toBe(false);
       expect(isDefined(undefined)).toBe(false);
-      expect(isDefined(NaN)).toBe(false);
 
       getValuesByTypeWithout(['null', 'undefined']).forEach(val => {
         expect(isDefined(val)).toBe(true);
