@@ -5,10 +5,10 @@ description: Functions for asserting the "truthiness" of a condition
 
 # {% $markdoc.frontmatter.title %}
 
-An assertion declares that a condition be ["truthy"](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) before executing subsequent code.
+An assertion declares that a condition be `true` before executing subsequent code.
 
-- If the condition evaluates to `true` the code continues running.
-- If the condition evaluates to `false` an error will be thrown.
+- If the condition resolves to `true` the code continues running.
+- If the condition resolves to `false` an error will be thrown.
 
 ## Functions
 
@@ -16,10 +16,10 @@ TypeScript supports the `asserts` keyword, for use in the return statement of [a
 
 ### assert
 
-Asserts that a condition is "truthy", ensuring that whatever condition is being checked must be true for the remainder of the containing scope.
+Asserts that a condition is `true`, ensuring that whatever condition is being checked must be true for the remainder of the containing scope.
 
 ```ts
-function assert(condition: any, message?: string): asserts condition;
+function assert(condition: boolean, message?: string): asserts condition;
 ```
 
 The `assert` function has a default message:
@@ -37,13 +37,19 @@ assert(falsyValue >= 0, `Expected a non-negative number, but received: ${falsyVa
 // → TypeError: Expected a non-negative number, but received: -1
 ```
 
+#### Condition type
+
+{% callout %}
+The narrow type of `boolean` is an intentional design decision.
+{% /callout %}
+
+Other assertion functions may accept ["truthy"](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) and ["falsy"](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) conditions, while `assert` only accepts conditions that resolve to `boolean`.
+
+The goal is to promote consideration from consumers when dealing with potentially ambiguous values like `0` or `''`, which can introduce subtle bugs.
+
 ### assertNever
 
 Asserts that allegedly unreachable code has been executed.
-
-{% callout %}
-When called, this function will always throw.
-{% /callout %}
 
 ```ts
 function assertNever(condition: never): never;
@@ -52,13 +58,11 @@ function assertNever(condition: never): never;
 Use `assertNever` to catch logic forks that shouldn't be possible.
 
 ```ts
-function doThing(type: 'draft' | 'published' | 'archived') {
+function doThing(type: 'draft' | 'published') {
   switch (type) {
     case 'draft':
       return; /*...*/
     case 'published':
-      return; /*...*/
-    case 'archived':
       return; /*...*/
 
     default:
@@ -66,6 +70,10 @@ function doThing(type: 'draft' | 'published' | 'archived') {
   }
 }
 ```
+
+{% callout type="warning" %}
+Regardless of the condition, this function **always** throws.
+{% /callout %}
 
 ## Debugging
 

@@ -3,27 +3,25 @@ import { getErrorMessage } from './utils/error';
 
 describe('assertions', () => {
   describe('assert', () => {
-    it('should throw when the condition is "falsy"', () => {
+    it('should throw when the condition is `false`', () => {
       expect(() => assert(false)).toThrow();
-      expect(() => assert(+0)).toThrow();
-      expect(() => assert(-0)).toThrow();
-      expect(() => assert('')).toThrow();
-      expect(() => assert(null)).toThrow();
-      expect(() => assert(undefined)).toThrow();
-      expect(() => assert(NaN)).toThrow();
     });
-    it('should not throw when the condition is "truthy"', () => {
-      const mockFn = jest.fn();
-
+    it('should not throw when the condition is `true`', () => {
       expect(() => assert(true)).not.toThrow();
-      expect(() => assert(1)).not.toThrow();
-      expect(() => assert(-1)).not.toThrow();
-      expect(() => assert('test')).not.toThrow();
-      expect(() => assert({})).not.toThrow();
-      expect(() => assert([])).not.toThrow();
+    });
 
-      expect(() => assert(mockFn)).not.toThrow();
-      expect(mockFn).toBeCalledTimes(0);
+    it('should expect TS error when called with non-boolean conditions', () => {
+      const falsyValues = [0, -0, '', null, undefined, NaN];
+      const truthyValues = [1, -1, 'test', {}, [], Number.POSITIVE_INFINITY];
+
+      falsyValues.forEach(val => {
+        // @ts-expect-error should not accept non-boolean conditions
+        expect(() => assert(val)).toThrow();
+      });
+      truthyValues.forEach(val => {
+        // @ts-expect-error should not accept non-boolean conditions
+        expect(() => assert(val)).not.toThrow();
+      });
     });
 
     it('should throw a TypeError with the "default" message, when none provided', () => {
@@ -41,6 +39,7 @@ describe('assertions', () => {
       }
     });
   });
+
   describe('assertNever', () => {
     it('should always throw', () => {
       // @ts-expect-error: for testing
@@ -59,8 +58,7 @@ describe('assertions', () => {
         // @ts-expect-error: for testing
         assertNever(value);
       } catch (error) {
-        assert(error instanceof Error);
-        expect(error.message).toBe(`Unexpected call to assertNever: ${value}`);
+        expect(getErrorMessage(error)).toBe(`Unexpected call to assertNever: ${value}`);
       }
     });
   });
