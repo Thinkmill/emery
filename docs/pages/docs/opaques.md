@@ -35,35 +35,33 @@ type ThingThree = Opaque<string, 'ThingTwo'>;
 // 🚨 Non-unique `Token` parameter
 ```
 
-You can, and should, use recursive types for your opaque types to make them stronger and hopefully easier to type.
+While string literals are accepted tokens, we recommend [unique symbols](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#unique-symbol) for your opaque types to make them stronger. Each reference to a unique symbol implies a completely unique identity that’s tied to a given declaration.
 
 ```ts
-type Person = {
-  id: Opaque<number, Person>;
-  name: string;
-};
+const AccountNumberSymbol: unique symbol = Symbol();
+
+type AccountNumber = Opaque<number, typeof AccountNumberSymbol>;
 ```
 
-### Transparent
-
-Extract the transparent type from an opaque type.
+Another approach is to use recursive types.
 
 ```ts
-type AccountNumber = Opaque<number, 'AccountNumber'>;
-type Raw = Transparent<AccountNumber>;
-// → type is 'number'
+type Account = {
+  accountNumber: Opaque<number, Account>;
+  name: string;
+};
 ```
 
 ## Functions
 
 At runtime these are each equivalent to an [identity function](https://en.wikipedia.org/wiki/Identity_function).
 
-### toOpaque
+### castToOpaque
 
 A generic helper function that takes a primitive value, and returns the value after casting it to the provided opaque type.
 
 ```ts
-function toOpaque<OpaqueType>(value: bigint | number | string | symbol): OpaqueType;
+function castToOpaque<OpaqueType>(value: bigint | number | string | symbol): OpaqueType;
 ```
 
 Opaque types cannot be assigned to variables with standard type declarations—this is by design, ensuring that opaquely typed values flow through the program without degrading.
@@ -74,14 +72,14 @@ const value: AccountNumber = 123;
 //    Type 'number' is not assignable to type 'AccountNumber'.
 ```
 
-Instead use `toOpaque` to create values of opaque types.
+Instead use `castToOpaque` to create opaquely typed values.
 
 ```ts
 type AccountNumber = Opaque<number, 'AccountNumber'>;
 
 const value = 123;
 // → 'value' is 'number'
-const opaqueValue = toOpaque<AccountNumber>(value);
+const opaqueValue = castToOpaque<AccountNumber>(value);
 // → 'opaqueValue' is 'AccountNumber'
 ```
 
@@ -91,35 +89,14 @@ Ideally, each opaque type would have a companion function for managing their cre
 export type AccountNumber = Opaque<number, 'AccountNumber'>;
 
 export function createAccountNumber(value: number) {
-  return toOpaque<AccountNumber>(value);
+  return castToOpaque<AccountNumber>(value);
 }
 ```
 
 Ensures basic type safety before casting to avoid invalid primitive assignment.
 
 ```ts
-const value = toOpaque<AccountNumber>('123');
-//                                    ~~~~~
-//                                    Argument of type 'string' is not assignable to parameter of type 'number'.
-```
-
-### toTransparent
-
-A generic helper function that takes an opaquely typed value, and returns the value after widening it to the transparent primitive type.
-
-```ts
-function toTransparent<OpaqueType>(value: OpaqueType): bigint | number | string | symbol;
-```
-
-Must be used in combination with the `Opaque` [generic type](#opaque).
-
-{% comment %}
-TODO: Line highlighting in code blocks would be really handy for cases like this.
-{% /comment %}
-
-```ts
-function doThing(opaqueValue: NumericThing) {
-  const value = toTransparent(opaqueValue);
-  // → 'value' is 'number'
-}
+const value = castToOpaque<AccountNumber>('123');
+//                                        ~~~~~
+//                                        Argument of type 'string' is not assignable to parameter of type 'number'.
 ```
