@@ -7,7 +7,7 @@ export function Header() {
     <div className="nav-bar">
       <nav>
         <Link href="/" className="brand">
-          TS Runtime DX&nbsp;Test
+          TS Runtime DX
         </Link>
         <ul>
           <li>
