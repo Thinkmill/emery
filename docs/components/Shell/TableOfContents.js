@@ -2,28 +2,25 @@ import React from 'react';
 import Link from 'next/link';
 
 export function TableOfContents({ toc }) {
-  const headingId = 'toc-heading';
   const items = toc.filter(
     item => item.id && (item.level === 2 || item.level === 3) && item.title !== 'Next steps',
   );
 
   return (
-    <nav className="toc">
-      <h3 id={headingId}>On this page</h3>
+    <nav role="navigation" className="toc">
+      <h3 className="toc-title">On this page</h3>
       {items.length > 1 ? (
-        <ul className="flex column">
+        <ul className="toc-list">
           {items.map(item => {
             const href = `#${item.id}`;
-            const active = typeof window !== 'undefined' && window.location.hash === href;
+            const current = typeof window !== 'undefined' && window.location.hash === href;
+            const itemClassName = getClassNames({ current, prefix: 'toc-item', level: item.level });
+            const linkClassName = getClassNames({ current, prefix: 'toc-link', level: item.level });
+
             return (
-              <li
-                key={item.title}
-                className={[active ? 'active' : undefined, item.level === 3 ? 'padded' : undefined]
-                  .filter(Boolean)
-                  .join(' ')}
-              >
+              <li key={item.title} className={itemClassName}>
                 <Link href={href} passHref>
-                  <a>{item.title}</a>
+                  <a className={linkClassName}>{item.title}</a>
                 </Link>
               </li>
             );
@@ -32,46 +29,47 @@ export function TableOfContents({ toc }) {
       ) : null}
       <style jsx>
         {`
-          nav {
-            position: sticky;
-            top: calc(2.5rem + var(--header-height));
-            max-height: calc(100vh - var(--header-height));
+          .toc {
+            align-self: flex-start; /* https://stackoverflow.com/questions/44446671/my-position-sticky-element-isnt-sticky-when-using-flexbox */
             flex: 0 0 var(--sidenav-width);
-            /* https://stackoverflow.com/questions/44446671/my-position-sticky-element-isnt-sticky-when-using-flexbox */
-            align-self: flex-start;
             margin-bottom: 1rem;
-            padding: 0.25rem 0 0;
-            // border-left: 1px solid var(--border);
+            max-height: calc(100vh - var(--header-height));
+            position: sticky;
+            top: calc(var(--scroll-offset) + var(--header-height));
           }
-          h3 {
+
+          .toc-title {
             color: var(--text-prominent);
             font-weight: 500;
-            font-size: 1rem;
+            font-size: var(--text-standard);
             margin: 0;
             padding-bottom: 0.75rem;
             padding-left: 1.5rem;
           }
-          ul {
+
+          .toc-list {
             margin: 0;
             padding: 0;
           }
-          li {
+          .toc-item {
+            font-size: var(--fs-small);
             list-style-type: none;
             margin: 0 0 1rem 1.5rem;
-            font-size: 0.85rem;
           }
-          li a {
+          .toc-item--inset {
+            font-size: var(--fs-small);
+            padding-left: 1rem;
+          }
+
+          .toc-link {
             display: block;
             text-decoration: none;
           }
-          li a:hover,
-          li.active a {
+          .toc-link:hover,
+          .toc-link--current {
             text-decoration: underline;
           }
-          li.padded {
-            padding-left: 1rem;
-          }
-          li.padded a {
+          .toc-link--inset {
             color: var(--text);
             font-weight: 400;
           }
@@ -84,4 +82,10 @@ export function TableOfContents({ toc }) {
       </style>
     </nav>
   );
+}
+
+function getClassNames({ current, prefix, level }) {
+  return [prefix, current ? `${prefix}--current` : null, level === 3 ? `${prefix}--inset` : null]
+    .filter(Boolean)
+    .join(' ');
 }

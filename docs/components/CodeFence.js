@@ -6,6 +6,32 @@ import PrismHighlight, { Prism } from 'prism-react-renderer';
 import { Icon } from './Icon';
 
 export const CodeFence = ({ children, language }) => {
+  return (
+    <Wrapper>
+      {preRef => (
+        <PrismHighlight Prism={Prism} code={removeEmptyLine(children)} language={language}>
+          {({ className, tokens, getLineProps, getTokenProps }) => (
+            <pre ref={preRef} className={className}>
+              <code>
+                {tokens.map((line, key) => {
+                  return (
+                    <div {...getLineProps({ line, key })}>
+                      {line.map((token, key) => (
+                        <span {...getTokenProps({ token, key })} />
+                      ))}
+                    </div>
+                  );
+                })}
+              </code>
+            </pre>
+          )}
+        </PrismHighlight>
+      )}
+    </Wrapper>
+  );
+};
+
+const Wrapper = ({ children }) => {
   const [copied, setCopied] = useState(false);
   const ref = useRef(null);
 
@@ -21,26 +47,42 @@ export const CodeFence = ({ children, language }) => {
 
   return (
     <div className="code-block" aria-live="polite">
-      <PrismHighlight Prism={Prism} code={removeEmptyLine(children)} language={language}>
-        {({ className, tokens, getLineProps, getTokenProps }) => (
-          <pre ref={ref} className={className}>
-            <code>
-              {tokens.map((line, key) => {
-                return (
-                  <div {...getLineProps({ line, key })}>
-                    {line.map((token, key) => (
-                      <span {...getTokenProps({ token, key })} />
-                    ))}
-                  </div>
-                );
-              })}
-            </code>
-          </pre>
-        )}
-      </PrismHighlight>
-      <button onClick={() => setCopied(true)} aria-label="Copy snippet">
+      {children(ref)}
+      <button
+        className="copy-btn"
+        onClick={() => setCopied(true)}
+        aria-label={copied ? 'copied' : 'copy'}
+      >
         <Icon icon={copied ? 'copied' : 'copy'} />
       </button>
+      <style jsx>{`
+        .code-block {
+          margin-block: var(--vertical-rhythm-large);
+          position: relative;
+        }
+        .copy-btn {
+          align-items: center;
+          background: var(--surface);
+          border-radius: var(--radii-small);
+          color: var(--text-muted);
+          display: flex;
+          font-size: 0.9rem;
+          height: 1.5rem;
+          justify-content: center;
+          opacity: 0;
+          position: absolute;
+          right: 0.75rem;
+          top: 0.75rem;
+          transition: opacity 100ms linear;
+        }
+        .code-block:hover .copy-btn {
+          opacity: 1;
+        }
+        .copy-btn:hover {
+          background: var(--surface-prominent);
+          color: var(--text);
+        }
+      `}</style>
     </div>
   );
 };

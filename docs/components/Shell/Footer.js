@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AppLink as Link } from '../AppLink';
+import { Link } from '../Link';
 import { ThemeToggle } from '.';
 
 export function Footer() {
@@ -17,7 +17,6 @@ export function Footer() {
           }
 
           .footer {
-            color: var(--dark);
             display: flex;
             align-items: center;
             height: var(--footer-height);
@@ -29,9 +28,9 @@ export function Footer() {
             z-index: 100;
           }
 
-          // brand
+          /* brand */
           .footer :global(a) {
-            font-size: 0.85rem;
+            font-size: var(--fs-small);
           }
         `}
       </style>

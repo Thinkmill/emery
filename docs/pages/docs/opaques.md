@@ -35,6 +35,8 @@ type ThingThree = Opaque<string, 'ThingTwo'>;
 // 🚨 Non-unique `Token` parameter
 ```
 
+#### Uniqueness
+
 While string literals are accepted tokens, we recommend [unique symbols](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#unique-symbol) for your opaque types to make them stronger. Each reference to a unique symbol implies a completely unique identity that’s tied to a given declaration.
 
 ```ts

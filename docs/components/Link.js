@@ -1,11 +1,11 @@
 import React from 'react';
-import Link from 'next/link';
+import NextLink from 'next/link';
 
-export function AppLink(props) {
+export function Link(props) {
   const target = props.target || (props.href.startsWith('http') ? '_blank' : undefined);
 
   return (
-    <Link {...props} passHref>
+    <NextLink {...props} passHref>
       <a
         target={target}
         rel={target === '_blank' ? 'noreferrer' : undefined}
@@ -13,6 +13,6 @@ export function AppLink(props) {
       >
         {props.children}
       </a>
-    </Link>
+    </NextLink>
   );
 }
