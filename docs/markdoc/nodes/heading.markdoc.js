@@ -6,10 +6,12 @@ function generateID(children, attributes) {
     return attributes.id;
   }
   return children
-    .filter((child) => typeof child === 'string')
+    .filter(child => typeof child === 'string')
     .join(' ')
     .replace(/[?]/g, '')
+    .replace(/[A-Z]/g, s => '-' + s)
     .replace(/\s+/g, '-')
+    .replace(/^-/, '')
     .toLowerCase();
 }
 
@@ -19,7 +21,7 @@ export default {
   attributes: {
     id: { type: String },
     level: { type: Number, required: true, default: 1 },
-    className: { type: String }
+    className: { type: String },
   },
   transform(node, config) {
     const attributes = node.transformAttributes(config);
@@ -27,5 +29,5 @@ export default {
     const id = generateID(children, attributes);
 
     return new Tag(this.render, { ...attributes, id }, children);
-  }
+  },
 };

@@ -24,7 +24,7 @@ export function assert(condition: boolean, message = 'Assert failed'): asserts c
  */
 export function assertNever(condition: never): never {
   developmentDebugger();
-  throw new Error(`Unexpected call to assertNever: ${condition}`);
+  throw new Error(`Unexpected call to assertNever: '${condition}'`);
 }
 
 /** Pause execution in development to aid debugging. */

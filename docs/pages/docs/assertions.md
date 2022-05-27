@@ -75,6 +75,11 @@ function doThing(type: 'draft' | 'published') {
 Regardless of the condition, this function **always** throws.
 {% /callout %}
 
+```ts
+doThing('archived');
+// → Error: Unexpected call to assertNever: 'archived'
+```
+
 ## Debugging
 
 In **development** both `assert` and `assertNever` will include a [debugger statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger), which will pause execution to aid debugging.

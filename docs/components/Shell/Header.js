@@ -7,14 +7,14 @@ export function Header() {
     <div className="nav-bar">
       <nav>
         <Link href="/" className="brand">
-          TS Runtime DX
+          TS Runtime DX&nbsp;Test
         </Link>
         <ul>
           <li>
             <Link href="/docs/getting-started">Docs</Link>
           </li>
           <li>
-            <Link href="https://github.com/thinkmill/ts-runtime-dx">GitHub</Link>
+            <Link href="https://github.com/thinkmill/ts-runtime-dx">GitHub &rarr;</Link>
           </li>
         </ul>
       </nav>
@@ -55,6 +55,12 @@ export function Header() {
           }
           li {
             margin: 0;
+          }
+          @media screen and (min-width: 1001px) {
+            ul {
+              flex: 0 0 var(--sidenav-width);
+              padding-left: 1.5rem;
+            }
           }
         `}
       </style>
