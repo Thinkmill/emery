@@ -96,5 +96,5 @@ Guards for [array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 Checks whether an array is **not** empty.
 
 ```ts
-function isNonEmptyArray<T>(arr: T[]): arr is [T, ...T[]];
+function isNonEmptyArray<T>(value: T[]): value is [T, ...T[]];
 ```

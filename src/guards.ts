@@ -45,6 +45,6 @@ export function isNullish(value: unknown): value is Nullish {
 }
 
 /** Checks whether a value is defined */
-export function isDefined<T>(value: T | Nullish): value is NonNullable<T> {
-  return !isNullish(value) && !Number.isNaN(value);
+export function isDefined<T>(value: T): value is NonNullable<T> {
+  return !isNullish(value);
 }
