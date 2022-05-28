@@ -1,89 +1,8 @@
 import React from 'react';
-
-const sun = (
-  <svg
-    className="sun"
-    width="17"
-    height="16"
-    viewBox="0 0 17 16"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="8.79932" cy="8" r="4" fill="currentColor" />
-    <circle className="ray" cx="8.79932" cy="1" r="1" fill="currentColor" />
-    <circle className="ray" cx="8.79932" cy="15" r="1" fill="currentColor" />
-    <circle
-      className="ray"
-      cx="1.79932"
-      cy="8"
-      r="1"
-      transform="rotate(-90 1.79932 8)"
-      fill="currentColor"
-    />
-    <circle
-      className="ray"
-      cx="15.7993"
-      cy="8"
-      r="1"
-      transform="rotate(-90 15.7993 8)"
-      fill="currentColor"
-    />
-    <circle
-      className="ray"
-      cx="3.84927"
-      cy="3.05078"
-      r="1"
-      transform="rotate(-45 3.84927 3.05078)"
-      fill="currentColor"
-    />
-    <circle
-      className="ray"
-      cx="13.7487"
-      cy="12.9503"
-      r="1"
-      transform="rotate(-45 13.7487 12.9503)"
-      fill="currentColor"
-    />
-    <circle
-      className="ray"
-      cx="3.84961"
-      cy="12.9491"
-      r="1"
-      transform="rotate(-135 3.84961 12.9491)"
-      fill="currentColor"
-    />
-    <circle
-      className="ray"
-      cx="13.749"
-      cy="3.04957"
-      r="1"
-      transform="rotate(-135 13.749 3.04957)"
-      fill="currentColor"
-    />
-  </svg>
-);
-
-const moon = (
-  <svg
-    className="moon"
-    width="12"
-    height="13"
-    viewBox="0 0 12 13"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M11.3764 9.04656C11.2112 9.06022 11.0441 9.06718 10.8754 9.06718C7.56173 9.06718 4.87549 6.38093 4.87549 3.06728C4.87549 1.94653 5.18278 0.897541 5.71771 -1.22983e-05C2.52866 0.186293 0 2.83147 0 6.06725C0 9.42391 2.7211 12.145 6.07776 12.145C8.35189 12.145 10.3343 10.896 11.3764 9.04656Z"
-      fill="currentColor"
-    />
-  </svg>
-);
+import { Hidden } from '../Hidden';
 
 export function ThemeToggle() {
   const [theme, setTheme] = React.useState(undefined);
-  const [, setHovering] = React.useState(false);
 
   function setPreferredTheme(newTheme) {
     setTheme(newTheme);
@@ -114,66 +33,56 @@ export function ThemeToggle() {
     }
   }, [theme]);
 
-  const isDark = theme === 'dark'; // ? !hovering : hovering;
+  const isDark = theme === 'dark';
 
   return (
-    <div
+    <button
+      aria-label={isDark ? 'Dark mode' : 'Light mode'}
       className="theme-toggle"
-      onMouseEnter={() => setHovering(true)}
-      onFocus={() => setHovering(true)}
-      onMouseLeave={() => setHovering(false)}
-      onBlur={() => setHovering(false)}
+      onClick={() => {
+        setPreferredTheme(theme === 'dark' ? 'light' : 'dark');
+      }}
     >
-      <button
-        className={isDark ? 'dark' : 'light'}
-        onClick={() => {
-          setPreferredTheme(theme === 'dark' ? 'light' : 'dark');
-        }}
-      >
-        {isDark ? moon : sun}
+      <Hidden below="tablet">
         <span>{isDark ? 'Dark mode' : 'Light mode'}</span>
-      </button>
+      </Hidden>
+      {isDark ? moon : sun}
       <style jsx>
         {`
-          button {
+          .theme-toggle {
             align-items: center;
-            border-radius: 3px;
-            display: flex;
-            font-size: 0.85rem;
-            font-weight: 500;
-            gap: 8px;
-            justify-content: center;
-            height: 2rem;
-            white-space: nowrap;
-            width: 120px;
-
-            background: var(--surface);
+            border-radius: var(--radii-small);
             color: var(--text-muted);
+            display: flex;
+            font-size: var(--fs-small);
+            font-weight: var(--fw-medium);
+            gap: var(--gutter-xsmall);
+            justify-content: center;
+            position: relative;
+          }
+          /* increase hitarea w/o undermining gutters */
+          .theme-toggle::before {
+            content: '';
+            position: absolute;
+            inset: calc(var(--gutter-xsmall) * -1);
           }
 
-          button:hover {
-            background: var(--surface-prominent);
+          .theme-toggle:hover {
             color: var(--text-prominent);
           }
-          button:active {
-            background: var(--surface);
-          }
 
-          button:active :global(svg) {
+          .theme-toggle:active :global(.theme-toggle-icon) {
             animation: rotate 150ms linear forwards;
           }
-
-          button :global(.sun) {
+          :global(.theme-toggle-icon--sun) {
             animation: sun 400ms ease both;
           }
-
-          button :global(.moon) {
-            animation: moon 400ms ease both;
-          }
-
-          button :global(circle.ray) {
+          :global(.theme-toggle-icon--sun-ray) {
             transform-origin: center;
             animation: rays 400ms ease both;
+          }
+          :global(.theme-toggle-icon--moon) {
+            animation: moon 400ms ease both;
           }
 
           @keyframes rotate {
@@ -184,7 +93,6 @@ export function ThemeToggle() {
               transform: scale(0.95) rotate(20deg);
             }
           }
-
           @keyframes sun {
             from {
               transform: scale(1.5);
@@ -193,7 +101,6 @@ export function ThemeToggle() {
               transform: scale(1);
             }
           }
-
           @keyframes rays {
             from {
               transform: rotate(45deg);
@@ -202,7 +109,6 @@ export function ThemeToggle() {
               transform: rotate(0deg);
             }
           }
-
           @keyframes moon {
             from {
               transform: scale(0.6) rotate(90deg);
@@ -211,14 +117,80 @@ export function ThemeToggle() {
               transform: scale(1) rotate(0deg);
             }
           }
-
-          @media screen and (max-width: 600px) {
-            button {
-              width: 130px;
-            }
-          }
         `}
       </style>
-    </div>
+    </button>
   );
 }
+
+const sun = (
+  <svg
+    className="theme-toggle-icon theme-toggle-icon--sun"
+    width="17"
+    height="16"
+    viewBox="0 0 17 16"
+    fill="currentColor"
+  >
+    <circle cx="8.79932" cy="8" r="4" />
+    <circle className="theme-toggle-icon--sun-ray" cx="8.79932" cy="1" r="1" />
+    <circle className="theme-toggle-icon--sun-ray" cx="8.79932" cy="15" r="1" />
+    <circle
+      className="theme-toggle-icon--sun-ray"
+      cx="1.79932"
+      cy="8"
+      r="1"
+      transform="rotate(-90 1.79932 8)"
+    />
+    <circle
+      className="theme-toggle-icon--sun-ray"
+      cx="15.7993"
+      cy="8"
+      r="1"
+      transform="rotate(-90 15.7993 8)"
+    />
+    <circle
+      className="theme-toggle-icon--sun-ray"
+      cx="3.84927"
+      cy="3.05078"
+      r="1"
+      transform="rotate(-45 3.84927 3.05078)"
+    />
+    <circle
+      className="theme-toggle-icon--sun-ray"
+      cx="13.7487"
+      cy="12.9503"
+      r="1"
+      transform="rotate(-45 13.7487 12.9503)"
+    />
+    <circle
+      className="theme-toggle-icon--sun-ray"
+      cx="3.84961"
+      cy="12.9491"
+      r="1"
+      transform="rotate(-135 3.84961 12.9491)"
+    />
+    <circle
+      className="theme-toggle-icon--sun-ray"
+      cx="13.749"
+      cy="3.04957"
+      r="1"
+      transform="rotate(-135 13.749 3.04957)"
+    />
+  </svg>
+);
+
+const moon = (
+  <svg
+    className="theme-toggle-icon theme-toggle-icon--moon"
+    width="12"
+    height="13"
+    viewBox="0 0 12 13"
+    fill="currentColor"
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M11.3764 9.04656C11.2112 9.06022 11.0441 9.06718 10.8754 9.06718C7.56173 9.06718 4.87549 6.38093 4.87549 3.06728C4.87549 1.94653 5.18278 0.897541 5.71771 -1.22983e-05C2.52866 0.186293 0 2.83147 0 6.06725C0 9.42391 2.7211 12.145 6.07776 12.145C8.35189 12.145 10.3343 10.896 11.3764 9.04656Z"
+    />
+  </svg>
+);

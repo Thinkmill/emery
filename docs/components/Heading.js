@@ -16,12 +16,22 @@ export function Heading({ id = '', level = 1, children, className }) {
       <style jsx>{`
         .heading {
           color: var(--text-prominent);
-          letter-spacing: -0.022em;
+          line-height: 1.2;
           margin-top: var(--offset);
           position: relative;
-          scroll-margin-top: calc(
-            var(--header-height) + var(--offset) - 0.22em
-          ); /* attempt to resolve line-height issues */
+          scroll-margin-top: calc(var(--header-height) + var(--offset));
+        }
+
+        /* quick-and-dirty leading trim */
+        .heading:not(.heading-1)::before {
+          content: '';
+          display: table;
+          margin-bottom: -0.1818em;
+        }
+        .heading:not(.heading-1)::after {
+          content: '';
+          display: table;
+          margin-top: -0.1818em;
         }
 
         .heading-1 {

@@ -1,7 +1,14 @@
 import React from 'react';
 import Head from 'next/head';
 
-import { Footer, SideNav, TableOfContents, Header } from '../components/Shell';
+import {
+  Footer,
+  SideNav,
+  SideNavContext,
+  useSidenavState,
+  TableOfContents,
+  Header,
+} from '../components/Shell';
 
 import '../public/global.css';
 
@@ -31,6 +38,7 @@ function collectHeadings(node, sections = []) {
 export default function MyApp(props) {
   const { Component, pageProps } = props;
   const { markdoc } = pageProps;
+  const sidenavContext = useSidenavState();
 
   let title = TITLE;
   let description = 'Utility functions to improve TypeScript DX at runtime';
@@ -74,20 +82,22 @@ export default function MyApp(props) {
         />
       </Head>
       <SkipNav id={skipNavID} />
-      <Header />
-      <div className="page">
-        <div className="page-container">
-          <div className="page-layout">
-            {isDocs ? <SideNav /> : null}
-            <main className="flex column">
-              <div id={skipNavID} />
-              <Component {...pageProps} />
-            </main>
-            {isDocs && toc ? <TableOfContents toc={toc} /> : null}
+      <SideNavContext.Provider value={sidenavContext}>
+        <Header />
+        <div className="page">
+          <div className="page-container">
+            <div className="page-layout">
+              {isDocs ? <SideNav /> : null}
+              <main className="flex column">
+                <div id={skipNavID} />
+                <Component {...pageProps} />
+                <Footer filePath={markdoc.file.path} />
+              </main>
+              {isDocs && toc ? <TableOfContents toc={toc} /> : null}
+            </div>
           </div>
         </div>
-      </div>
-      <Footer />
+      </SideNavContext.Provider>
       <style jsx>
         {`
           .layout {
@@ -107,6 +117,11 @@ export default function MyApp(props) {
           }
           .page-layout {
             display: flex;
+          }
+          @media screen and (max-width: 600px) {
+            .page-layout {
+              flex-direction: column;
+            }
           }
 
           main {

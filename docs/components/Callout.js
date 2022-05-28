@@ -38,8 +38,8 @@ export function Callout({ children, type }) {
             align-items: center;
             display: flex;
             gap: var(--gutter-xsmall);
-            font-weight: 500;
-            margin-block: var(--vertical-rhythm-large);
+            font-weight: var(--fw-medium);
+            margin-block: var(--vertical-rhythm-prominent);
           }
           .callout :global(p:first-child) {
             margin-top: 0;

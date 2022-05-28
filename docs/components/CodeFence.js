@@ -57,7 +57,8 @@ const Wrapper = ({ children }) => {
       </button>
       <style jsx>{`
         .code-block {
-          margin-block: var(--vertical-rhythm-large);
+          margin-block: var(--vertical-rhythm-prominent);
+          min-width: 0;
           position: relative;
         }
         .copy-btn {
@@ -79,8 +80,21 @@ const Wrapper = ({ children }) => {
           opacity: 1;
         }
         .copy-btn:hover {
-          background: var(--surface-prominent);
           color: var(--text);
+        }
+        .copy-btn:active {
+          background: var(--surface-prominent);
+        }
+
+        /* join callouts */
+        :global(.callout) + .code-block::before {
+          content: '';
+          height: 0.8rem;
+          width: 1px;
+          background: var(--border-prominent);
+          position: absolute;
+          top: -1rem;
+          left: calc(0.8rem - 1px);
         }
       `}</style>
     </div>

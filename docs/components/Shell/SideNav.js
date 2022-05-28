@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { createContext, Fragment, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -24,9 +24,10 @@ const items = [
 
 export function SideNav() {
   const router = useRouter();
+  const [sidenavOpen, setSidenavOpen] = useSidenav();
 
   return (
-    <nav className="sidenav">
+    <nav className="sidenav" data-open={sidenavOpen}>
       {items.map(item => {
         return (
           <Fragment key={item.title}>
@@ -44,6 +45,7 @@ export function SideNav() {
                       <a
                         href={link.href}
                         className={current ? 'sidenav-link sidenav-link--current' : 'sidenav-link'}
+                        onClick={() => setSidenavOpen(false)}
                       >
                         {link.children}
                       </a>
@@ -57,22 +59,28 @@ export function SideNav() {
       })}
       <style jsx>
         {`
-          .sidenav {
-            padding: var(--scroll-offset) 0 var(--gutter-large) var(--gutter-medium);
-          }
           @media screen and (max-width: 600px) {
             .sidenav {
-              background: var(--surface);
+              background: var(--light);
               border-bottom: 1px solid var(--border);
+              padding: var(--gutter);
+              position: fixed;
+              width: 100%;
+              z-index: 20;
+            }
+            .sidenav[data-open='true'] {
+              display: block;
+            }
+            .sidenav[data-open='false'] {
+              display: none;
             }
           }
           @media screen and (min-width: 601px) {
             .sidenav {
-              /* https://stackoverflow.com/questions/66898327/how-to-keep-footer-from-pushing-up-sticky-sidebar */
               flex: 0 0 var(--sidenav-width);
-              height: calc(100vh - var(--header-height) - var(--footer-height));
-              margin-bottom: calc(var(--footer-height) * -1);
+              height: calc(100vh - var(--header-height));
               overflow-y: auto;
+              padding: var(--scroll-offset) 0 var(--gutter) var(--gutter);
               position: sticky;
               top: var(--header-height);
             }
@@ -80,22 +88,26 @@ export function SideNav() {
 
           .sidenav-title {
             color: var(--text-prominent);
-            font-weight: 500;
+            font-weight: var(--fw-medium);
             font-size: var(--fs-standard);
-            padding-bottom: 0.5rem;
+            margin-bottom: var(--vertical-rhythm-prominent);
           }
+
           .sidenav-list {
-            border-left: 1px solid var(--border);
             font-size: var(--fs-small);
+            list-style-type: none;
             margin: 0;
             padding: 0;
           }
           .sidenav-list:not(:last-child) {
-            margin-bottom: var(--gutter-large);
+            margin-bottom: var(--gutter);
           }
+
           .sidenav-item {
-            list-style-type: none;
-            margin: 0;
+            border-left: 1px solid var(--border);
+          }
+          .sidenav-item--current {
+            border-left-color: var(--text-prominent);
           }
           .sidenav-item:not(:first-child) {
             padding-top: 0.25rem;
@@ -106,7 +118,7 @@ export function SideNav() {
 
           .sidenav-link {
             display: block;
-            font-weight: 400;
+            font-weight: var(--fw-regular);
             padding: 0.25rem 0.5rem 0.25rem 1rem;
             text-decoration: none;
           }
@@ -114,12 +126,18 @@ export function SideNav() {
             text-decoration: underline;
           }
           .sidenav-link--current {
-            box-shadow: -1px 0 var(--text-prominent);
             color: var(--text-prominent);
-            font-weight: 500;
+            font-weight: var(--fw-medium);
           }
         `}
       </style>
     </nav>
   );
 }
+
+// Context
+// ------------------------------
+
+export const SideNavContext = createContext();
+export const useSidenav = () => useContext(SideNavContext);
+export const useSidenavState = () => useState(false);

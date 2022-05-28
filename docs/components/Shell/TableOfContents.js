@@ -34,44 +34,48 @@ export function TableOfContents({ toc }) {
             flex: 0 0 var(--sidenav-width);
             margin-bottom: 1rem;
             max-height: calc(100vh - var(--header-height));
+            padding-left: var(--gutter-small);
             position: sticky;
             top: calc(var(--scroll-offset) + var(--header-height));
           }
 
           .toc-title {
             color: var(--text-prominent);
-            font-weight: 500;
+            font-weight: var(--fw-medium);
             font-size: var(--text-standard);
-            margin: 0;
-            padding-bottom: 0.75rem;
-            padding-left: 1.5rem;
+            margin-bottom: var(--vertical-rhythm-prominent);
           }
 
           .toc-list {
+            font-size: var(--fs-small);
+            list-style-type: none;
             margin: 0;
             padding: 0;
           }
-          .toc-item {
-            font-size: var(--fs-small);
-            list-style-type: none;
-            margin: 0 0 1rem 1.5rem;
+
+          .toc-item:not(:first-child) {
+            padding-top: 0.25rem;
           }
-          .toc-item--inset {
-            font-size: var(--fs-small);
-            padding-left: 1rem;
+          .toc-item:not(:last-child) {
+            padding-bottom: 0.25rem;
+          }
+          .toc-item:not(.toc-item--inset) {
+            margin-top: var(--gutter-small);
           }
 
           .toc-link {
             display: block;
             text-decoration: none;
           }
+          .toc-link--inset {
+            color: var(--text-muted);
+            font-weight: var(--fw-regular);
+            padding: 0.25rem var(--gutter-small) 0.25rem var(--gutter-small);
+          }
           .toc-link:hover,
           .toc-link--current {
-            text-decoration: underline;
-          }
-          .toc-link--inset {
             color: var(--text);
-            font-weight: 400;
+            text-decoration: underline;
           }
           @media screen and (max-width: 1000px) {
             nav {
