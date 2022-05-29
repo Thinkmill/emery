@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from '../Link';
 
 export function Footer({ filePath }) {
-  const editable = filePath.startsWith('/docs');
+  const editable = filePath?.startsWith('/docs');
   return (
     <footer className="footer">
       <div className="brand">

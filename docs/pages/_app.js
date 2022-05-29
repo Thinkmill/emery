@@ -91,7 +91,7 @@ export default function MyApp(props) {
               <main className="flex column">
                 <div id={skipNavID} />
                 <Component {...pageProps} />
-                <Footer filePath={markdoc.file.path} />
+                <Footer filePath={markdoc?.file?.path} />
               </main>
               {isDocs && toc ? <TableOfContents toc={toc} /> : null}
             </div>

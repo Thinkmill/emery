@@ -176,9 +176,9 @@ const Hamburger = ({ active }) => {
       fill="none"
       height="16"
       width="16"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="3"
       stroke="currentColor"
       viewBox="0 0 24 24"
     >
@@ -186,6 +186,7 @@ const Hamburger = ({ active }) => {
         () =>
           ['top', 'middle', 'bottom'].map((pos, idx) => (
             <line
+              key={pos}
               x1="2"
               y1={(idx + 1) * 6}
               x2="22"
@@ -196,6 +197,12 @@ const Hamburger = ({ active }) => {
         [],
       )}
       <style jsx>{`
+        .hamburger {
+          transition: 250ms ease;
+        }
+        .hamburger--active {
+          transform: rotate(90deg);
+        }
         .hamburger-line {
           transition: 250ms ease;
         }

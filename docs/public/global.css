@@ -39,7 +39,7 @@
 
 @media screen and (max-width: 600px) {
   :root {
-    --gutter: 1rem;
+    --gutter: 1.4rem;
   }
 }
 
