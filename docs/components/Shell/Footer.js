@@ -1,40 +1,57 @@
 import React from 'react';
 
-import { AppLink as Link } from '../AppLink';
-import { ThemeToggle } from '.';
+import { Link } from '../Link';
 
-export function Footer() {
+export function Footer({ filePath }) {
+  const editable = filePath?.startsWith('/docs');
   return (
-    <div className="footer-bar">
-      <footer className="footer">
-        <Link href="https://www.thinkmill.com.au">by Thinkmill</Link>
-        <ThemeToggle />
-      </footer>
+    <footer className="footer">
+      <div className="brand">
+        <svg
+          width="1.4rem"
+          height="1.4rem"
+          viewBox="0 0 300 300"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+        >
+          <path d="M149.801122,300 C67.0682468,300 0,232.842712 0,150 C0,67.1572875 67.0682468,0 149.801122,0 C232.533997,0 299.602244,67.1572875 299.602244,150 C299.602244,232.842712 232.533997,300 149.801122,300 Z M149.801122,279.264706 C221.097394,279.264706 278.894442,221.390926 278.894442,150 C278.894442,78.6090743 221.097394,20.7352941 149.801122,20.7352941 C78.5048501,20.7352941 20.7078021,78.6090743 20.7078021,150 C20.7078021,221.390926 78.5048501,279.264706 149.801122,279.264706 Z M111.370966,179.092941 C113.020541,179.092941 114.797006,178.838824 115.812129,178.457647 L115.812129,189.765882 C113.654992,190.401176 110.355843,190.909412 107.691145,190.909412 C94.1138766,190.909412 88.1500296,185.191765 88.1500296,171.088235 L88.1500296,136.655294 L77.3643488,136.655294 L77.3643488,125.601176 L88.1500296,125.601176 L88.1500296,109.464706 L102.615531,109.464706 L102.615531,125.601176 L115.177677,125.601176 L115.177677,136.655294 L102.615531,136.655294 L102.615531,168.928235 C102.615531,176.170588 105.026448,179.092941 111.370966,179.092941 Z M200.194219,124.076471 C213.898378,124.076471 222.273142,132.970588 222.273142,150.377647 L222.273142,190.147059 L207.807641,190.147059 L207.807641,151.775294 C207.807641,140.34 203.366478,135.765882 196.133728,135.765882 C187.632073,135.765882 182.556459,143.008235 182.556459,155.332941 L182.556459,190.147059 L168.090958,190.147059 L168.090958,150.250588 C168.090958,141.102353 164.030466,135.765882 156.543935,135.765882 C147.91539,135.765882 142.966666,143.135294 142.966666,155.587059 L142.966666,190.147059 L128.501165,190.147059 L128.501165,125.601176 L142.332214,125.601176 L142.332214,133.351765 L142.585995,133.351765 C147.154048,127.125882 152.864114,124.076471 160.477536,124.076471 C169.359861,124.076471 176.211941,128.142353 179.51109,135.765882 C184.206034,128.396471 190.423661,124.076471 200.194219,124.076471 Z"></path>
+        </svg>
+        <Link href="https://github.com/thinkmill">a Thinkmill project</Link>
+      </div>
+      {editable && <Link href={getEditLink(filePath)}>Edit this page</Link>}
       <style jsx>
         {`
-          .footer-bar {
-            border-top: 1px solid var(--border);
+          .brand {
+            align-items: center;
+            display: flex;
+            gap: var(--gutter-xsmall);
           }
 
           .footer {
-            color: var(--dark);
-            display: flex;
+            border-top: 1px solid var(--border);
             align-items: center;
-            height: var(--footer-height);
+            display: flex;
+            gap: var(--gutter-xsmall);
+            color: var(--text-dim);
             justify-content: space-between;
-            margin-inline: auto;
+            margin-inline: var(--gutter);
             max-width: var(--page-max-width);
-            padding: 1rem 2rem;
+            padding-block: var(--gutter-small);
             position: relative;
             z-index: 100;
           }
 
-          // brand
           .footer :global(a) {
-            font-size: 0.85rem;
+          }
+          .footer :global(a:hover) {
+            color: var(--text-muted);
           }
         `}
       </style>
-    </div>
+    </footer>
   );
+}
+
+function getEditLink(path) {
+  return `https://github.com/Thinkmill/ts-runtime-dx/edit/main/docs/pages${path}`;
 }

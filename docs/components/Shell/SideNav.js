@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, Fragment, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -22,88 +22,122 @@ const items = [
   },
 ];
 
-function getGroupHeadingId(str) {
-  return 'group-section-' + str.replace(/\s+/g, '-').toLowerCase();
-}
-
 export function SideNav() {
   const router = useRouter();
+  const [sidenavOpen, setSidenavOpen] = useSidenav();
 
   return (
-    <nav className="sidenav" aria-label="docs navigation">
+    <nav className="sidenav" data-open={sidenavOpen}>
       {items.map(item => {
-        const groupHeadingId = getGroupHeadingId(item.title);
-
         return (
-          <nav className="groupnav" key={item.title} aria-labelledby={groupHeadingId}>
-            <h3 id={groupHeadingId}>{item.title}</h3>
-            <ul className="flex column">
+          <Fragment key={item.title}>
+            <h3 className="sidenav-title">{item.title}</h3>
+            <ul className="sidenav-list">
               {item.links.map(link => {
-                const active = router.pathname === link.href;
+                const current = router.pathname === link.href;
+
                 return (
-                  <li key={link.href} className={active ? 'active' : ''}>
+                  <li
+                    key={link.href}
+                    className={current ? 'sidenav-item sidenav-item--current' : 'sidenav-item'}
+                  >
                     <Link {...link}>
-                      <a href={link.href}>{link.children}</a>
+                      <a
+                        href={link.href}
+                        className={current ? 'sidenav-link sidenav-link--current' : 'sidenav-link'}
+                        onClick={() => setSidenavOpen(false)}
+                      >
+                        {link.children}
+                      </a>
                     </Link>
                   </li>
                 );
               })}
             </ul>
-          </nav>
+          </Fragment>
         );
       })}
       <style jsx>
         {`
-          .sidenav {
-            /* https://stackoverflow.com/questions/66898327/how-to-keep-footer-from-pushing-up-sticky-sidebar */
-            position: sticky;
-            top: var(--header-height);
-            height: calc(100vh - var(--header-height) - var(--footer-height));
-            margin-bottom: calc(var(--footer-height) * -1);
-            flex: 0 0 var(--sidenav-width);
-            overflow-y: auto;
-            padding: 2rem 0 2rem 2rem;
-          }
-          h3 {
-            color: var(--text-prominent);
-            font-weight: 500;
-            font-size: 1rem;
-            margin: 0.5rem 0 0;
-            padding-bottom: 0.5rem;
-          }
-          ul {
-            font-size: 0.85rem;
-            margin: 0 0 2em;
-            padding: 0;
-          }
-          li {
-            border-left: 1px solid var(--border);
-            list-style-type: none;
-            margin: 0;
-            padding: 0.25rem 0;
-          }
-          li a {
-            display: block;
-            font-weight: 400;
-            text-decoration: none;
-            padding: 0.25rem 0.5rem 0.25rem 1rem;
-          }
-          li a:hover {
-            text-decoration: underline;
-          }
-          li.active > a {
-            // border-left-color: var(--text-prominent);
-            box-shadow: -1px 0 var(--text-prominent);
-            color: var(--text-prominent);
-            font-weight: 500;
-          }
           @media screen and (max-width: 600px) {
-            nav {
+            .sidenav {
+              background: var(--light);
+              border-bottom: 1px solid var(--border);
+              padding: var(--gutter);
+              position: fixed;
+              width: 100%;
+              z-index: 20;
+            }
+            .sidenav[data-open='true'] {
+              display: block;
+            }
+            .sidenav[data-open='false'] {
               display: none;
             }
+          }
+          @media screen and (min-width: 601px) {
+            .sidenav {
+              flex: 0 0 var(--sidenav-width);
+              height: calc(100vh - var(--header-height));
+              overflow-y: auto;
+              padding: var(--scroll-offset) 0 var(--gutter) var(--gutter);
+              position: sticky;
+              top: var(--header-height);
+            }
+          }
+
+          .sidenav-title {
+            color: var(--text-prominent);
+            font-weight: var(--fw-medium);
+            font-size: var(--fs-standard);
+            margin-bottom: var(--vertical-rhythm-prominent);
+          }
+
+          .sidenav-list {
+            font-size: var(--fs-small);
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+          }
+          .sidenav-list:not(:last-child) {
+            margin-bottom: var(--gutter);
+          }
+
+          .sidenav-item {
+            border-left: 1px solid var(--border);
+          }
+          .sidenav-item--current {
+            border-left-color: var(--text-prominent);
+          }
+          .sidenav-item:not(:first-child) {
+            padding-top: 0.25rem;
+          }
+          .sidenav-item:not(:last-child) {
+            padding-bottom: 0.25rem;
+          }
+
+          .sidenav-link {
+            display: block;
+            font-weight: var(--fw-regular);
+            padding: 0.25rem 0.5rem 0.25rem 1rem;
+            text-decoration: none;
+          }
+          .sidenav-link:hover {
+            text-decoration: underline;
+          }
+          .sidenav-link--current {
+            color: var(--text-prominent);
+            font-weight: var(--fw-medium);
           }
         `}
       </style>
     </nav>
   );
 }
+
+// Context
+// ------------------------------
+
+export const SideNavContext = createContext();
+export const useSidenav = () => useContext(SideNavContext);
+export const useSidenavState = () => useState(false);

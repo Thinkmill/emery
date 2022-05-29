@@ -18,9 +18,19 @@ TypeScript supports the `asserts` keyword, for use in the return statement of [a
 
 Asserts that a condition is `true`, ensuring that whatever condition is being checked must be true for the remainder of the containing scope.
 
+{% callout %}
+The narrow type of `boolean` is an intentional design decision.
+{% /callout %}
+
 ```ts
 function assert(condition: boolean, message?: string): asserts condition;
 ```
+
+Other assertion functions may accept ["truthy"](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) and ["falsy"](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) conditions, while `assert` only accepts conditions that resolve to `boolean`.
+
+The goal is to promote consideration from consumers when dealing with potentially ambiguous values like `0` or `''`, which can introduce subtle bugs.
+
+#### Messages
 
 The `assert` function has a default message:
 
@@ -36,16 +46,6 @@ let falsyValue = -1;
 assert(falsyValue >= 0, `Expected a non-negative number, but received: ${falsyValue}`);
 // → TypeError: Expected a non-negative number, but received: -1
 ```
-
-#### Condition type
-
-{% callout %}
-The narrow type of `boolean` is an intentional design decision.
-{% /callout %}
-
-Other assertion functions may accept ["truthy"](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) and ["falsy"](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) conditions, while `assert` only accepts conditions that resolve to `boolean`.
-
-The goal is to promote consideration from consumers when dealing with potentially ambiguous values like `0` or `''`, which can introduce subtle bugs.
 
 ### assertNever
 

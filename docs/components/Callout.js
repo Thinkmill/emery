@@ -35,18 +35,22 @@ export function Callout({ children, type }) {
       <style jsx>
         {`
           .callout {
+            align-items: center;
             display: flex;
-            gap: 8px;
-            margin-bottom: var(--default-vertical-spacing);
+            gap: var(--gutter-xsmall);
+            font-weight: var(--fw-medium);
+            margin-block: var(--vertical-rhythm-prominent);
           }
-          .content {
-            color: var(--dark);
-            font-weight: 500;
-            // font-size: 0.9rem;
+          .callout :global(p:first-child) {
+            margin-top: 0;
           }
+          .callout :global(p:last-child) {
+            margin-bottom: 0;
+          }
+
           .icon {
             font-size: 1.6rem;
-            line-height: 1;
+            line-height: 0;
           }
         `}
       </style>

@@ -44,7 +44,7 @@ function isNull(value: unknown): value is null;
 Checks whether a value is a `number`.
 
 {% callout type="warning" %}
-`isNumber` does not consider `NaN` a valid value.
+Does not consider `NaN` a valid value
 {% /callout %}
 
 ```ts
