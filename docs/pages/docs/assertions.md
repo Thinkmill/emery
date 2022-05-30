@@ -71,7 +71,7 @@ function doThing(type: 'draft' | 'published') {
 }
 ```
 
-{% callout type="warning" %}
+{% callout tone="warning" %}
 Regardless of the condition, this function **always** throws.
 {% /callout %}
 

@@ -21,10 +21,14 @@ export function SectionNav({ sections }: SectionNavProps) {
                 key={item.title}
                 className="toc-item"
                 data-level={item.level}
-                data-current={current}
+                data-current={current || undefined}
               >
                 <Link href={href} passHref>
-                  <a className="toc-link" data-inset={item.level >= 3} data-current={current}>
+                  <a
+                    className="toc-link"
+                    data-level={item.level}
+                    data-current={current || undefined}
+                  >
                     {item.title}
                   </a>
                 </Link>
@@ -65,7 +69,8 @@ export function SectionNav({ sections }: SectionNavProps) {
           .toc-item:not(:last-child) {
             padding-bottom: 0.25rem;
           }
-          .toc-item:not([data-inset]) {
+          .toc-item[data-level='2'] {
+            font-weight: var(--fw-medium);
             margin-top: var(--gutter-small);
           }
 
@@ -73,7 +78,7 @@ export function SectionNav({ sections }: SectionNavProps) {
             display: block;
             text-decoration: none;
           }
-          .toc-link[data-inset] {
+          .toc-link[data-level='3'] {
             color: var(--text-muted);
             font-weight: var(--fw-regular);
             padding: 0.25rem var(--gutter-small) 0.25rem var(--gutter-small);

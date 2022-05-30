@@ -153,15 +153,6 @@ export function Header() {
             position: absolute;
             inset: calc(var(--gutter-xsmall) * -1);
           }
-
-          /*
-          @media screen and (min-width: 1001px) {
-            ul {
-              flex: 0 0 var(--sidenav-width);
-              padding-left: 1.5rem;
-            }
-          }
-          */
         `}
       </style>
     </div>

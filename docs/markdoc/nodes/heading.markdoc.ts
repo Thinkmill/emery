@@ -1,5 +1,28 @@
+import { MarkdocNextJsSchema } from '@markdoc/next.js';
 import { Config, Node, RenderableTreeNode, Tag } from '@markdoc/markdoc';
+
 import { Heading } from '../../components/Heading';
+
+export const heading: MarkdocNextJsSchema = {
+  render: Heading,
+  children: ['inline'],
+  attributes: {
+    id: { type: String },
+    level: { type: Number, required: true, default: 1 },
+    className: { type: String },
+  },
+  transform(node: Node, config: Config) {
+    const attributes = node.transformAttributes(config);
+    const children = node.transformChildren(config);
+    const id = generateID(children, attributes);
+
+    // NOTE: would prefer "ts-expect-error", but next.js fails to compile:
+    // Type error: Unused '@ts-expect-error' directive.
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return new Tag(this.render, { ...attributes, id }, children);
+  },
+};
 
 function generateID(children: RenderableTreeNode[], attributes: Record<string, unknown>) {
   if (attributes.id && typeof attributes.id === 'string') {
@@ -14,21 +37,3 @@ function generateID(children: RenderableTreeNode[], attributes: Record<string, u
     .replace(/^-/, '')
     .toLowerCase();
 }
-
-export default {
-  render: Heading,
-  children: ['inline'],
-  attributes: {
-    id: { type: String },
-    level: { type: Number, required: true, default: 1 },
-    className: { type: String },
-  },
-  transform(node: Node, config: Config) {
-    const attributes = node.transformAttributes(config);
-    const children = node.transformChildren(config);
-    const id = generateID(children, attributes);
-
-    // @ts-expect-error markdoc types don't yet cover this
-    return new Tag(this.render, { ...attributes, id }, children);
-  },
-};

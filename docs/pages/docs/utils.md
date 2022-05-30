@@ -71,8 +71,8 @@ Utility functions for [objects](https://developer.mozilla.org/en-US/docs/Web/Jav
 
 An alternative to `Object.entries()` that avoids type widening.
 
-{% callout type="warning" %}
-Uses a [type assertion](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions) which could be considered dangerous in some circumstances.
+{% callout tone="warning" %}
+Uses a [type assertion](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions) which could be considered dangerous.
 {% /callout %}
 
 ```ts

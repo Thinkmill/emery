@@ -3,24 +3,24 @@ import * as React from 'react';
 import { Icon } from './Icon';
 
 const iconMap = {
-  info: 'information-circle',
+  neutral: 'information-circle',
   warning: 'warning',
   positive: 'checkmark-circle',
   critical: 'warning',
 } as const;
 
-export const calloutTypeKeys = Object.keys(iconMap);
+export const calloutTones = Object.keys(iconMap);
 
 type CalloutProps = {
   children: React.ReactNode;
-  type: keyof typeof iconMap;
+  tone: keyof typeof iconMap;
 };
 
-export function Callout({ children, type }: CalloutProps) {
-  const icon = iconMap[type] || iconMap.info;
+export function Callout({ children, tone = 'neutral' }: CalloutProps) {
+  const icon = iconMap[tone];
 
   return (
-    <div className="callout" data-type={type}>
+    <div className="callout" data-tone={tone}>
       <div className="icon">
         <Icon icon={icon} />
       </div>
@@ -45,16 +45,16 @@ export function Callout({ children, type }: CalloutProps) {
             font-size: 1.6rem;
             line-height: 0;
           }
-          .callout[data-type='info'] .icon {
+          .callout[data-tone='neutral'] .icon {
             color: var(--info);
           }
-          .callout[data-type='warning'] .icon {
+          .callout[data-tone='warning'] .icon {
             color: var(--warning);
           }
-          .callout[data-type='critical'] .icon {
+          .callout[data-tone='critical'] .icon {
             color: var(--critical);
           }
-          .callout[data-type='positive'] .icon {
+          .callout[data-tone='positive'] .icon {
             color: var(--positive);
           }
         `}

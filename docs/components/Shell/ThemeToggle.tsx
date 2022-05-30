@@ -16,7 +16,7 @@ export function ThemeToggle() {
   }
 
   React.useEffect(() => {
-    let preferredTheme: Mode;
+    let preferredTheme: Mode | null = null;
     try {
       preferredTheme = localStorage.getItem('theme') as Mode;
     } catch (err) {
@@ -26,7 +26,6 @@ export function ThemeToggle() {
     const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
     darkQuery.addListener(e => setTheme(e.matches ? 'dark' : 'light'));
 
-    // @ts-expect-error local storage weirdness
     setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));
   }, []);
 
