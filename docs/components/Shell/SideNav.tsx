@@ -138,6 +138,15 @@ export function SideNav() {
 // Context
 // ------------------------------
 
-export const SideNavContext = createContext();
-export const useSidenav = () => useContext(SideNavContext);
+type SideNavContextType = ReturnType<typeof useSidenavState>;
+export const SideNavContext = createContext<SideNavContextType | null>(null);
+export const useSidenav = () => {
+  const ctx = useContext(SideNavContext);
+
+  if (!ctx) {
+    throw Error('Attempt to use `SideNavContext` outside of its provider.');
+  }
+
+  return ctx;
+};
 export const useSidenavState = () => useState(false);

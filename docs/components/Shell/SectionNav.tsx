@@ -1,10 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 
-export function TableOfContents({ toc }) {
-  const items = toc.filter(
-    item => item.id && (item.level === 2 || item.level === 3) && item.title !== 'Next steps',
-  );
+export type Section = { id: string; level: 2 | 3; title: string };
+type SectionNavProps = { sections: Section[] };
+
+export function SectionNav({ sections }: SectionNavProps) {
+  const items = sections.filter(item => item.id && (item.level === 2 || item.level === 3));
 
   return (
     <nav role="navigation" className="toc">
@@ -14,13 +15,18 @@ export function TableOfContents({ toc }) {
           {items.map(item => {
             const href = `#${item.id}`;
             const current = typeof window !== 'undefined' && window.location.hash === href;
-            const itemClassName = getClassNames({ current, prefix: 'toc-item', level: item.level });
-            const linkClassName = getClassNames({ current, prefix: 'toc-link', level: item.level });
 
             return (
-              <li key={item.title} className={itemClassName}>
+              <li
+                key={item.title}
+                className="toc-item"
+                data-level={item.level}
+                data-current={current}
+              >
                 <Link href={href} passHref>
-                  <a className={linkClassName}>{item.title}</a>
+                  <a className="toc-link" data-inset={item.level >= 3} data-current={current}>
+                    {item.title}
+                  </a>
                 </Link>
               </li>
             );
@@ -59,7 +65,7 @@ export function TableOfContents({ toc }) {
           .toc-item:not(:last-child) {
             padding-bottom: 0.25rem;
           }
-          .toc-item:not(.toc-item--inset) {
+          .toc-item:not([data-inset]) {
             margin-top: var(--gutter-small);
           }
 
@@ -67,13 +73,13 @@ export function TableOfContents({ toc }) {
             display: block;
             text-decoration: none;
           }
-          .toc-link--inset {
+          .toc-link[data-inset] {
             color: var(--text-muted);
             font-weight: var(--fw-regular);
             padding: 0.25rem var(--gutter-small) 0.25rem var(--gutter-small);
           }
           .toc-link:hover,
-          .toc-link--current {
+          .toc-link[data-current] {
             color: var(--text);
             text-decoration: underline;
           }
@@ -88,8 +94,8 @@ export function TableOfContents({ toc }) {
   );
 }
 
-function getClassNames({ current, prefix, level }) {
-  return [prefix, current ? `${prefix}--current` : null, level === 3 ? `${prefix}--inset` : null]
-    .filter(Boolean)
-    .join(' ');
-}
+// function getClassNames({ current, prefix, level }) {
+//   return [prefix, current ? `${prefix}--current` : null, level === 3 ? `${prefix}--inset` : null]
+//     .filter(Boolean)
+//     .join(' ');
+// }

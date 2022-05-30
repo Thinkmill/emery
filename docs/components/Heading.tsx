@@ -1,16 +1,21 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 
-export function Heading({ id = '', level = 1, children, className }) {
+type HeadingLevel = 1 | 2 | 3 | 4;
+type HeadingTag = `h${HeadingLevel}`;
+export type HeadingProps = {
+  id?: string;
+  level: HeadingLevel;
+  children: React.ReactNode;
+};
+
+export function Heading({ children, id = '', level = 1 }: HeadingProps) {
   const router = useRouter();
-  const Component = `h${level}`;
   const isDocs = router.pathname.startsWith('/docs');
+  const Tag: HeadingTag = `h${level}`;
 
   return (
-    <Component
-      className={['heading', `heading-${level}`, className].filter(Boolean).join(' ')}
-      id={id}
-    >
+    <Tag className="heading" id={id} data-level={level}>
       {isDocs && level !== 1 ? <HeadingLink href={`#${id}`} /> : null}
       <span>{children}</span>
       <style jsx>{`
@@ -23,38 +28,38 @@ export function Heading({ id = '', level = 1, children, className }) {
         }
 
         /* quick-and-dirty leading trim */
-        .heading:not(.heading-1)::before {
+        .heading:not([data-level='1'])::before {
           content: '';
           display: table;
           margin-bottom: -0.1818em;
         }
-        .heading:not(.heading-1)::after {
+        .heading:not([data-level='1'])::after {
           content: '';
           display: table;
           margin-top: -0.1818em;
         }
 
-        .heading-1 {
+        .heading[data-level='1'] {
           font-size: 2.2rem;
         }
-        .heading-2 {
+        .heading[data-level='2'] {
           --offset: var(--scroll-offset);
           font-size: 1.4rem;
         }
-        .heading-3 {
+        .heading[data-level='3'] {
           --offset: var(--scroll-offset);
           font-size: 1.2rem;
         }
-        .heading-4 {
+        .heading[data-level='4'] {
           --offset: var(--scroll-offset);
           font-size: var(--fs-standard);
         }
       `}</style>
-    </Component>
+    </Tag>
   );
 }
 
-function HeadingLink({ href }) {
+function HeadingLink({ href }: { href: string }) {
   return (
     <>
       <a href={href} aria-label="Anchor" className="heading-link">

@@ -1,43 +1,41 @@
 import React from 'react';
+import { AppProps as NextAppProps } from 'next/app';
 import Head from 'next/head';
+import { NextRouter } from 'next/router';
+import { RenderableTreeNode, Tag } from '@markdoc/markdoc';
+import { MarkdocNextJsPageProps } from '@markdoc/next.js';
 
 import {
   Footer,
+  Header,
   SideNav,
   SideNavContext,
+  SectionNav,
+  Section,
   useSidenavState,
-  TableOfContents,
-  Header,
 } from '../components/Shell';
-
 import '../public/global.css';
+
+// Types
+// ------------------------------
+
+type AppProps<P = unknown> = {
+  pageProps: P;
+  router: NextRouter;
+} & Omit<NextAppProps<P>, 'pageProps'>;
+
+type PageProps = MarkdocNextJsPageProps & {
+  is404?: boolean;
+};
+
+// App
+// ------------------------------
 
 const TITLE = 'TS Runtime DX';
 
-function collectHeadings(node, sections = []) {
-  if (node) {
-    if (node.name === 'Heading') {
-      const title = node.children[0];
-
-      if (typeof title === 'string') {
-        // @ts-expect-error FIXME
-        sections.push({ ...node.attributes, title });
-      }
-    }
-
-    if (node.children) {
-      for (const child of node.children) {
-        collectHeadings(child, sections);
-      }
-    }
-  }
-
-  return sections;
-}
-
-export default function MyApp(props) {
+export default function MyApp(props: AppProps<PageProps>) {
   const { Component, pageProps } = props;
-  const { markdoc } = pageProps;
+  const { markdoc, is404 } = pageProps;
   const sidenavContext = useSidenavState();
 
   let title = TITLE;
@@ -51,11 +49,11 @@ export default function MyApp(props) {
     }
   }
 
-  const toc = pageProps.markdoc?.content ? collectHeadings(pageProps.markdoc.content) : [];
+  const sections = pageProps.markdoc?.content ? collectSections(pageProps.markdoc.content) : [];
 
   const skipNavID = 'skip-nav';
   const isLandingPage = props.router.pathname === '/';
-  const isDocs = !isLandingPage;
+  const isDocs = !isLandingPage && !is404;
 
   return (
     <div className="layout">
@@ -81,7 +79,7 @@ export default function MyApp(props) {
           content="https://thinkmill.github.io/ts-runtime-dx/images/share.png"
         />
       </Head>
-      <SkipNav id={skipNavID} />
+      {isDocs && <SkipNav id={skipNavID} />}
       <SideNavContext.Provider value={sidenavContext}>
         <Header />
         <div className="page">
@@ -91,9 +89,9 @@ export default function MyApp(props) {
               <main className="flex column">
                 <div id={skipNavID} />
                 <Component {...pageProps} />
-                <Footer filePath={markdoc?.file?.path} />
+                {!is404 && <Footer filePath={markdoc?.file?.path} />}
               </main>
-              {isDocs && toc ? <TableOfContents toc={toc} /> : null}
+              {isDocs && sections ? <SectionNav sections={sections} /> : null}
             </div>
           </div>
         </div>
@@ -110,7 +108,7 @@ export default function MyApp(props) {
             padding-top: var(--header-height);
           }
           .page-container {
-            max-width: ${isLandingPage
+            max-width: ${!isDocs
               ? 'calc(var(--page-max-width) - var(--sidenav-width) * 2)'
               : 'var(--page-max-width)'};
             margin-inline: auto;
@@ -135,8 +133,12 @@ export default function MyApp(props) {
     </div>
   );
 }
+
+// Styled components
+// ------------------------------
+
 /* https://webaim.org/techniques/skipnav/ */
-function SkipNav({ id }) {
+function SkipNav({ id }: { id: string }) {
   return (
     <>
       <a href={`#${id}`} className="skip-nav">
@@ -169,4 +171,32 @@ function SkipNav({ id }) {
       `}</style>
     </>
   );
+}
+
+// Utils
+// ------------------------------
+
+function isTag(node: RenderableTreeNode): node is Tag {
+  return Boolean(node) && typeof node !== 'string';
+}
+
+function collectSections(node: RenderableTreeNode, sections: Section[] = []) {
+  if (isTag(node)) {
+    if (node.name === 'Heading') {
+      const title = node.children[0];
+
+      if (typeof title === 'string') {
+        // @ts-expect-error not sure how to extract attributes from markdoc tags
+        sections.push({ ...node.attributes, title });
+      }
+    }
+
+    if (node.children) {
+      for (const child of node.children) {
+        collectSections(child, sections);
+      }
+    }
+  }
+
+  return sections;
 }

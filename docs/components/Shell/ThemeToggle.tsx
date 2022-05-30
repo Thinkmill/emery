@@ -1,10 +1,12 @@
 import React from 'react';
 import { Hidden } from '../Hidden';
 
-export function ThemeToggle() {
-  const [theme, setTheme] = React.useState(undefined);
+type Mode = 'light' | 'dark';
 
-  function setPreferredTheme(newTheme) {
+export function ThemeToggle() {
+  const [theme, setTheme] = React.useState<Mode | null>(null);
+
+  function setPreferredTheme(newTheme: Mode) {
     setTheme(newTheme);
     try {
       localStorage.setItem('theme', newTheme);
@@ -14,9 +16,9 @@ export function ThemeToggle() {
   }
 
   React.useEffect(() => {
-    let preferredTheme;
+    let preferredTheme: Mode;
     try {
-      preferredTheme = localStorage.getItem('theme');
+      preferredTheme = localStorage.getItem('theme') as Mode;
     } catch (err) {
       //
     }
@@ -24,6 +26,7 @@ export function ThemeToggle() {
     const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
     darkQuery.addListener(e => setTheme(e.matches ? 'dark' : 'light'));
 
+    // @ts-expect-error local storage weirdness
     setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));
   }, []);
 

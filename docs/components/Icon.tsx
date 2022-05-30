@@ -73,7 +73,11 @@ const svgs = {
   ),
 };
 
-export function Icon({ icon, color = 'inherit' }) {
+type IconProps = {
+  icon: keyof typeof svgs;
+};
+
+export function Icon({ icon }: IconProps) {
   return (
     <span className="icon">
       {svgs[icon] || null}
@@ -87,7 +91,7 @@ export function Icon({ icon, color = 'inherit' }) {
             height: 1em;
             min-width: 16px;
             box-sizing: content-box;
-            color: ${color};
+            color: 'inherit';
           }
 
           .icon :global(svg) {

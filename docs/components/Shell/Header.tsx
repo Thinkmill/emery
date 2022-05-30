@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
+import { joinClasses } from '../../utils';
 import { Hidden } from '../Hidden';
 
 import { Link } from '../Link';
@@ -167,8 +168,8 @@ export function Header() {
   );
 }
 
-const Hamburger = ({ active }) => {
-  const className = ['hamburger', active && 'hamburger--active'].filter(Boolean).join(' ');
+const Hamburger = ({ active }: { active?: boolean }) => {
+  const className = joinClasses(['hamburger', active && 'hamburger--active']);
 
   return (
     <svg
