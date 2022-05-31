@@ -35,26 +35,46 @@ If you're using ESM:
 import * as emery from 'emery';
 ```
 
-{% comment %}
-
 ### Modules
 
-This library is already tiny, but if you prefer, just grab the parts you need:
+This library is already tiny (~3kB minified) but if you prefer just grab the parts you need:
+
+#### [Assertions](/docs/assertions)
+
+An assertion declares that a condition be `true` before executing subsequent code.
 
 ```ts
-// # assertions
-import { assert, assertNever } from 'emery/assertions';
-
-// # checks
-import * as checkModules from 'emery/checks';
-const { checkAll, checkAllWith, negate, ...check } = checkModules;
-// e.g. `check.isNonNegative()`
-
-// # guards
-import * as guards from 'emery/guards';
-
-// # utils
-import { typedEntries, typedKeys } from 'emery/utils';
+import assertions from 'emery/assertions';
 ```
 
-{% /comment %}
+#### [Checks](/docs/checks)
+
+This library considers "checks" predicates that cannot easily be expressed as type guards.
+
+```ts
+import checks from 'emery/checks';
+```
+
+#### [Guards](/docs/guards)
+
+Type guards allow you to narrow the type of a value.
+
+```ts
+import guards from 'emery/guards';
+```
+
+#### [Opaques](/docs/opaques)
+
+Opaque types encode primitive types with information about program semantics.
+
+```ts
+import opaques from 'emery/opaques';
+```
+
+#### [Utils](/docs/utils)
+
+Utility functions for overiding TypeScript's default behaviour.
+
+```ts
+import utils from 'emery/utils';
+```
