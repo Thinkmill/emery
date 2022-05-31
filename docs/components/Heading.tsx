@@ -12,11 +12,13 @@ export type HeadingProps = {
 export function Heading({ children, id = '', level = 1 }: HeadingProps) {
   const router = useRouter();
   const isDocs = router.pathname.startsWith('/docs');
+  const showLink = isDocs && level !== 1 && id;
+
   const Tag: HeadingTag = `h${level}`;
 
   return (
     <Tag className="heading" id={id} data-level={level}>
-      {isDocs && level !== 1 ? <HeadingLink href={`#${id}`} /> : null}
+      {showLink ? <HeadingLink href={`#${id}`} /> : null}
       <span>{children}</span>
       <style jsx>{`
         .heading {

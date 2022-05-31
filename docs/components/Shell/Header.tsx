@@ -194,7 +194,7 @@ const Brand = () => {
 };
 
 const logo = (
-  <svg viewBox="0 0 366 273" fill="none" preserveAspectRatio="xMidYMid meet">
+  <svg viewBox="0 0 366 273" fill="none">
     <path
       d="M273.991 0.000915527L364.993 91.0034L182.998 272.999L0.997314 90.9987L91.9951 0.000915527L273.991 0.000915527Z"
       fill="#358EF1"

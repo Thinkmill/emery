@@ -1,0 +1,4 @@
+{
+  "main": "dist/emery-guards.cjs.js",
+  "module": "dist/emery-guards.esm.js"
+}

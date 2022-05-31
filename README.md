@@ -1,6 +1,6 @@
 # Emery
 
-Utilities to help polish the parts of TypeScript that are a bit rough.
+Utilities to help polish the rough parts of TypeScript.
 
 ```ts
 const isNonNegativeInteger = checkAll(isNonNegative, isInteger);

@@ -81,7 +81,7 @@ function isNullish(value: unknown): value is Nullish;
 
 ### isDefined
 
-Checks whether a value is **not** `null`, `undefined`, or `NaN`.
+Checks whether a value is **not** `null` or `undefined`.
 
 ```ts
 function isDefined<T>(value: T | Nullish): value is NonNullable<T>;

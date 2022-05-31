@@ -32,7 +32,7 @@ type PageProps = MarkdocNextJsPageProps & {
 // ------------------------------
 
 const BRAND = 'Emery';
-const SUMMARY = 'Utilities to help polish the parts of TypeScript that are a bit rough.';
+const SUMMARY = 'Utilities to help polish the rough parts of TypeScript.';
 
 export default function MyApp(props: AppProps<PageProps>) {
   const { Component, pageProps, router } = props;
@@ -74,7 +74,7 @@ export default function MyApp(props: AppProps<PageProps>) {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
         <meta name="twitter:site" content="@thethinkmill" />
-        <meta name="twitter:creator" content="@jossmac" />
+        <meta name="twitter:creator" content="@jossmackison" />
         {isDocs ? (
           <>
             <meta name="twitter:card" content="summary" />
