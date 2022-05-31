@@ -43,6 +43,8 @@ The seed was planted by this simple Slack message:
 
 The discussion that followed confirmed a desire for an approach to TypeScript development that improves DX without compromising static types. At Thinkmill we collaborate on many large applications and design systems, and we've learned that so removing any obstacle to quality engineering is a big win.
 
-So with this in mind, we built Emery to polish "TypeScript the rough parts". Read more about both the problem and solution in [Emery's Origin Story](/docs/origin-story)
+So with this in mind, we built Emery to polish "TypeScript the rough parts".
+
+Read more about both the problem and solution in [Emery's Origin Story &rarr;](/docs/origin-story)
 
 
