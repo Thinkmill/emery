@@ -1,11 +1,11 @@
 ---
 title: Getting started
-description: How to get started with TS Runtime DX
+description: How to get started with Emery
 ---
 
 # {% $markdoc.frontmatter.title %}
 
-Follow the instructions below to use TS Runtime DX in your application.
+Follow the instructions below to use Emery in your application.
 
 &ZeroWidthSpace;
 
@@ -22,13 +22,13 @@ Follow the instructions below to use TS Runtime DX in your application.
 Install the library:
 
 ```shell
-npm install ts-runtime-dx
+npm install emery
 ```
 
 or
 
 ```shell
-yarn add ts-runtime-dx
+yarn add emery
 ```
 
 ## Import
@@ -36,14 +36,16 @@ yarn add ts-runtime-dx
 Import the library:
 
 ```js
-const tsrdx = require('ts-runtime-dx');
+const emery = require('emery');
 ```
 
 If you're using ESM:
 
 ```js
-import tsrdx from 'ts-runtime-dx';
+import * as emery from 'emery';
 ```
+
+{% comment %}
 
 ### Modules
 
@@ -51,16 +53,18 @@ This library is already tiny, but if you prefer, just grab the parts you need:
 
 ```ts
 // # assertions
-import { assert, assertNever } from 'ts-runtime-dx/assertions';
+import { assert, assertNever } from 'emery/assertions';
 
 // # checks
-import * as checkModules from 'ts-runtime-dx/checks';
+import * as checkModules from 'emery/checks';
 const { checkAll, checkAllWith, negate, ...check } = checkModules;
 // e.g. `check.isNonNegative()`
 
 // # guards
-import * as guards from 'ts-runtime-dx/guards';
+import * as guards from 'emery/guards';
 
 // # utils
-import { typedEntries, typedKeys } from 'ts-runtime-dx/utils';
+import { typedEntries, typedKeys } from 'emery/utils';
 ```
+
+{% /comment %}

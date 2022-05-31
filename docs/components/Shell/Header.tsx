@@ -15,39 +15,29 @@ export function Header() {
   return (
     <div className="navbar" data-page-type={isDocs ? 'docs' : 'landing'}>
       <nav className="nav">
-        <Hidden below="mobile">
-          <div className="brand-wrapper">
-            <Link href="/" className="brand">
-              TS Runtime DX
-            </Link>
-          </div>
-        </Hidden>
         <div className="nav-sections">
           <ul className="nav-list">
-            <Hidden above="mobile">
-              <li className="nav-list-item">
-                <Link className="nav-list-link" href="/">
-                  Home
+            <li className="nav-list-item nav-list-item--brand">
+              {isDocs ? (
+                <Link href="/">
+                  <Brand />
                 </Link>
-              </li>
-            </Hidden>
+              ) : (
+                <Brand />
+              )}
+            </li>
             <li className="nav-list-item">
               <Link className="nav-list-link" href="/docs/getting-started">
                 Docs
               </Link>
             </li>
-            <Hidden below="mobile">
-              <li className="nav-list-item">
-                <Link
-                  className="nav-list-link"
-                  href="https://github.com/thinkmill/ts-runtime-dx/discussions"
-                >
-                  Community
-                </Link>
-              </li>
-            </Hidden>
             <li className="nav-list-item">
-              <Link className="nav-list-link" href="https://github.com/thinkmill/ts-runtime-dx">
+              <Link className="nav-list-link" href="https://github.com/thinkmill/emery/discussions">
+                Community
+              </Link>
+            </li>
+            <li className="nav-list-item">
+              <Link className="nav-list-link" href="https://github.com/thinkmill/emery">
                 GitHub
               </Link>
             </li>
@@ -100,14 +90,15 @@ export function Header() {
             }
           }
 
-          .brand-wrapper {
+          .nav-list-item--brand {
             align-items: center;
             display: flex;
-            flex: 0 0 var(--sidenav-width);
-            padding-left: 2rem;
           }
-          [data-page-type='landing'] .brand-wrapper {
-            display: none;
+
+          @media screen and (min-width: 601px) {
+            .navbar[data-page-type='docs'] .nav-list-item--brand {
+              flex: 0 0 calc(var(--sidenav-width) - var(--gutter-small));
+            }
           }
 
           .nav-list {
@@ -158,6 +149,74 @@ export function Header() {
     </div>
   );
 }
+
+// Styled components
+// ------------------------------
+
+const Brand = () => {
+  return (
+    <div className="brand">
+      <span className="brand-mark">{logo}</span>
+      <span className="brand-text">Emery</span>
+      <style jsx>{`
+        :global(.brand) {
+          display: flex;
+          align-items: center;
+          align-self: stretch;
+          gap: 8px;
+        }
+        .brand-mark {
+          height: 24px;
+        }
+        .brand-mark :global(svg) {
+          width: auto;
+          height: 100%;
+        }
+        .brand-text {
+          font-weight: var(--fw-bold);
+        }
+        @media screen and (max-width: 600px) {
+          .brand-text {
+            border-width: 0;
+            clip: rect(0, 0, 0, 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+const logo = (
+  <svg viewBox="0 0 366 273" fill="none" preserveAspectRatio="xMidYMid meet">
+    <path
+      d="M273.991 0.000915527L364.993 91.0034L182.998 272.999L0.997314 90.9987L91.9951 0.000915527L273.991 0.000915527Z"
+      fill="#358EF1"
+    />
+    <path d="M182.998 91L273.995 181.998L182.998 272.995L92 181.998L182.998 91Z" fill="#3178C6" />
+    <path d="M91.9929 0.000183105L182.993 91.0002H0.99292L91.9929 0.000183105Z" fill="#3178C6" />
+    <path d="M273.993 0.000183105L364.993 91.0002H182.993L273.993 0.000183105Z" fill="#3178C6" />
+    <g style={{ mixBlendMode: 'screen' }} opacity="0.5">
+      <path d="M365.062 91.0697L274.028 182.105H91.9581L0.92334 91.0697H365.062Z" fill="#00273F" />
+    </g>
+    <g style={{ mixBlendMode: 'hard-light' }} opacity="0.25">
+      <path d="M182.993 273L273.993 91.0002H91.9929L182.993 273Z" fill="#00273F" />
+      <path d="M182.993 0.000183105L273.993 91.0002H91.9929L182.993 0.000183105Z" fill="#BAE6FD" />
+    </g>
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M273.565 59.0001C283.087 86.563 277.574 81.0504 305.137 90.5722C277.574 100.094 283.087 94.5813 273.565 122.144C264.044 94.5813 269.556 100.094 241.993 90.5722C269.556 81.0504 264.044 86.563 273.565 59.0001Z"
+      fill="white"
+    />
+  </svg>
+);
 
 const Hamburger = ({ active }: { active?: boolean }) => {
   const className = joinClasses(['hamburger', active && 'hamburger--active']);

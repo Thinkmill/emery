@@ -31,15 +31,16 @@ type PageProps = MarkdocNextJsPageProps & {
 // App
 // ------------------------------
 
-const TITLE = 'TS Runtime DX';
+const BRAND = 'Emery';
+const SUMMARY = 'Utilities to help polish the parts of TypeScript that are a bit rough.';
 
 export default function MyApp(props: AppProps<PageProps>) {
-  const { Component, pageProps } = props;
+  const { Component, pageProps, router } = props;
   const { markdoc, is404 } = pageProps;
   const sidenavContext = useSidenavState();
 
-  let title = TITLE;
-  let description = 'Utility functions to improve TypeScript DX at runtime';
+  let title = BRAND;
+  let description = SUMMARY;
   if (markdoc) {
     if (markdoc.frontmatter.title) {
       title = markdoc.frontmatter.title;
@@ -52,32 +53,45 @@ export default function MyApp(props: AppProps<PageProps>) {
   const sections = pageProps.markdoc?.content ? collectSections(pageProps.markdoc.content) : [];
 
   const skipNavID = 'skip-nav';
-  const isLandingPage = props.router.pathname === '/';
+  const isLandingPage = router.pathname === '/';
   const isDocs = !isLandingPage && !is404;
 
   return (
     <div className="layout">
       <Head>
-        <title>{`${TITLE} | ${title}`}</title>
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="referrer" content="strict-origin" />
+        <title>{`${title} | ${BRAND}`}</title>
         <meta name="title" content={title} />
         <meta name="description" content={description} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://thinkmill.github.io/ts-runtime-dx" />
+
+        <meta name="viewport" content="width=device-width" />
+        <meta name="referrer" content="strict-origin" />
+        <meta name="application-name" content="Emery" />
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+        <meta name="twitter:site" content="@thethinkmill" />
+        <meta name="twitter:creator" content="@jossmac" />
+        {isDocs ? (
+          <>
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:image" content={canonicalUrl('/share.png')} />
+          </>
+        ) : (
+          <>
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:image" content={canonicalUrl('/share-large.jpg')} />
+          </>
+        )}
+
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={canonicalUrl(router.pathname)} />
         <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta
-          property="og:image"
-          content="https://thinkmill.github.io/ts-runtime-dx/images/share.png"
-        />
-        <meta name="twitter:card" content="summary" />
-        <meta
-          name="twitter:image"
-          content="https://thinkmill.github.io/ts-runtime-dx/images/share.png"
-        />
+        <meta property="og:description" content={SUMMARY} />
+        <meta property="og:image" content={canonicalUrl('/share-large.jpg')} />
       </Head>
       {isDocs && <SkipNav id={skipNavID} />}
       <SideNavContext.Provider value={sidenavContext}>
@@ -175,6 +189,12 @@ function SkipNav({ id }: { id: string }) {
 
 // Utils
 // ------------------------------
+
+function canonicalUrl(path?: string) {
+  const url = 'https://emery.vercel.app';
+  if (!path) return url;
+  return url + path;
+}
 
 function isTag(node: RenderableTreeNode): node is Tag {
   return Boolean(node) && typeof node !== 'string';

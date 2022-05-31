@@ -22,7 +22,7 @@ function checkAll<T>(...predicates: UnaryPredicate<T>[]): UnaryPredicate<T>;
 Useful for creating a new predicate that combines all those provided, which can be called elsewhere in your program.
 
 ```ts
-import { checkAll, isNonNegative, isInteger } from 'ts-runtime-dx';
+import { checkAll, isNonNegative, isInteger } from 'emery';
 
 export const isNonNegativeInteger = checkAll(isNonNegative, isInteger);
 ```
@@ -30,7 +30,7 @@ export const isNonNegativeInteger = checkAll(isNonNegative, isInteger);
 When combined with [assertions](/docs/assertions), checks become incredibly powerful for simplifying logic.
 
 ```ts
-import { assert } from 'ts-runtime-dx';
+import { assert } from 'emery';
 import { isNonNegativeInteger } from './path-to/check';
 
 function getThingByIndex(index: number) {
