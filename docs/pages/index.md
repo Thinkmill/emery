@@ -1,34 +1,36 @@
-# TS Runtime DX
+---
+title: Documentation
+description: Utilities to help polish the parts of TypeScript that are a bit rough.
+---
 
-Utility functions to improve TypeScript DX at runtime.
+# Utilities to help polish the parts of TypeScript that are a bit rough.
+
+Emery is a collection of functions and types that offer an approach to TypeScript development that improves DX without compromising static types.
 
 ```ts
 const isNonNegativeInteger = checkAll(isNonNegative, isInteger);
-// → (value: number) => boolean
-assert(isNonNegativeInteger(-1));
-// → TypeError: Assert failed
-assert(isNonNegativeInteger(1.2), `The 'index' argument must be a non-negative integer.`);
-// → TypeError: The 'index' argument must be a non-negative integer.
+
+function getThingByIndex(index: number) {
+  assert(isNonNegativeInteger(index), `Expected a non-negative integer, but received "${index}"`);
+  /* ... */
+}
+
+getThingByIndex(-1.2);
+// → TypeError: Expected a non-negative integer, but received "-1.2"
 ```
 
-## Why TS Runtime DX
+[View docs &rarr;](/docs)
 
-TS Runtime DX improves the developer experience of TypeScript by taking the hassle out of working with ambiguous types, forked logic, error messages, etc.
+## Why?
 
-TS Runtime DX's utility functions are great for:
-
-- Casting types to improve usability — [utils](/docs/utils)
-- Narrowing & checking types — [checks](/docs/checks) and [guards](/docs/guards)
-- Providing human readable error messages — [assertions](/docs/assertions)
+TypeScript is great, we enjoy using it in our projects but there's some parts that are still rough around the edges, especially for those new to the language. Emery improves the developer experience by taking the hassle out of working with ambiguous types, forked logic, error messages, etc.
 
 {% comment %}
 
-## Related libraries
+Emery's utility functions are great for:
 
-Libraries that solve similar problems:
-
-- [ts-error-translator](https://github.com/mattpocock/ts-error-translator) — TypeScript errors in plain English
-- [runtypes](https://github.com/pelotom/runtypes) — Runtime validation for static types
-- [tiny-invariant](https://github.com/alexreardon/tiny-invariant) — A tiny invariant function
+- Casting types to improve usability — [utils](/docs/utils)
+- Narrowing & checking types — [checks](/docs/checks) and [guards](/docs/guards)
+- Providing a better developer experience — [assertions](/docs/assertions)
 
 {% /comment %}

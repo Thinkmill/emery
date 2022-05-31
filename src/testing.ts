@@ -7,7 +7,7 @@ const valuesByType = {
   complex: [arr, obj, new Date()],
   null: [null],
   number: [1, -1, 0, -0, Number.POSITIVE_INFINITY, Number.MAX_SAFE_INTEGER],
-  string: ['', 'ts-runtime-dx', JSON.stringify(obj)],
+  string: ['', 'emery', JSON.stringify(obj)],
   undefined: [undefined],
 };
 type ValueKey = keyof typeof valuesByType;

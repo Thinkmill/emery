@@ -1,11 +1,11 @@
 ---
 title: Origin story
-description: How we arrived at TS Runtime DX
+description: How we arrived here
 ---
 
 # {% $markdoc.frontmatter.title %}
 
-The seed for TS Runtime DX was planted by this simple Slack message:
+The seed was planted by this simple Slack message:
 
 > Is there a way to “optimise” the errors returned from TS?
 
@@ -16,7 +16,7 @@ The discussion that followed confirmed a desire for an approach to TypeScript de
 To express our intent we often write types that are technically accurate but leave consumers scratching their heads when something goes wrong. Consider this component definition:
 
 {% callout %}
-React is used in these examples, but ts-runtime-dx is framework agnostic
+React is used in these examples, but emery is framework agnostic
 {% /callout %}
 
 ```tsx

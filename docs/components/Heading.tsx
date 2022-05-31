@@ -21,6 +21,7 @@ export function Heading({ children, id = '', level = 1 }: HeadingProps) {
       <style jsx>{`
         .heading {
           color: var(--text-prominent);
+          font-weight: var(--fw-bold);
           line-height: 1.2;
           margin-top: var(--offset);
           position: relative;
@@ -40,7 +41,8 @@ export function Heading({ children, id = '', level = 1 }: HeadingProps) {
         }
 
         .heading[data-level='1'] {
-          font-size: 2.2rem;
+          font-size: 2rem;
+          font-weight: var(--fw-heavy);
         }
         .heading[data-level='2'] {
           --offset: var(--scroll-offset);

@@ -56,5 +56,5 @@ export function Footer({ filePath }: FooterProps) {
 }
 
 function getEditLink(path: string) {
-  return `https://github.com/Thinkmill/ts-runtime-dx/edit/main/docs/pages${path}`;
+  return `https://github.com/thinkmill/emery/edit/main/docs/pages${path}`;
 }
