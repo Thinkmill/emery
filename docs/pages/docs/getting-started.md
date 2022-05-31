@@ -7,16 +7,6 @@ description: How to get started with Emery
 
 Follow the instructions below to use Emery in your application.
 
-&ZeroWidthSpace;
-
----
-
-{% callout tone="warning" %}
-**WIP**: This library is not yet published to npm.
-{% /callout %}
-
----
-
 ## Install
 
 Install the library:
