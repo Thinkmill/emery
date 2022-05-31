@@ -32,7 +32,7 @@ type PageProps = MarkdocNextJsPageProps & {
 // ------------------------------
 
 const BRAND = 'Emery';
-const SUMMARY = 'Utilities to help polish the parts of TypeScript that are a bit rough.';
+const SUMMARY = 'Utilities to help polish the rough parts of TypeScript.';
 
 export default function MyApp(props: AppProps<PageProps>) {
   const { Component, pageProps, router } = props;

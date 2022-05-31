@@ -1,7 +1,7 @@
 {
   "name": "emery",
   "version": "1.0.0",
-  "description": "Utilities to help polish the parts of TypeScript that are a bit rough.",
+  "description": "Utilities to help polish the rough parts of TypeScript.",
   "main": "dist/emery.cjs.js",
   "module": "dist/emery.esm.js",
   "repository": "https://github.com/thinkmill/emery.git",

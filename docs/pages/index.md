@@ -1,6 +1,6 @@
 ---
 title: Documentation
-description: Utilities to help polish the parts of TypeScript that are a bit rough.
+description: Utilities to help polish the rough parts of TypeScript
 ---
 
 # Polish the rough parts of TypeScript
@@ -46,5 +46,3 @@ The discussion that followed confirmed a desire for an approach to TypeScript de
 So with this in mind, we built Emery to polish "TypeScript the rough parts".
 
 Read more about both the problem and solution in [Emery's Origin Story &rarr;](/docs/origin-story)
-
-
