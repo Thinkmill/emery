@@ -11,8 +11,8 @@ Follow the instructions below to use TS Runtime DX in your application.
 
 ---
 
-{% callout type="warning" %}
-WIP: This library is not yet published to npm.
+{% callout tone="warning" %}
+**WIP**: This library is not yet published to npm.
 {% /callout %}
 
 ---

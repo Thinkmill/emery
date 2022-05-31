@@ -1,10 +1,12 @@
 import React from 'react';
 import { Hidden } from '../Hidden';
 
-export function ThemeToggle() {
-  const [theme, setTheme] = React.useState(undefined);
+type Mode = 'light' | 'dark';
 
-  function setPreferredTheme(newTheme) {
+export function ThemeToggle() {
+  const [theme, setTheme] = React.useState<Mode | null>(null);
+
+  function setPreferredTheme(newTheme: Mode) {
     setTheme(newTheme);
     try {
       localStorage.setItem('theme', newTheme);
@@ -14,9 +16,9 @@ export function ThemeToggle() {
   }
 
   React.useEffect(() => {
-    let preferredTheme;
+    let preferredTheme: Mode | null = null;
     try {
-      preferredTheme = localStorage.getItem('theme');
+      preferredTheme = localStorage.getItem('theme') as Mode;
     } catch (err) {
       //
     }

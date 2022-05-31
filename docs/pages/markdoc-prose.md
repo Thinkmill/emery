@@ -24,39 +24,36 @@ Here's a new paragraph that contains inline `code`.
 
 ### Blockquotes
 
-> Blockquotes can also be nested...
->
-> > ...by using additional greater-than signs right next to each other...
-> >
-> > > ...or with spaces between arrows.
+> Blockquotes example with _inline_ **tags** included.
 
 ### Lists
 
-Unordered
+#### Unordered
 
-- Create a list by starting a line with `+`, `-`, or `*`
-- Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:
-    - Ac tristique libero volutpat at
-    * Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit
-- Very easy!
+Prefer dash `-` for unordered lists.
 
-Ordered
+- Create a list by starting a line with `-`
+- Sub-lists
+  - are made by
+  - indenting 2 spaces
+
+#### Ordered
+
+Prefer non-sequential indicators for ordered lists—it's easier to more items around.
 
 1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
+1. Consectetur adipiscing elit
+1. Integer molestie lorem at massa
 
 ### Code
 
-Block code "fences"
+Only code "fences" e.g. ` ``` ` supported, not indentation syntax.
 
 ```
 Sample text here...
 ```
 
-Syntax highlighting
+Provide a language after the backticks e.g. ` ```js` for syntax highlighting.
 
 ```js
 var foo = function (bar) {
@@ -83,17 +80,17 @@ console.log(foo(5));
 ### Callout
 
 {% callout %}
-The "note" type is the default
+The "neutral" tone is the default
 {% /callout %}
 
-{% callout type="positive" %}
+{% callout tone="positive" %}
 Indicate success with a "positive" callout
 {% /callout %}
 
-{% callout type="warning" %}
+{% callout tone="warning" %}
 Give readers a "warning" when appropriate
 {% /callout %}
 
-{% callout type="critical" %}
+{% callout tone="critical" %}
 Highlight "critical" areas with a callout
 {% /callout %}

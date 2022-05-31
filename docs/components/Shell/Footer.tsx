@@ -2,8 +2,11 @@ import React from 'react';
 
 import { Link } from '../Link';
 
-export function Footer({ filePath }) {
-  const editable = filePath?.startsWith('/docs');
+type FooterProps = { filePath?: string };
+
+export function Footer({ filePath }: FooterProps) {
+  const editable = filePath && filePath.startsWith('/docs');
+
   return (
     <footer className="footer">
       <div className="brand">
@@ -52,6 +55,6 @@ export function Footer({ filePath }) {
   );
 }
 
-function getEditLink(path) {
+function getEditLink(path: string) {
   return `https://github.com/Thinkmill/ts-runtime-dx/edit/main/docs/pages${path}`;
 }
