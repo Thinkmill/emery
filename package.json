@@ -5,6 +5,7 @@
   "main": "dist/emery.cjs.js",
   "module": "dist/emery.esm.js",
   "repository": "https://github.com/thinkmill/emery.git",
+  "homepage": "https://emery-ts.vercel.app",
   "author": "jossmac <jossmac@users.noreply.github.com>",
   "license": "MIT",
   "private": false,
