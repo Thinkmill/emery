@@ -191,7 +191,7 @@ function SkipNav({ id }: { id: string }) {
 // ------------------------------
 
 function canonicalUrl(path?: string) {
-  const url = 'https://emery.vercel.app';
+  const url = 'https://emery-ts.vercel.app';
   if (!path) return url;
   return url + path;
 }

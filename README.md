@@ -14,7 +14,7 @@ getThingByIndex(-1.2);
 // → TypeError: Expected a non-negative integer, but received "-1.2"
 ```
 
-[View docs &rarr;](https://emery.vercel.app/)
+[View docs &rarr;](https://emery-ts.vercel.app/)
 
 ## Why?
 
