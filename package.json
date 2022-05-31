@@ -11,7 +11,18 @@
   "private": false,
   "files": [
     "dist",
-    "src"
+    "src",
+    "assertions",
+    "checks",
+    "guards",
+    "opaques",
+    "utils"
+  ],
+  "keywords": [
+    "ts",
+    "typescript",
+    "utils",
+    "utilities"
   ],
   "scripts": {
     "format": "prettier --write ./src",
@@ -35,10 +46,16 @@
       "js"
     ]
   },
-  "keywords": [
-    "ts",
-    "utils"
-  ],
+  "preconstruct": {
+    "entrypoints": [
+      "index.ts",
+      "assertions.ts",
+      "checks/index.ts",
+      "guards.ts",
+      "opaques.ts",
+      "utils/index.ts"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.17.12",
     "@babel/preset-env": "^7.17.12",

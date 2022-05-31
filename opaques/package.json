@@ -1,0 +1,4 @@
+{
+  "main": "dist/emery-opaques.cjs.js",
+  "module": "dist/emery-opaques.esm.js"
+}
