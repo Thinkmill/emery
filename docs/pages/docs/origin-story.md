@@ -16,7 +16,7 @@ The discussion that followed confirmed a desire for an approach to TypeScript de
 To express our intent we often write types that are technically accurate but leave consumers scratching their heads when something goes wrong. Consider this component definition:
 
 {% callout %}
-React is used in these examples, but emery is framework agnostic
+React is used in these examples, but Emery is framework agnostic
 {% /callout %}
 
 ```tsx
@@ -58,9 +58,9 @@ const ExampleCombination = () => {
 };
 ```
 
-## The solution
+## A solution
 
-Without a way to influence TypeScript in a way that would surface more useful messages to consumers at buildtime, runtime errors are our next best option.
+Without TypeScript support for influencing the messages surfaced to consumers at buildtime, runtime errors are our next best option.
 
 ### Custom errors (runtime)
 

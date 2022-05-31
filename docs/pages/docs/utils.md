@@ -5,7 +5,7 @@ description: Utility functions for overiding TypeScript's default behaviour
 
 # {% $markdoc.frontmatter.title %}
 
-Utility functions for overiding TypeScript's default behaviour
+Utility functions for overiding TypeScript's default behaviour.
 
 ## Errors
 

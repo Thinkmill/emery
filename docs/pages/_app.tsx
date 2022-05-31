@@ -74,7 +74,7 @@ export default function MyApp(props: AppProps<PageProps>) {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
         <meta name="twitter:site" content="@thethinkmill" />
-        <meta name="twitter:creator" content="@jossmac" />
+        <meta name="twitter:creator" content="@jossmackison" />
         {isDocs ? (
           <>
             <meta name="twitter:card" content="summary" />
