@@ -27,6 +27,10 @@ getThingByIndex(-1.2);
 
 ## Why?
 
-We wanted an approach to TypeScript development that improves DX without compromising static types. At Thinkmill we collaborate on many large applications and design systems, and we've learned that removing any obstacle to quality engineering is a big win.
+We wanted an approach to TypeScript development that improves DX without compromising static types. At [Thinkmill](https://www.thinkmill.com.au) we collaborate on many large applications and design systems, and we've learned that removing any obstacle to quality engineering is a big win.
 
-So with this in mind, we built Emery to polish "TypeScript the rough parts". [Read the origin story](/docs/origin-story) for more information about both the problem and solution.
+So with this in mind, we built Emery to polish "TypeScript the rough parts".
+
+[Read the origin story](/docs/origin-story) for more information about both the problem and solution.
+
+Like it? ⭐️ [Star Emery on GitHub](https://github.com/thinkmill/emery)!
