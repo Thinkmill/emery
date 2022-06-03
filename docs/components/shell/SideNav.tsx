@@ -2,6 +2,8 @@ import React, { createContext, Fragment, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
+export const navID = 'docs-navigation';
+
 const items = [
   {
     title: 'About',
@@ -27,7 +29,7 @@ export function SideNav() {
   const [sidenavOpen, setSidenavOpen] = useSidenav();
 
   return (
-    <nav className="sidenav" data-open={sidenavOpen}>
+    <nav className="sidenav" data-open={sidenavOpen} id={navID}>
       {items.map(item => {
         return (
           <Fragment key={item.title}>

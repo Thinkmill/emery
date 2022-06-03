@@ -4,7 +4,7 @@ import { joinClasses } from '../../utils';
 import { Hidden } from '../Hidden';
 
 import { Link } from '../Link';
-import { useSidenav } from './SideNav';
+import { useSidenav, navID } from './SideNav';
 import { ThemeToggle } from './ThemeToggle';
 
 export function Header() {
@@ -46,7 +46,14 @@ export function Header() {
           <ThemeToggle />
           {isDocs && (
             <Hidden above="mobile">
-              <button className="menu-button" onClick={() => setSidenavOpen(bool => !bool)}>
+              <button
+                aria-label="Toggle navigation"
+                aria-controls={navID}
+                aria-expanded={sidenavOpen}
+                type="button"
+                className="menu-button"
+                onClick={() => setSidenavOpen(bool => !bool)}
+              >
                 <Hamburger active={sidenavOpen} />
               </button>
             </Hidden>
