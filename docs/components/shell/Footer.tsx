@@ -34,7 +34,7 @@ export function Footer({ filePath }: FooterProps) {
             justify-content: space-between;
             margin-inline: auto;
             max-width: var(--page-max-width);
-            padding: var(--gutter-small) var(--gutter);
+            padding: var(--gutter);
           }
 
           .footer :global(a:hover) {
