@@ -7,13 +7,17 @@ description: Emery is a collection of utilities that improve DX without compromi
 
 # Polish for the rough parts of TypeScript
 
-TypeScript is great, but there are some parts that are still rough around the edges, especially for developers who are new to the language.
+TypeScript is great but there's parts that are still rough around the edges, especially for developers who are new to the language.
+
+```shell
+npm install emery
+```
 
 {% /hero %}
 
 {% hero %}
 
-## Emery is a collection of utilities that improve DX without compromising static types.
+## Emery is a collection of utilities that improve DX without compromising static types
 
 {% /hero %}
 
@@ -62,7 +66,7 @@ function getThingByIndex(index: number) {
 
 ### Smooth over loose types
 
-[Utility functions](/docs/utils) for smoothing over areas of TypeScript that are _loosely_ typed.
+[Utility functions](/docs/utils) for smoothing over areas of TypeScript that are loosely typed.
 
 Because of JavaScript's dynamic implementation the default TS behaviour is correct, but can be frustrating in certain situations.
 
@@ -83,10 +87,12 @@ const thing2 = typedKeys(obj).map(key => {
 
 {% hero prominence="secondary" %}
 
-## Emery is deliberate and streamlined
+## Philosophy and motivation
 
-Emery is the distillation of utilities we found ourselves copying between TypeScript projects at [Thinkmill](https://thinkmill.com.au). There's a few libraries that solve similar problems but they often provide too little or too much.
+Like all good things, Emery started with curiosity. At [Thinkmill](https://thinkmill.com.au) we have an internal Slack channel for TypeScript where a question was raised about how to offer consumers error messages that convey intent, not just cascading type failures.
 
-[Read the origin story](/docs/origin-story) for information about how we arrived here.
+While that's not currently possible, it became apparent that there was demand for a solution. We also discovered that many developers were carrying around miscellaneous utilities for working with TypeScript between projects.
+
+[Read the origin story](/docs/origin-story) for more information about how we arrived here.
 
 {% /hero %}

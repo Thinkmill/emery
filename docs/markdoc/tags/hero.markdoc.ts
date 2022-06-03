@@ -4,7 +4,7 @@ import { Hero } from '../../components/tags/Hero';
 /** Display a hero box. */
 export const hero: MarkdocNextJsSchema = {
   render: Hero,
-  children: ['heading', 'paragraph'],
+  children: ['fence', 'heading', 'paragraph'],
   attributes: {
     /** Influences the appearance of the hero box. */
     prominence: {

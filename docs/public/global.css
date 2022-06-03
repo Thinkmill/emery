@@ -47,6 +47,13 @@
 @media screen and (max-width: 600px) {
   :root {
     --gutter: 1.4rem;
+
+    --hfs-1: 2rem;
+    --hfs-2: 1.6rem;
+    --hfs-3: 1.4rem;
+    --hfs-4: 1.2rem;
+    --hfs-5: 1rem;
+    --hfs-6: 0.9rem;
   }
 }
 
@@ -117,6 +124,7 @@
 
   --border-prominent: var(--neutral-600);
   --border: var(--neutral-700);
+  --brand: var(--blue);
 }
 
 /*
@@ -306,6 +314,7 @@ pre[class*='language-'] {
   color: var(--text);
   overflow-x: auto;
   display: flex;
+  font-size: var(--fs-standard);
   padding: 0.8rem 1rem;
   text-shadow: none;
   text-align: left;

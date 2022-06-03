@@ -104,10 +104,21 @@ export function SideNav() {
           }
 
           .sidenav-item {
+            position: relative;
             border-left: 1px solid var(--border);
           }
-          .sidenav-item--current {
-            border-left-color: var(--text-prominent);
+          .sidenav-item::before {
+            content: '';
+            position: absolute;
+            width: 3px;
+            left: -2px;
+            top: 0;
+            bottom: 0;
+            border-radius: 3px;
+            z-index: 2;
+          }
+          .sidenav-item--current::before {
+            background-color: var(--brand);
           }
           .sidenav-item:not(:first-child) {
             padding-top: 0.25rem;

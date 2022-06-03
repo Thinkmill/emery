@@ -28,6 +28,11 @@ export function Heading({ children, id = '', level = 1 }: HeadingProps) {
           line-height: 1.2;
           position: relative;
         }
+        @media screen and (max-width: 600px) {
+          .heading {
+            font-weight: var(--fw-medium);
+          }
+        }
 
         .docs-heading {
           margin-top: var(--scroll-offset);

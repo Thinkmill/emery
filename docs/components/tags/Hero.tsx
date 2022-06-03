@@ -3,29 +3,34 @@ import React, { Children, ReactNode } from 'react';
 type HeroProps = { children: ReactNode; prominence: 'primary' | 'secondary' | 'tertiary' };
 
 export const Hero = ({ children, prominence = 'tertiary' }: HeroProps) => {
-  const headingOnly = Children.count(children) === 1;
   return (
-    <div className="hero" data-prominence={prominence}>
+    <div className="hero" data-prominence={prominence} data-collection={Children.count(children)}>
       <div className="hero-content">{children}</div>
       {prominence === 'primary' ? <Fold /> : null}
 
       <style jsx>{`
         .hero {
           color: var(--text-muted);
-          font-size: var(--fs-large);
         }
         .hero[data-prominence='secondary'] {
           background: var(--surface);
         }
+
         .hero-content {
-          padding: 6rem var(--gutter) ${headingOnly ? 0 : '6rem'};
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          font-size: var(--fs-large);
+          padding: 6rem var(--gutter);
           margin-inline: auto;
           max-width: calc(var(--page-max-width) - var(--sidenav-width) * 2);
           text-align: center;
         }
-
+        .hero[data-collection='1'] .hero-content {
+          padding-bottom: 0;
+        }
         .hero :global(.heading) {
-          margin-bottom: 1em;
+          margin-bottom: var(--vertical-rhythm);
         }
       `}</style>
     </div>
@@ -83,6 +88,7 @@ const logo = (
       <path d="M89.9999 -0.00012207L134.983 44.9999H45.0171L89.9999 -0.00012207Z" fill="#BAE6FD" />
     </g>
     <path
+      className="sparkle"
       d="M134.771 29.1757C139.478 42.8057 136.753 40.0797 150.378 44.7882C136.753 49.4968 139.478 46.7708 134.771 60.4008C130.065 46.7708 132.79 49.4968 119.165 44.7882C132.79 40.0797 130.065 42.8057 134.771 29.1757Z"
       fill="#FFFFFF"
     />

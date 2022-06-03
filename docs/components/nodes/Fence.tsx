@@ -73,6 +73,7 @@ const Wrapper = ({ children }: WrapperProps) => {
           display: flex;
           font-size: 0.9rem;
           height: 1.5rem;
+          width: 1.5rem;
           justify-content: center;
           opacity: 0;
           position: absolute;

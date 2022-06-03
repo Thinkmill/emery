@@ -78,13 +78,25 @@ export function Header() {
 
           @media screen and (min-width: 1001px) {
             .navbar[data-page-type='docs'] .nav-controls {
-              margin-right: var(--sidenav-width);
+              flex: 0 0 calc(var(--sidenav-width) - var(--gutter-large));
             }
           }
 
           .nav-list-item--brand {
             align-items: center;
             display: flex;
+            position: relative;
+          }
+          .nav-list-item--brand :global(a) {
+            color: var(--text-muted);
+          }
+          .nav-list-item--brand :global(a:hover) {
+            color: var(--text-prominent);
+          }
+          .nav-list-item--brand :global(a::before) {
+            content: '';
+            position: absolute;
+            inset: 0;
           }
 
           @media screen and (min-width: 601px) {

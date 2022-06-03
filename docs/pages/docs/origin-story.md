@@ -45,7 +45,7 @@ const ExampleOmission = () => {
 
 Not only is the error message difficult to understand, especially for those new to TypeScript, it's misleading! Simply because of the union's declaration order the final line implies that providing `'aria-labelledby'` will rectify the problem, while `'aria-label'` would also be appropriate.
 
-If the consumer, for some reason, provides both label props the message becomes more cryptic:
+If the consumer, for some reason, provides both label props the message becomes more cryptic. Nobody deserves this in their day:
 
 ```tsx
 const ExampleCombination = () => {
@@ -57,6 +57,8 @@ const ExampleCombination = () => {
   //            Type 'string' is not assignable to type 'never'.
 };
 ```
+
+When you encounter an error the last thing you need is more work, researching some mysterious texts. You should be presented with a message that tells you clearly what went wrong, and ideally how to fix it.
 
 ## A solution
 
