@@ -1,7 +1,7 @@
 import React from 'react';
 import { RenderableTreeNode, Tag } from '@markdoc/markdoc';
 
-import { Footer, SideNav, SectionNav, Section } from '../shell-temp';
+import { Footer, SideNav, SectionNav, Section } from '../shell';
 import { LayoutProps } from './types';
 
 export const DocsLayout = ({ children, markdoc }: LayoutProps) => {

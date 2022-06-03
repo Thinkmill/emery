@@ -164,9 +164,6 @@ const Brand = () => {
           width: auto;
           height: 100%;
         }
-        .brand-text {
-          font-weight: var(--fw-bold);
-        }
         @media screen and (max-width: 600px) {
           .brand-text {
             border-width: 0;

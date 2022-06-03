@@ -5,7 +5,7 @@ import { NextRouter } from 'next/router';
 import { MarkdocNextJsPageProps } from '@markdoc/next.js';
 
 import { ErrorLayout, DocsLayout, HomeLayout } from '../components/layouts';
-import { Footer, Header, SideNavContext, useSidenavState } from '../components/shell-temp';
+import { Footer, Header, SideNavContext, useSidenavState } from '../components/shell';
 
 import '../public/global.css';
 
