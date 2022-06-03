@@ -1,6 +1,6 @@
 ---
 title: Assertions
-description: Functions for asserting the "truthiness" of a condition
+description: Utilities for managing assertions in TypeScript
 ---
 
 # {% $markdoc.frontmatter.title %}

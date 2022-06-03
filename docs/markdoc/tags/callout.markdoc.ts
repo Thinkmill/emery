@@ -1,5 +1,5 @@
 import { MarkdocNextJsSchema } from '@markdoc/next.js';
-import { Callout, calloutTones } from '../../components/Callout';
+import { Callout, calloutTones } from '../../components/tags/Callout';
 
 /** Display the enclosed content in a callout box. */
 export const callout: MarkdocNextJsSchema = {

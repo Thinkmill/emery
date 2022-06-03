@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Icon } from './Icon';
+import { Icon } from '../Icon';
 
 const iconMap = {
   neutral: 'information-circle',

@@ -5,7 +5,7 @@
   --header-height: 54px;
   --page-max-width: 1280px;
   --sidenav-width: 240px;
-  --scroll-offset: 2.2rem;
+  --scroll-offset: 3rem;
 
   /* border-radius */
   --radii-large: 6px;
@@ -29,10 +29,16 @@
 
   --fs-small: 0.85rem;
   --fs-standard: 1rem;
-  --fs-medium: 1.2rem;
-  --fs-large: 1.4rem;
+  --fs-large: 1.2rem;
 
-  --fw-standard: 400;
+  --hfs-1: 2.8rem;
+  --hfs-2: 2rem;
+  --hfs-3: 1.6rem;
+  --hfs-4: 1.2rem;
+  --hfs-5: 1rem;
+  --hfs-6: 0.9rem;
+
+  --fw-regular: 400;
   --fw-medium: 500;
   --fw-bold: 700;
   --fw-heavy: 900;
@@ -213,7 +219,7 @@ select {
 ============================================================
 */
 
-article {
+main > article {
   flex-grow: 1;
   line-height: 1.5;
   max-width: 100%;
@@ -253,7 +259,6 @@ article blockquote,
 article hr,
 article ol,
 article p,
-article pre,
 article table,
 article ul {
   margin-block: var(--vertical-rhythm);

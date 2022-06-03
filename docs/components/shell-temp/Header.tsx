@@ -9,61 +9,52 @@ import { ThemeToggle } from './ThemeToggle';
 
 export function Header() {
   const router = useRouter();
+  const isHome = router.pathname === '/';
   const isDocs = router.pathname.startsWith('/docs');
   const [sidenavOpen, setSidenavOpen] = useSidenav();
 
   return (
-    <div className="navbar" data-page-type={isDocs ? 'docs' : 'landing'}>
+    <header className="navbar" data-page-type={isDocs ? 'docs' : 'landing'}>
       <nav className="nav">
-        <div className="nav-sections">
-          <ul className="nav-list">
-            <li className="nav-list-item nav-list-item--brand">
-              {isDocs ? (
-                <Link href="/">
-                  <Brand />
-                </Link>
-              ) : (
+        <ul className="nav-list">
+          <li className="nav-list-item nav-list-item--brand">
+            {isHome ? (
+              <Brand />
+            ) : (
+              <Link href="/">
                 <Brand />
-              )}
-            </li>
-            <li className="nav-list-item">
-              <Link className="nav-list-link" href="/docs/getting-started">
-                Docs
               </Link>
-            </li>
-            <li className="nav-list-item">
-              <Link className="nav-list-link" href="https://github.com/thinkmill/emery/discussions">
-                Community
-              </Link>
-            </li>
-            <li className="nav-list-item">
-              <Link className="nav-list-link" href="https://github.com/thinkmill/emery">
-                GitHub
-              </Link>
-            </li>
-          </ul>
-          <div className="nav-controls">
-            <ThemeToggle />
-            {isDocs && (
-              <Hidden above="mobile">
-                <button className="menu-button" onClick={() => setSidenavOpen(bool => !bool)}>
-                  <Hamburger active={sidenavOpen} />
-                </button>
-              </Hidden>
             )}
-          </div>
+          </li>
+          <li className="nav-list-item">
+            <Link className="nav-list-link" href="/docs/getting-started">
+              Docs
+            </Link>
+          </li>
+          <li className="nav-list-item">
+            <Link className="nav-list-link" href="https://github.com/thinkmill/emery/discussions">
+              Community
+            </Link>
+          </li>
+          <li className="nav-list-item">
+            <Link className="nav-list-link" href="https://github.com/thinkmill/emery">
+              GitHub
+            </Link>
+          </li>
+        </ul>
+        <div className="nav-controls">
+          <ThemeToggle />
+          {isDocs && (
+            <Hidden above="mobile">
+              <button className="menu-button" onClick={() => setSidenavOpen(bool => !bool)}>
+                <Hamburger active={sidenavOpen} />
+              </button>
+            </Hidden>
+          )}
         </div>
       </nav>
       <style jsx>
         {`
-          .navbar {
-            background: var(--light);
-            border-bottom: 1px solid var(--border);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-          }
           .nav {
             display: flex;
             font-size: 0.9rem;
@@ -71,21 +62,22 @@ export function Header() {
             height: var(--header-height);
             margin-inline: auto;
             max-width: var(--page-max-width);
-          }
-
-          .nav-sections {
             display: flex;
             flex: 1;
             padding-inline: var(--gutter);
             justify-content: space-between;
           }
+          .navbar[data-page-type='docs'] {
+            border-bottom: 1px solid var(--border);
+            background: var(--light);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+          }
 
           @media screen and (min-width: 1001px) {
-            .navbar[data-page-type='landing'] .nav-sections {
-              max-width: 800px;
-              margin-inline: auto;
-            }
-            .navbar[data-page-type='docs'] .nav-sections {
+            .navbar[data-page-type='docs'] .nav-controls {
               margin-right: var(--sidenav-width);
             }
           }
@@ -146,7 +138,7 @@ export function Header() {
           }
         `}
       </style>
-    </div>
+    </header>
   );
 }
 
@@ -192,25 +184,27 @@ const Brand = () => {
     </div>
   );
 };
-
 const logo = (
-  <svg viewBox="0 0 366 273" fill="none">
+  <svg viewBox="0 0 180 135" fill="none">
     <path
-      d="M273.991 0.000915527L364.993 91.0034L182.998 272.999L0.997314 90.9987L91.9951 0.000915527L273.991 0.000915527Z"
+      d="M134.982 0.000244141L179.966 45.0015L90.0023 134.999L0.0366211 44.9991L45.0183 0.000244141L134.982 0.000244141Z"
       fill="#358EF1"
     />
-    <path d="M182.998 91L273.995 181.998L182.998 272.995L92 181.998L182.998 91Z" fill="#3178C6" />
-    <path d="M91.9929 0.000183105L182.993 91.0002H0.99292L91.9929 0.000183105Z" fill="#3178C6" />
-    <path d="M273.993 0.000183105L364.993 91.0002H182.993L273.993 0.000183105Z" fill="#3178C6" />
+    <path
+      d="M90.0023 44.9998L134.984 89.9986L90.0023 134.997L45.0208 89.9986L90.0023 44.9998Z"
+      fill="#3178C6"
+    />
+    <path d="M45.0172 -0.00012207L90 44.9999H0.0344238L45.0172 -0.00012207Z" fill="#3178C6" />
+    <path d="M134.983 -0.00012207L179.966 44.9999H90L134.983 -0.00012207Z" fill="#3178C6" />
     <g style={{ mixBlendMode: 'screen' }} opacity="0.5">
-      <path d="M365.062 91.0697L274.028 182.105H91.9581L0.92334 91.0697H365.062Z" fill="#00273F" />
+      <path d="M180 45.0343L135 90.0515H45L0 45.0343H180Z" fill="#00273F" />
     </g>
-    <g style={{ mixBlendMode: 'hard-light' }} opacity="0.25">
-      <path d="M182.993 273L273.993 91.0002H91.9929L182.993 273Z" fill="#00273F" />
-      <path d="M182.993 0.000183105L273.993 91.0002H91.9929L182.993 0.000183105Z" fill="#BAE6FD" />
+    <g style={{ mixBlendMode: 'hard-light' }} opacity="0.3">
+      <path d="M89.9999 135L134.983 44.9999H45.0171L89.9999 135Z" fill="#00273F" />
+      <path d="M89.9999 -0.00012207L134.983 44.9999H45.0171L89.9999 -0.00012207Z" fill="#BAE6FD" />
     </g>
     <path
-      d="M273.565 59.0001C283.087 86.563 277.574 81.0504 305.137 90.5722C277.574 100.094 283.087 94.5813 273.565 122.144C264.044 94.5813 269.556 100.094 241.993 90.5722C269.556 81.0504 264.044 86.563 273.565 59.0001Z"
+      d="M134.771 29.1757C139.478 42.8057 136.753 40.0797 150.378 44.7882C136.753 49.4968 139.478 46.7708 134.771 60.4008C130.065 46.7708 132.79 49.4968 119.165 44.7882C132.79 40.0797 130.065 42.8057 134.771 29.1757Z"
       fill="#FFFFFF"
     />
   </svg>

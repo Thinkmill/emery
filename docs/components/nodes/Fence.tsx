@@ -1,12 +1,11 @@
 import { ReactElement, Ref, useEffect, useRef, useState } from 'react';
 import copy from 'copy-to-clipboard';
 import PrismHighlight, { Language, Prism } from 'prism-react-renderer';
-// import theme from 'prism-react-renderer/themes/dracula';
 
-import { Icon } from './Icon';
+import { Icon } from '../Icon';
 
-type CodeFenceProps = { content: string; language: Language };
-export const CodeFence = ({ content, language }: CodeFenceProps) => {
+type FenceProps = { content: string; language: Language };
+export const Fence = ({ content, language }: FenceProps) => {
   return (
     <Wrapper>
       {preRef => (

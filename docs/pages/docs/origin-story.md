@@ -1,6 +1,6 @@
 ---
 title: Origin story
-description: How we arrived here
+description: The problems we were facing that lead to the creation of Emery
 ---
 
 # {% $markdoc.frontmatter.title %}
@@ -9,7 +9,7 @@ The seed was planted by this simple Slack message:
 
 > Is there a way to “optimise” the errors returned from TS?
 
-The discussion that followed confirmed a desire for an approach to TypeScript development that improves DX without compromising static types. At [Thinkmill](https://www.thinkmill.com.au/) we collaborate on many design system component libraries—driving design system adoption within companies can be difficult, so removing any obstacle is a big win.
+The discussion that followed confirmed a desire for an approach to TypeScript development that improves DX without compromising static types. At [Thinkmill](https://www.thinkmill.com.au/) we collaborate on large applications and design systems. We've learned that removing any obstacle to quality engineering is a big win.
 
 ## The problem
 

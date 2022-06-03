@@ -12,7 +12,7 @@ export default function PageNotFound() {
         }
         .page-not-found-subtitle {
           color: var(--text-muted);
-          font-size: var(--fs-medium);
+          font-size: var(--fs-large);
           font-weight: var(--fw-normal);
         }
         @media screen and (max-width: 600px) {
@@ -33,5 +33,5 @@ export default function PageNotFound() {
 }
 
 export async function getStaticProps() {
-  return { props: { is404: true } };
+  return { props: { isErrorPage: true } };
 }

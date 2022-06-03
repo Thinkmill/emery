@@ -15,48 +15,54 @@ export function Heading({ children, id = '', level = 1 }: HeadingProps) {
   const showLink = isDocs && level !== 1 && id;
 
   const Tag: HeadingTag = `h${level}`;
+  const className = `heading ${isDocs && [2, 3, 4].includes(level) ? ' docs-heading' : ''}`;
 
   return (
-    <Tag className="heading" id={id} data-level={level}>
+    <Tag className={className} id={id} data-scroll-link={showLink || undefined}>
       {showLink ? <HeadingLink href={`#${id}`} /> : null}
       <span>{children}</span>
       <style jsx>{`
         .heading {
           color: var(--text-prominent);
-          font-weight: var(--fw-bold);
+          font-weight: var(--fw-regular);
           line-height: 1.2;
-          margin-top: var(--offset);
           position: relative;
-          scroll-margin-top: calc(var(--header-height) + var(--offset));
+        }
+
+        .docs-heading {
+          margin-top: var(--scroll-offset);
+          scroll-margin-top: calc(var(--header-height) + var(--scroll-offset));
         }
 
         /* quick-and-dirty leading trim */
-        .heading:not([data-level='1'])::before {
+        .heading[data-scroll-link]::before {
           content: '';
           display: table;
           margin-bottom: -0.1818em;
         }
-        .heading:not([data-level='1'])::after {
+        .heading[data-scroll-link]::after {
           content: '';
           display: table;
           margin-top: -0.1818em;
         }
 
-        .heading[data-level='1'] {
-          font-size: 2rem;
-          font-weight: var(--fw-heavy);
+        h1.heading {
+          font-size: var(--hfs-1);
         }
-        .heading[data-level='2'] {
-          --offset: var(--scroll-offset);
-          font-size: 1.4rem;
+        h2.heading {
+          font-size: var(--hfs-2);
         }
-        .heading[data-level='3'] {
-          --offset: var(--scroll-offset);
-          font-size: 1.2rem;
+        h3.heading {
+          font-size: var(--hfs-3);
         }
-        .heading[data-level='4'] {
-          --offset: var(--scroll-offset);
-          font-size: var(--fs-standard);
+        h4.heading {
+          font-size: var(--hfs-4);
+        }
+        h5.heading {
+          font-size: var(--hfs-5);
+        }
+        h6.heading {
+          font-size: var(--hfs-6);
         }
       `}</style>
     </Tag>

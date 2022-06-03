@@ -1,7 +1,7 @@
 import { MarkdocNextJsSchema } from '@markdoc/next.js';
 import { Config, Node, RenderableTreeNode, Tag } from '@markdoc/markdoc';
 
-import { Heading } from '../../components/Heading';
+import { Heading } from '../../components/nodes/Heading';
 
 export const heading: MarkdocNextJsSchema = {
   render: Heading,
