@@ -107,7 +107,7 @@ export default function MyApp(props: AppProps<PageProps>) {
           <Component {...pageProps} />
         </Layout>
 
-        {isHome ? <Footer filePath={markdoc.file.path} /> : null}
+        {isHome ? <Footer filePath={markdoc?.file?.path} /> : null}
       </SideNavContext.Provider>
     </>
   );
