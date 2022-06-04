@@ -1,6 +1,6 @@
 ---
 title: Origin story
-description: How we arrived here
+description: The problems we were facing that lead to the creation of Emery
 ---
 
 # {% $markdoc.frontmatter.title %}
@@ -9,7 +9,7 @@ The seed was planted by this simple Slack message:
 
 > Is there a way to “optimise” the errors returned from TS?
 
-The discussion that followed confirmed a desire for an approach to TypeScript development that improves DX without compromising static types. At [Thinkmill](https://www.thinkmill.com.au/) we collaborate on many design system component libraries—driving design system adoption within companies can be difficult, so removing any obstacle is a big win.
+The discussion that followed confirmed a desire for an approach to TypeScript development that improves DX without compromising static types. At [Thinkmill](https://www.thinkmill.com.au/) we collaborate on large applications and design systems. We've learned that removing any obstacle to quality engineering is a big win.
 
 ## The problem
 
@@ -45,7 +45,7 @@ const ExampleOmission = () => {
 
 Not only is the error message difficult to understand, especially for those new to TypeScript, it's misleading! Simply because of the union's declaration order the final line implies that providing `'aria-labelledby'` will rectify the problem, while `'aria-label'` would also be appropriate.
 
-If the consumer, for some reason, provides both label props the message becomes more cryptic:
+If the consumer, for some reason, provides both label props the message becomes more cryptic. Nobody deserves this in their day:
 
 ```tsx
 const ExampleCombination = () => {
@@ -57,6 +57,8 @@ const ExampleCombination = () => {
   //            Type 'string' is not assignable to type 'never'.
 };
 ```
+
+When you encounter an error the last thing you need is more work, researching some mysterious texts. You should be presented with a message that tells you clearly what went wrong, and ideally how to fix it.
 
 ## A solution
 

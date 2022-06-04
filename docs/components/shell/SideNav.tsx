@@ -2,6 +2,8 @@ import React, { createContext, Fragment, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
+export const navID = 'docs-navigation';
+
 const items = [
   {
     title: 'About',
@@ -27,7 +29,7 @@ export function SideNav() {
   const [sidenavOpen, setSidenavOpen] = useSidenav();
 
   return (
-    <nav className="sidenav" data-open={sidenavOpen}>
+    <nav className="sidenav" data-open={sidenavOpen} id={navID}>
       {items.map(item => {
         return (
           <Fragment key={item.title}>
@@ -104,10 +106,21 @@ export function SideNav() {
           }
 
           .sidenav-item {
+            position: relative;
             border-left: 1px solid var(--border);
           }
-          .sidenav-item--current {
-            border-left-color: var(--text-prominent);
+          .sidenav-item::before {
+            content: '';
+            position: absolute;
+            width: 3px;
+            left: -2px;
+            top: 0;
+            bottom: 0;
+            border-radius: 3px;
+            z-index: 2;
+          }
+          .sidenav-item--current::before {
+            background-color: var(--brand);
           }
           .sidenav-item:not(:first-child) {
             padding-top: 0.25rem;

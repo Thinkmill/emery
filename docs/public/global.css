@@ -5,7 +5,7 @@
   --header-height: 54px;
   --page-max-width: 1280px;
   --sidenav-width: 240px;
-  --scroll-offset: 2.2rem;
+  --scroll-offset: 3rem;
 
   /* border-radius */
   --radii-large: 6px;
@@ -29,10 +29,16 @@
 
   --fs-small: 0.85rem;
   --fs-standard: 1rem;
-  --fs-medium: 1.2rem;
-  --fs-large: 1.4rem;
+  --fs-large: 1.2rem;
 
-  --fw-standard: 400;
+  --hfs-1: 2.8rem;
+  --hfs-2: 2rem;
+  --hfs-3: 1.6rem;
+  --hfs-4: 1.2rem;
+  --hfs-5: 1rem;
+  --hfs-6: 0.9rem;
+
+  --fw-regular: 400;
   --fw-medium: 500;
   --fw-bold: 700;
   --fw-heavy: 900;
@@ -40,7 +46,16 @@
 
 @media screen and (max-width: 600px) {
   :root {
+    --header-height: 44px;
+
     --gutter: 1.4rem;
+
+    --hfs-1: 2rem;
+    --hfs-2: 1.6rem;
+    --hfs-3: 1.4rem;
+    --hfs-4: 1.2rem;
+    --hfs-5: 1rem;
+    --hfs-6: 0.9rem;
   }
 }
 
@@ -111,6 +126,7 @@
 
   --border-prominent: var(--neutral-600);
   --border: var(--neutral-700);
+  --brand: var(--blue);
 }
 
 /*
@@ -182,6 +198,42 @@ select {
 
 /*
 ============================================================
+* HOME
+============================================================
+*/
+
+.hero-brand-mark--sparkle {
+  transform-origin: 75% 33.33%;
+}
+.hero-brand-mark:hover {
+  animation: brandMark 900ms ease;
+}
+.hero-brand-mark:hover .hero-brand-mark--sparkle {
+  animation: brandMarkSparkle 900ms ease;
+}
+
+@keyframes brandMark {
+  10% {
+    transform: skew(-1deg, 1deg);
+  }
+  60%,
+  65% {
+    transform: skew(5deg, -5deg);
+  }
+}
+@keyframes brandMarkSparkle {
+  10% {
+    transform: scale(0.8);
+  }
+  60%,
+  65% {
+    transform: scale(1.5) rotate(180deg);
+    filter: drop-shadow(0 0 4px rgb(255 255 255 / 0.85));
+  }
+}
+
+/*
+============================================================
 * HIDDEN
 ============================================================
 */
@@ -213,7 +265,7 @@ select {
 ============================================================
 */
 
-article {
+main > article {
   flex-grow: 1;
   line-height: 1.5;
   max-width: 100%;
@@ -253,7 +305,6 @@ article blockquote,
 article hr,
 article ol,
 article p,
-article pre,
 article table,
 article ul {
   margin-block: var(--vertical-rhythm);
@@ -301,6 +352,7 @@ pre[class*='language-'] {
   color: var(--text);
   overflow-x: auto;
   display: flex;
+  font-size: var(--fs-standard);
   padding: 0.8rem 1rem;
   text-shadow: none;
   text-align: left;

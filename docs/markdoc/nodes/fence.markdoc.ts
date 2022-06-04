@@ -1,8 +1,8 @@
 import { MarkdocNextJsSchema } from '@markdoc/next.js';
-import { CodeFence } from '../../components/CodeFence';
+import { Fence } from '../../components/nodes/Fence';
 
 export const fence: MarkdocNextJsSchema = {
-  render: CodeFence,
+  render: Fence,
   attributes: {
     content: { type: String },
     /** The programming language of the code block. Place it after the backticks. */

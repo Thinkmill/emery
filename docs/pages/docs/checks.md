@@ -1,11 +1,11 @@
 ---
 title: Checks
-description: Checks are predicates that cannot easily be expressed as type guards
+description: Utilities for dealing with ambiguous types
 ---
 
 # {% $markdoc.frontmatter.title %}
 
-This library considers "checks" predicates that cannot be expressed as [type guards](/docs/guards), without enforcing [opaque types](/docs/opaques). While we recommend opaque types where appropriate, we can't make assumptions about your program's requirements.
+Emery considers "checks" predicates that cannot be expressed as [type guards](/docs/guards), without enforcing [opaque types](/docs/opaques). While we recommend opaque types where appropriate, we can't make assumptions about your program's requirements.
 
 ## Utils
 

@@ -1,6 +1,6 @@
 ---
 title: Utils
-description: Utility functions for overiding TypeScript's default behaviour
+description: Utilities for smoothing over areas of TS that are loosely typed
 ---
 
 # {% $markdoc.frontmatter.title %}
