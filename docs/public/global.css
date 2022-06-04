@@ -46,6 +46,8 @@
 
 @media screen and (max-width: 600px) {
   :root {
+    --header-height: 44px;
+
     --gutter: 1.4rem;
 
     --hfs-1: 2rem;

@@ -184,6 +184,9 @@ const Brand = () => {
           height: 100%;
         }
         @media screen and (max-width: 600px) {
+          .brand-mark {
+            height: 20px;
+          }
           .brand-text {
             border-width: 0;
             clip: rect(0, 0, 0, 0);
