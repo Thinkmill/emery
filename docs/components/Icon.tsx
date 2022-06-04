@@ -1,11 +1,6 @@
 import * as React from 'react';
 
 const svgs = {
-  'arrow-external': (
-    <svg viewBox="0 0 16 16" aria-hidden>
-      <path d="M6 3.33333V4.66667H10.3933L2.66667 12.3933L3.60667 13.3333L11.3333 5.60667V10H12.6667V3.33333H6Z" />
-    </svg>
-  ),
   copied: (
     <svg viewBox="0 0 512 512">
       <title>Copied</title>
