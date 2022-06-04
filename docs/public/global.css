@@ -196,6 +196,42 @@ select {
 
 /*
 ============================================================
+* HOME
+============================================================
+*/
+
+.hero-brand-mark--sparkle {
+  transform-origin: 75% 33.33%;
+}
+.hero-brand-mark:hover {
+  animation: brandMark 900ms ease;
+}
+.hero-brand-mark:hover .hero-brand-mark--sparkle {
+  animation: brandMarkSparkle 900ms ease;
+}
+
+@keyframes brandMark {
+  10% {
+    transform: skew(-1deg, 1deg);
+  }
+  60%,
+  65% {
+    transform: skew(5deg, -5deg);
+  }
+}
+@keyframes brandMarkSparkle {
+  10% {
+    transform: scale(0.8);
+  }
+  60%,
+  65% {
+    transform: scale(1.5) rotate(180deg);
+    filter: drop-shadow(0 0 4px rgb(255 255 255 / 0.85));
+  }
+}
+
+/*
+============================================================
 * HIDDEN
 ============================================================
 */

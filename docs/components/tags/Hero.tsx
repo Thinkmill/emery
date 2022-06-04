@@ -40,7 +40,7 @@ export const Hero = ({ children, prominence = 'tertiary' }: HeroProps) => {
 const Fold = () => {
   return (
     <div className="fold" role="separator">
-      {logo}
+      {gemSVG}
       <style jsx>{`
         .fold {
           display: flex;
@@ -58,7 +58,7 @@ const Fold = () => {
           width: 100%;
           height: 1px;
         }
-        .fold :global(.logo) {
+        .fold :global(.hero-brand-mark) {
           background: var(--light);
           padding-inline: 2vw;
           position: relative;
@@ -68,8 +68,8 @@ const Fold = () => {
   );
 };
 
-const logo = (
-  <svg viewBox="0 0 180 135" fill="none" className="logo">
+const gemSVG = (
+  <svg viewBox="0 0 180 135" fill="none" className="hero-brand-mark" aria-hidden>
     <path
       d="M134.982 0.000244141L179.966 45.0015L90.0023 134.999L0.0366211 44.9991L45.0183 0.000244141L134.982 0.000244141Z"
       fill="#358EF1"
@@ -88,7 +88,7 @@ const logo = (
       <path d="M89.9999 -0.00012207L134.983 44.9999H45.0171L89.9999 -0.00012207Z" fill="#BAE6FD" />
     </g>
     <path
-      className="sparkle"
+      className="hero-brand-mark--sparkle"
       d="M134.771 29.1757C139.478 42.8057 136.753 40.0797 150.378 44.7882C136.753 49.4968 139.478 46.7708 134.771 60.4008C130.065 46.7708 132.79 49.4968 119.165 44.7882C132.79 40.0797 130.065 42.8057 134.771 29.1757Z"
       fill="#FFFFFF"
     />
