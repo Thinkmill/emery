@@ -1,3 +1,4 @@
+/// <reference lib="es2020.promise" />
 import { Nullish } from './types';
 
 // Primitives
