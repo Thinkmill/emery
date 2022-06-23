@@ -36,7 +36,8 @@
     "lint": "yarn lint:prettier && yarn lint:eslint && yarn lint:types",
     "docs:dev": "next dev docs",
     "docs:build": "next build docs",
-    "prepublishOnly": "preconstruct build"
+    "prepublishOnly": "preconstruct build",
+    "release": "changeset publish"
   },
   "jest": {
     "preset": "ts-jest",
@@ -76,6 +77,8 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "ts-jest": "^28.0.2",
-    "typescript": "^4.6.4"
+    "typescript": "^4.6.4",
+    "@changesets/changelog-github": "^0.4.5",
+    "@changesets/cli": "^2.23.0"
   }
 }
