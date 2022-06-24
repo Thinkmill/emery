@@ -27,6 +27,8 @@ export {
   isNumber,
   isString,
   isUndefined,
+  isFulfilled,
+  isRejected,
 } from './guards';
 
 export { castToOpaque } from './opaques';
