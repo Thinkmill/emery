@@ -1,5 +1,11 @@
 # emery
 
+## 1.2.1
+
+### Patch Changes
+
+- [#28](https://github.com/Thinkmill/emery/pull/28) [`2b8620a`](https://github.com/Thinkmill/emery/commit/2b8620ac73cebe99543af26f7e1ce31978e7752c) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Fixed `isFulfilled` and `isRejected` guards not being exported from the main entry point.
+
 ## 1.2.0
 
 ### Minor Changes
