@@ -37,7 +37,8 @@
     "docs:dev": "next dev docs",
     "docs:build": "next build docs",
     "prepublishOnly": "preconstruct build",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "changeset": "changeset"
   },
   "jest": {
     "preset": "ts-jest",
