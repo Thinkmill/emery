@@ -1,10 +1,12 @@
 import {
   isBoolean,
   isDefined,
+  isFulfilled,
   isNonEmptyArray,
   isNull,
   isNullish,
   isNumber,
+  isRejected,
   isString,
   isUndefined,
 } from './guards';
@@ -83,6 +85,19 @@ describe('guards', () => {
       getValuesByTypeWithout(['null', 'undefined']).forEach(val => {
         expect(isDefined(val)).toBe(true);
       });
+    });
+  });
+
+  describe('promise', () => {
+    it('isFulfilled should validate assumed values', async () => {
+      expect(
+        (await Promise.allSettled([Promise.resolve(), Promise.reject()])).map(x => isFulfilled(x)),
+      ).toEqual([true, false]);
+    });
+    it('isRejected should validate assumed values', async () => {
+      expect(
+        (await Promise.allSettled([Promise.resolve(), Promise.reject()])).map(x => isRejected(x)),
+      ).toEqual([false, true]);
     });
   });
 });

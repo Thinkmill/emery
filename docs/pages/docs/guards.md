@@ -98,3 +98,33 @@ Checks whether an array is **not** empty.
 ```ts
 function isNonEmptyArray<T>(value: T[]): value is [T, ...T[]];
 ```
+
+## Promise
+
+Guards for [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) related types.
+
+### isFulfilled
+
+Checks whether a result from [`Promise.allSettled`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled) is fulfilled
+
+```ts
+function isFulfilled<T>(result: PromiseSettledResult<T>): result is PromiseFulfilledResult<T>;
+```
+
+```ts
+const results = await Promise.allSettled(promises);
+const fulfilledValues = results.filter(isFulfilled).map(result => result.value);
+```
+
+### isRejected
+
+Checks whether a result from [`Promise.allSettled`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled) is rejected.
+
+```ts
+function isRejected(result: PromiseSettledResult<unknown>): result is PromiseRejectedResult;
+```
+
+```ts
+const results = await Promise.allSettled(promises);
+const rejectionReasons = results.filter(isRejected).map(result => result.reason);
+```

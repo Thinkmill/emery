@@ -1,3 +1,4 @@
+/// <reference lib="es2020.promise" />
 import { Nullish } from './types';
 
 // Primitives
@@ -47,4 +48,33 @@ export function isNullish(value: unknown): value is Nullish {
 /** Checks whether a value is defined */
 export function isDefined<T>(value: T): value is NonNullable<T> {
   return !isNullish(value);
+}
+
+// Promise
+// ------------------------------
+
+/**
+ * Checks whether a result from `Promise.allSettled` is fulfilled
+ *
+ * ```ts
+ * const results = await Promise.allSettled(promises);
+ * const fulfilledValues = results.filter(isFulfilled).map(result => result.value);
+ * ```
+ */
+export function isFulfilled<T>(
+  result: PromiseSettledResult<T>,
+): result is PromiseFulfilledResult<T> {
+  return result.status === 'fulfilled';
+}
+
+/**
+ * Checks whether a result from `Promise.allSettled` is rejected
+ *
+ * ```ts
+ * const results = await Promise.allSettled(promises);
+ * const rejectionReasons = results.filter(isRejected).map(result => result.reason);
+ * ```
+ */
+export function isRejected(result: PromiseSettledResult<unknown>): result is PromiseRejectedResult {
+  return result.status === 'rejected';
 }
