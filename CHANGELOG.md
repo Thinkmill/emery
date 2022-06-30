@@ -1,5 +1,16 @@
 # emery
 
+## 1.2.2
+
+### Patch Changes
+
+- [#30](https://github.com/Thinkmill/emery/pull/30) [`f3bed0d`](https://github.com/Thinkmill/emery/commit/f3bed0d894b3780ed95b29481259018fb33f21ff) Thanks [@jossmac](https://github.com/jossmac)! - Loosely type object util args.
+
+  If folks had strongly typed objects, they wouldn't need these utils. Support any object to save some headaches. Affects:
+
+  - `typedEntries()`
+  - `typedKeys()`
+
 ## 1.2.1
 
 ### Patch Changes
