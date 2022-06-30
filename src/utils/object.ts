@@ -7,7 +7,7 @@ import { ObjectEntry } from '../types';
  * Object.entries({ foo: 1, bar: 2 }) // [string, number][]
  * typedEntries({ foo: 1, bar: 2 }) // ["foo" | "bar", number][]
  */
-export function typedEntries<T extends Record<string, unknown>>(value: T) {
+export function typedEntries<T extends object>(value: T) {
   return Object.entries(value) as ObjectEntry<T>[];
 }
 
@@ -18,6 +18,6 @@ export function typedEntries<T extends Record<string, unknown>>(value: T) {
  * Object.keys({ foo: 1, bar: 2 }) // string[]
  * typedKeys({ foo: 1, bar: 2 }) // ("foo" | "bar")[]
  */
-export function typedKeys<T extends Record<string, unknown>>(value: T): Array<keyof T> {
-  return Object.keys(value);
+export function typedKeys<T extends object>(value: T) {
+  return Object.keys(value) as Array<keyof T>;
 }
