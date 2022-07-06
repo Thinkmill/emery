@@ -1,5 +1,11 @@
 # emery
 
+## 1.3.0
+
+### Minor Changes
+
+- [#34](https://github.com/Thinkmill/emery/pull/34) [`3d3888a`](https://github.com/Thinkmill/emery/commit/3d3888aba63b7638f4d71c3b952e5a1b7590b3b0) Thanks [@jossmac](https://github.com/jossmac)! - Assertions: support opt-out of debugger
+
 ## 1.2.2
 
 ### Patch Changes
