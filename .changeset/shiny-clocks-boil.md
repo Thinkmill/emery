@@ -1,0 +1,5 @@
+---
+'emery': patch
+---
+
+fix exports
