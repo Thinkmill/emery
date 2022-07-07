@@ -3,19 +3,13 @@
  * checked must be true for the remainder of the containing scope.
  *
  * @throws when the condition is `false`
- * @returns void
  */
 // NOTE: The narrow type of `boolean` instead of something like `unknown` is an
 // intentional design decision. The goal is to promote consideration from
 // consumers when dealing with potentially ambiguous conditions like `0` or
 // `''`, which can introduce "subtle" bugs.
-export function assert(
-  condition: boolean,
-  message = 'Assert failed',
-  options = { debug: true },
-): asserts condition {
+export function assert(condition: boolean, message = 'Assert failed'): asserts condition {
   if (!condition) {
-    developmentDebugger(options.debug);
     throw new TypeError(message);
   }
 }
@@ -24,19 +18,34 @@ export function assert(
  * Asserts that allegedly unreachable code has been executed.
  *
  * @throws always
- * @returns void
  */
-export function assertNever(condition: never, options = { debug: true }): never {
-  developmentDebugger(options.debug);
+export function assertNever(condition: never): never {
   throw new Error(`Unexpected call to assertNever: '${condition}'`);
 }
 
-/** Pause execution in development to aid debugging. */
-function developmentDebugger(enabled?: boolean): void {
-  if (!enabled || process.env.NODE_ENV === 'production') {
-    return;
-  }
+/**
+ * Similar to `assert` but only logs a warning if the condition is not met. Only
+ * logs in development.
+ */
+export function warning(condition: boolean, message: string) {
+  if (!(process.env.NODE_ENV === 'production')) {
+    if (condition) {
+      return;
+    }
 
-  // eslint-disable-next-line no-debugger
-  debugger;
+    // follow message prefix convention
+    const text = `Warning: ${message}`;
+
+    // IE9 support, console only with open devtools
+    if (typeof console !== 'undefined') {
+      console.warn(text);
+    }
+
+    // NOTE: throw and catch immediately to provide a stack trace:
+    // https://developer.chrome.com/blog/automatically-pause-on-any-exception/
+    try {
+      throw Error(text);
+      // eslint-disable-next-line no-empty
+    } catch (x) {}
+  }
 }

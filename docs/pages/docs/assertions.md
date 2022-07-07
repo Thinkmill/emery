@@ -10,9 +10,7 @@ An assertion declares that a condition be `true` before executing subsequent cod
 - If the condition resolves to `true` the code continues running.
 - If the condition resolves to `false` an error will be thrown.
 
-## Functions
-
-TypeScript supports the `asserts` keyword, for use in the return statement of [assertion functions](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions).
+## Errors
 
 ### assert
 
@@ -42,8 +40,8 @@ assert(false);
 Or you can provide a custom message:
 
 ```ts
-let falsyValue = -1;
-assert(falsyValue >= 0, `Expected a non-negative number, but received: ${falsyValue}`);
+let invalidValue = -1;
+assert(invalidValue >= 0, `Expected a non-negative number, but received: ${invalidValue}`);
 // → TypeError: Expected a non-negative number, but received: -1
 ```
 
@@ -80,6 +78,23 @@ doThing('archived');
 // → Error: Unexpected call to assertNever: 'archived'
 ```
 
-## Debugging
+## Logs
 
-In **development** both `assert` and `assertNever` will include a [debugger statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger), which will pause execution to aid debugging.
+### warning
+
+Similar to `assert` but only logs a warning if the condition is not met.
+
+```ts
+function warning(condition: boolean, message: string): void;
+```
+
+Use `warning` to let consumers know about potentially hazardous circumstances.
+
+{% callout %}
+Never logs in production.
+{% /callout %}
+
+```ts
+warning(options.scrollEventThrottle === 0, 'Unthrottled scroll handler may harm performance.');
+// → console.warn('Warning: Unthrottled scroll handler may harm performance.');
+```
