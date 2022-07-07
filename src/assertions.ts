@@ -24,9 +24,10 @@ export function assertNever(condition: never): never {
 }
 
 /**
- * Similar to `assert` but only logs a warning if the condition is not met.
+ * Similar to `assert` but only logs a warning if the condition is not met. Only
+ * logs in development.
  */
-export function warning(condition: unknown, message: string) {
+export function warning(condition: boolean, message: string) {
   if (!(process.env.NODE_ENV === 'production')) {
     if (condition) {
       return;

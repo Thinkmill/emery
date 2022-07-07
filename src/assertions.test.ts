@@ -71,21 +71,17 @@ describe('assertions', () => {
       console.warn.mockRestore();
     });
 
-    it('should not warn if the condition is truthy', () => {
-      truthyValues.forEach(value => {
-        warning(value, 'message');
-        expect(console.warn).not.toHaveBeenCalled();
-      });
+    it('should not warn if the condition is true', () => {
+      warning(true, 'test message');
+      expect(console.warn).not.toHaveBeenCalled();
     });
-    it('should warn if the condition is falsy', () => {
-      falsyValues.forEach(value => {
-        const message = `test ${String(value)}`;
-        warning(value, message);
+    it('should warn if the condition is false', () => {
+      const message = 'test message';
+      warning(false, message);
 
-        expect(console.warn).toHaveBeenCalledWith('Warning: ' + message);
-        // @ts-expect-error: mocked
-        console.warn.mockClear();
-      });
+      expect(console.warn).toHaveBeenCalledWith('Warning: ' + message);
+      // @ts-expect-error: mocked
+      console.warn.mockClear();
     });
   });
 });
