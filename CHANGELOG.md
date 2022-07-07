@@ -1,5 +1,11 @@
 # emery
 
+## 1.4.0
+
+### Minor Changes
+
+- [#37](https://github.com/Thinkmill/emery/pull/37) [`810b5bf`](https://github.com/Thinkmill/emery/commit/810b5bf771d970408ff5cb27a4906d64280de119) Thanks [@jossmac](https://github.com/jossmac)! - Add `warning` fn
+
 ## 1.3.0
 
 ### Minor Changes
