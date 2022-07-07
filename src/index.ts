@@ -1,7 +1,7 @@
 // Functions
 // ------------------------------
 
-export { assert, assertNever } from './assertions';
+export { assert, assertNever, warning } from './assertions';
 
 export {
   isEven,
