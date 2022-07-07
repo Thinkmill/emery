@@ -1,5 +1,6 @@
-import { assert, assertNever } from './assertions';
+import { assert, assertNever, warning } from './assertions';
 import { getErrorMessage } from './utils/error';
+import { falsyValues, truthyValues } from './testing';
 
 describe('assertions', () => {
   describe('assert', () => {
@@ -11,9 +12,6 @@ describe('assertions', () => {
     });
 
     it('should expect TS error when called with non-boolean conditions', () => {
-      const falsyValues = [0, -0, '', null, undefined, NaN];
-      const truthyValues = [1, -1, 'test', {}, [], Number.POSITIVE_INFINITY];
-
       falsyValues.forEach(val => {
         // @ts-expect-error should not accept non-boolean conditions
         expect(() => assert(val)).toThrow();
@@ -60,6 +58,34 @@ describe('assertions', () => {
       } catch (error) {
         expect(getErrorMessage(error)).toBe(`Unexpected call to assertNever: '${value}'`);
       }
+    });
+  });
+
+  describe('warning', () => {
+    beforeEach(() => {
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      jest.spyOn(console, 'warn').mockImplementation(() => {});
+    });
+    afterEach(() => {
+      // @ts-expect-error: mocked
+      console.warn.mockRestore();
+    });
+
+    it('should not warn if the condition is truthy', () => {
+      truthyValues.forEach(value => {
+        warning(value, 'message');
+        expect(console.warn).not.toHaveBeenCalled();
+      });
+    });
+    it('should warn if the condition is falsy', () => {
+      falsyValues.forEach(value => {
+        const message = `test ${String(value)}`;
+        warning(value, message);
+
+        expect(console.warn).toHaveBeenCalledWith('Warning: ' + message);
+        // @ts-expect-error: mocked
+        console.warn.mockClear();
+      });
     });
   });
 });

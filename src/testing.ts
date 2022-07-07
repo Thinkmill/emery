@@ -12,8 +12,10 @@ const valuesByType = {
 };
 type ValueKey = keyof typeof valuesByType;
 
+// https://developer.mozilla.org/en-US/docs/Glossary/Falsy
 export const falsyValues = [false, 0, -0, '', null, undefined, NaN];
-export const truthyValues = [true, 1, -1, 'test', {}, [], Number.POSITIVE_INFINITY];
+// https://developer.mozilla.org/en-US/docs/Glossary/Truthy
+export const truthyValues = [true, 1, -1, 'test', {}, []];
 
 export function getValuesByType(keyOrKeys: ValueKey | ValueKey[]) {
   if (Array.isArray(keyOrKeys)) {
