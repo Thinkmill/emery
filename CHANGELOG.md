@@ -1,5 +1,11 @@
 # emery
 
+## 1.4.1
+
+### Patch Changes
+
+- [#39](https://github.com/Thinkmill/emery/pull/39) [`c30581a`](https://github.com/Thinkmill/emery/commit/c30581a992bd4e8eebb7334a50f5792c7aef1d22) Thanks [@jossmac](https://github.com/jossmac)! - fix exports
+
 ## 1.4.0
 
 ### Minor Changes
