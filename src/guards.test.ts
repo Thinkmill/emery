@@ -65,7 +65,9 @@ describe('guards', () => {
   describe('array', () => {
     it('isNonEmptyArray should validate assumed values', () => {
       expect(isNonEmptyArray([1, 2])).toBe(true);
+      expect(isNonEmptyArray([1, 2] as const)).toBe(true);
       expect(isNonEmptyArray([])).toBe(false);
+      expect(isNonEmptyArray([] as const)).toBe(false);
     });
   });
 

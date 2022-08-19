@@ -33,7 +33,7 @@ export function isUndefined(value: unknown): value is undefined {
 // ------------------------------
 
 /** Checks whether or not an array is empty. */
-export function isNonEmptyArray<T>(value: T[]): value is [T, ...T[]] {
+export function isNonEmptyArray<T>(value: readonly T[]): value is [T, ...T[]] {
   return value.length > 0;
 }
 
