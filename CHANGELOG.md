@@ -1,5 +1,13 @@
 # emery
 
+## 1.4.2
+
+### Patch Changes
+
+- [#41](https://github.com/Thinkmill/emery/pull/41) [`3b73321`](https://github.com/Thinkmill/emery/commit/3b73321ecf8357a927d8a2a4eb23914a06761e1a) Thanks [@lukebennett88](https://github.com/lukebennett88)! - Handle readonly arrays for `isNonEmptyArray` guard.
+
+* [#44](https://github.com/Thinkmill/emery/pull/44) [`bbe5d72`](https://github.com/Thinkmill/emery/commit/bbe5d72e8badd98aa3a37698c78f47c565811c9e) Thanks [@jossmac](https://github.com/jossmac)! - Stringify arg provided to `assertNever` error message.
+
 ## 1.4.1
 
 ### Patch Changes
