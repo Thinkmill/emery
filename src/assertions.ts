@@ -19,8 +19,8 @@ export function assert(condition: boolean, message = 'Assert failed'): asserts c
  *
  * @throws always
  */
-export function assertNever(condition: never): never {
-  throw new Error(`Unexpected call to assertNever: '${condition}'`);
+export function assertNever(arg: never): never {
+  throw new Error('Expected to never be called but received: ' + JSON.stringify(arg));
 }
 
 /**
