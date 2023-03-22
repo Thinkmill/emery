@@ -20,7 +20,7 @@ export function assert(condition: boolean, message = 'Assert failed'): asserts c
  * @throws always
  */
 export function assertNever(arg: never): never {
-  throw new Error('Expected to never be called but received: ' + JSON.stringify(arg));
+  throw new Error('Expected never to be called, but received: ' + JSON.stringify(arg));
 }
 
 /**

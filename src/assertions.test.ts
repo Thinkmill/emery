@@ -56,7 +56,7 @@ describe('assertions', () => {
         // @ts-expect-error: for testing
         assertNever(value);
       } catch (error) {
-        expect(getErrorMessage(error)).toBe(`Unexpected call to assertNever: '${value}'`);
+        expect(getErrorMessage(error)).toBe(`Expected never to be called, but received: ${value}`);
       }
     });
   });
