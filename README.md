@@ -1,11 +1,7 @@
 # Emery
 
 <a href="https://emery-ts.vercel.app/">
-  <img src=".github/assets/banner.svg" alt="Polish for the rough parts of TypeScript">
-  </br>
-  <br><br>
-  </br>
-  <p><b>Polish for the rough parts of TypeScript</b></p>
+  <img src=".github/assets/banner.svg" alt="Polish for the rough parts of TypeScript" />
 </a>
 <p>
   <a aria-label="NPM version" href="https://www.npmjs.com/package/emery.svg">
