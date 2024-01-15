@@ -1,5 +1,11 @@
 # emery
 
+## 1.4.3
+
+### Patch Changes
+
+- [#49](https://github.com/Thinkmill/emery/pull/49) [`32a35bd`](https://github.com/Thinkmill/emery/commit/32a35bdd0d839e9fbce8030e3e5566b5f41ce1a7) Thanks [@emmatown](https://github.com/emmatown)! - Add `exports` to `package.json` to allow importing in Node ESM
+
 ## 1.4.2
 
 ### Patch Changes
