@@ -4,6 +4,33 @@
   "description": "Utilities to help polish the rough parts of TypeScript.",
   "main": "dist/emery.cjs.js",
   "module": "dist/emery.esm.js",
+  "exports": {
+    ".": {
+      "module": "./dist/emery.esm.js",
+      "default": "./dist/emery.cjs.js"
+    },
+    "./guards": {
+      "module": "./guards/dist/emery-guards.esm.js",
+      "default": "./guards/dist/emery-guards.cjs.js"
+    },
+    "./opaques": {
+      "module": "./opaques/dist/emery-opaques.esm.js",
+      "default": "./opaques/dist/emery-opaques.cjs.js"
+    },
+    "./assertions": {
+      "module": "./assertions/dist/emery-assertions.esm.js",
+      "default": "./assertions/dist/emery-assertions.cjs.js"
+    },
+    "./utils": {
+      "module": "./utils/dist/emery-utils.esm.js",
+      "default": "./utils/dist/emery-utils.cjs.js"
+    },
+    "./checks": {
+      "module": "./checks/dist/emery-checks.esm.js",
+      "default": "./checks/dist/emery-checks.cjs.js"
+    },
+    "./package.json": "./package.json"
+  },
   "repository": "https://github.com/thinkmill/emery.git",
   "homepage": "https://emery-ts.vercel.app",
   "author": "jossmac <jossmac@users.noreply.github.com>",
@@ -49,6 +76,7 @@
     ]
   },
   "preconstruct": {
+    "exports": true,
     "entrypoints": [
       "index.ts",
       "assertions.ts",
@@ -64,7 +92,7 @@
     "@babel/preset-typescript": "^7.17.12",
     "@markdoc/markdoc": "^0.1.2",
     "@markdoc/next.js": "^0.1.4",
-    "@preconstruct/cli": "^2.1.5",
+    "@preconstruct/cli": "^2.8.3",
     "@types/jest": "^27.5.1",
     "@types/react": "^18.0.9",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
