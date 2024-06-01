@@ -19,7 +19,7 @@ function doThing(x: number | string) {
 }
 ```
 
-## Primitve
+## Primitive
 
 Guards for [primitive](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) types.
 
