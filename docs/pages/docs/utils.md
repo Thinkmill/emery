@@ -5,7 +5,7 @@ description: Utilities for smoothing over areas of TS that are loosely typed
 
 # {% $markdoc.frontmatter.title %}
 
-Utility functions for overiding TypeScript's default behaviour.
+Utility functions for overriding TypeScript's default behaviour.
 
 ## Errors
 
