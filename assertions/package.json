@@ -1,4 +1,22 @@
 {
+  "type": "module",
+  "types": "dist/emery-assertions.cjs.d.ts",
+  "module": "dist/emery-assertions.esm.js",
   "main": "dist/emery-assertions.cjs.js",
-  "module": "dist/emery-assertions.esm.js"
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/emery-assertions.cjs.d.ts",
+        "default": "./dist/emery-assertions.esm.js"
+      },
+      "default": {
+        "types": "./dist/emery-assertions.cjs.d.ts",
+        "import": "./dist/emery-assertions.esm.js"
+      },
+      "require": {
+        "types": "./dist/emery-assertions.cjs.d.ts",
+        "import": "./dist/emery-assertions.cjs.js"
+      }
+    }
+  }
 }

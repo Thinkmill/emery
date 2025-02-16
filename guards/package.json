@@ -1,4 +1,22 @@
 {
+  "type": "module",
+  "types": "dist/emery-guards.cjs.d.ts",
+  "module": "dist/emery-guards.esm.js",
   "main": "dist/emery-guards.cjs.js",
-  "module": "dist/emery-guards.esm.js"
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/emery-guards.cjs.d.ts",
+        "default": "./dist/emery-guards.esm.js"
+      },
+      "default": {
+        "types": "./dist/emery-guards.cjs.d.ts",
+        "import": "./dist/emery-guards.esm.js"
+      },
+      "require": {
+        "types": "./dist/emery-guards.cjs.d.ts",
+        "import": "./dist/emery-guards.cjs.js"
+      }
+    }
+  }
 }

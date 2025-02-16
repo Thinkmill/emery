@@ -1,4 +1,22 @@
 {
+  "type": "module",
+  "types": "dist/emery-opaques.cjs.d.ts",
+  "module": "dist/emery-opaques.esm.js",
   "main": "dist/emery-opaques.cjs.js",
-  "module": "dist/emery-opaques.esm.js"
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/emery-opaques.cjs.d.ts",
+        "default": "./dist/emery-opaques.esm.js"
+      },
+      "default": {
+        "types": "./dist/emery-opaques.cjs.d.ts",
+        "import": "./dist/emery-opaques.esm.js"
+      },
+      "require": {
+        "types": "./dist/emery-opaques.cjs.d.ts",
+        "import": "./dist/emery-opaques.cjs.js"
+      }
+    }
+  }
 }

@@ -1,4 +1,22 @@
 {
+  "type": "module",
+  "types": "dist/emery-checks.cjs.d.ts",
+  "module": "dist/emery-checks.esm.js",
   "main": "dist/emery-checks.cjs.js",
-  "module": "dist/emery-checks.esm.js"
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/emery-checks.cjs.d.ts",
+        "default": "./dist/emery-checks.esm.js"
+      },
+      "default": {
+        "types": "./dist/emery-checks.cjs.d.ts",
+        "import": "./dist/emery-checks.esm.js"
+      },
+      "require": {
+        "types": "./dist/emery-checks.cjs.d.ts",
+        "import": "./dist/emery-checks.cjs.js"
+      }
+    }
+  }
 }
