@@ -9,13 +9,13 @@
         "types": "./dist/emery-guards.cjs.d.ts",
         "default": "./dist/emery-guards.esm.js"
       },
-      "default": {
-        "types": "./dist/emery-guards.cjs.d.ts",
-        "import": "./dist/emery-guards.esm.js"
-      },
       "require": {
         "types": "./dist/emery-guards.cjs.d.ts",
-        "import": "./dist/emery-guards.cjs.js"
+        "default": "./dist/emery-guards.cjs.js"
+      },
+      "default": {
+        "types": "./dist/emery-guards.cjs.d.ts",
+        "default": "./dist/emery-guards.esm.js"
       }
     }
   }

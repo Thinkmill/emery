@@ -12,13 +12,13 @@
         "types": "./dist/emery.cjs.d.ts",
         "default": "./dist/emery.esm.js"
       },
-      "default": {
-        "types": "./dist/emery.cjs.d.ts",
-        "import": "./dist/emery.esm.js"
-      },
       "require": {
         "types": "./dist/emery.cjs.d.ts",
-        "import": "./dist/emery.cjs.js"
+        "default": "./dist/emery.cjs.js"
+      },
+      "default": {
+        "types": "./dist/emery.cjs.d.ts",
+        "default": "./dist/emery.esm.js"
       }
     },
     "./guards": {
@@ -26,13 +26,13 @@
         "types": "./guards/dist/emery-guards.cjs.d.ts",
         "default": "./guards/dist/emery-guards.esm.js"
       },
-      "default": {
-        "types": "./guards/dist/emery-guards.cjs.d.ts",
-        "import": "./guards/dist/emery-guards.esm.js"
-      },
       "require": {
         "types": "./guards/dist/emery-guards.cjs.d.ts",
-        "import": "./guards/dist/emery-guards.cjs.js"
+        "default": "./guards/dist/emery-guards.cjs.js"
+      },
+      "default": {
+        "types": "./guards/dist/emery-guards.cjs.d.ts",
+        "default": "./guards/dist/emery-guards.esm.js"
       }
     },
     "./opaques": {
@@ -40,13 +40,13 @@
         "types": "./opaques/dist/emery-opaques.cjs.d.ts",
         "default": "./opaques/dist/emery-opaques.esm.js"
       },
-      "default": {
-        "types": "./opaques/dist/emery-opaques.cjs.d.ts",
-        "import": "./opaques/dist/emery-opaques.esm.js"
-      },
       "require": {
         "types": "./opaques/dist/emery-opaques.cjs.d.ts",
-        "import": "./opaques/dist/emery-opaques.cjs.js"
+        "default": "./opaques/dist/emery-opaques.cjs.js"
+      },
+      "default": {
+        "types": "./opaques/dist/emery-opaques.cjs.d.ts",
+        "default": "./opaques/dist/emery-opaques.esm.js"
       }
     },
     "./assertions": {
@@ -54,13 +54,13 @@
         "types": "./assertions/dist/emery-assertions.cjs.d.ts",
         "default": "./assertions/dist/emery-assertions.esm.js"
       },
-      "default": {
-        "types": "./assertions/dist/emery-assertions.cjs.d.ts",
-        "import": "./assertions/dist/emery-assertions.esm.js"
-      },
       "require": {
         "types": "./assertions/dist/emery-assertions.cjs.d.ts",
-        "import": "./assertions/dist/emery-assertions.cjs.js"
+        "default": "./assertions/dist/emery-assertions.cjs.js"
+      },
+      "default": {
+        "types": "./assertions/dist/emery-assertions.cjs.d.ts",
+        "default": "./assertions/dist/emery-assertions.esm.js"
       }
     },
     "./utils": {
@@ -68,13 +68,13 @@
         "types": "./utils/dist/emery-utils.cjs.d.ts",
         "default": "./utils/dist/emery-utils.esm.js"
       },
-      "default": {
-        "types": "./utils/dist/emery-utils.cjs.d.ts",
-        "import": "./utils/dist/emery-utils.esm.js"
-      },
       "require": {
         "types": "./utils/dist/emery-utils.cjs.d.ts",
-        "import": "./utils/dist/emery-utils.cjs.js"
+        "default": "./utils/dist/emery-utils.cjs.js"
+      },
+      "default": {
+        "types": "./utils/dist/emery-utils.cjs.d.ts",
+        "default": "./utils/dist/emery-utils.esm.js"
       }
     },
     "./checks": {
@@ -82,13 +82,13 @@
         "types": "./checks/dist/emery-checks.cjs.d.ts",
         "default": "./checks/dist/emery-checks.esm.js"
       },
-      "default": {
-        "types": "./checks/dist/emery-checks.cjs.d.ts",
-        "import": "./checks/dist/emery-checks.esm.js"
-      },
       "require": {
         "types": "./checks/dist/emery-checks.cjs.d.ts",
-        "import": "./checks/dist/emery-checks.cjs.js"
+        "default": "./checks/dist/emery-checks.cjs.js"
+      },
+      "default": {
+        "types": "./checks/dist/emery-checks.cjs.d.ts",
+        "default": "./checks/dist/emery-checks.esm.js"
       }
     },
     "./package.json": "./package.json"
@@ -171,5 +171,6 @@
     "typescript": "^4.6.4",
     "@changesets/changelog-github": "^0.4.5",
     "@changesets/cli": "^2.23.0"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

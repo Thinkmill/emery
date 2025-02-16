@@ -9,13 +9,13 @@
         "types": "./dist/emery-opaques.cjs.d.ts",
         "default": "./dist/emery-opaques.esm.js"
       },
-      "default": {
-        "types": "./dist/emery-opaques.cjs.d.ts",
-        "import": "./dist/emery-opaques.esm.js"
-      },
       "require": {
         "types": "./dist/emery-opaques.cjs.d.ts",
-        "import": "./dist/emery-opaques.cjs.js"
+        "default": "./dist/emery-opaques.cjs.js"
+      },
+      "default": {
+        "types": "./dist/emery-opaques.cjs.d.ts",
+        "default": "./dist/emery-opaques.esm.js"
       }
     }
   }

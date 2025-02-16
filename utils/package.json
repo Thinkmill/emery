@@ -9,13 +9,13 @@
         "types": "./dist/emery-utils.cjs.d.ts",
         "default": "./dist/emery-utils.esm.js"
       },
-      "default": {
-        "types": "./dist/emery-utils.cjs.d.ts",
-        "import": "./dist/emery-utils.esm.js"
-      },
       "require": {
         "types": "./dist/emery-utils.cjs.d.ts",
-        "import": "./dist/emery-utils.cjs.js"
+        "default": "./dist/emery-utils.cjs.js"
+      },
+      "default": {
+        "types": "./dist/emery-utils.cjs.d.ts",
+        "default": "./dist/emery-utils.esm.js"
       }
     }
   }
