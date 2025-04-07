@@ -34,7 +34,7 @@ export {
 export { castToOpaque } from './opaques';
 
 export { getErrorMessage } from './utils/error';
-export { typedEntries, typedKeys } from './utils/object';
+export { typedEntries, typedKeys, typedObjectFromEntries } from './utils/object';
 
 // Types
 // ------------------------------

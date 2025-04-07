@@ -21,3 +21,18 @@ export function typedEntries<T extends object>(value: T) {
 export function typedKeys<T extends object>(value: T) {
   return Object.keys(value) as Array<keyof T>;
 }
+
+/**
+ * An alternative to `Object.fromEntries()` that avoids type widening. Must be
+ * used in conjunction with `typedEntries` or `typedKeys`.
+ *
+ * @example
+ * const obj = { name: 'Alice', age: 30 };
+ * const rebuilt1 = Object.fromEntries(Object.entries(obj));
+ * //    ^? { [k: string]: string | number }
+ * const rebuilt2 = typedObjectFromEntries(typedEntries(obj));
+ * //    ^? { name: string, age: number }
+ */
+export function typedObjectFromEntries<T extends object>(entries: ObjectEntry<T>[]) {
+  return Object.fromEntries(entries) as T;
+}
