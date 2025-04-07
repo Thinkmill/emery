@@ -1,4 +1,4 @@
-import { typedEntries, typedKeys } from './object';
+import { typedEntries, typedKeys, typedObjectFromEntries } from './object';
 
 describe('utils/object', () => {
   describe('typedEntries', () => {
@@ -14,6 +14,15 @@ describe('utils/object', () => {
     it('should return the correct keys', () => {
       const result = typedKeys({ foo: 1, bar: 2 });
       expect(result).toEqual(['foo', 'bar']);
+    });
+  });
+  describe('typedObjectFromEntries', () => {
+    it('should return the correct object', () => {
+      const result = typedObjectFromEntries([
+        ['foo', 1],
+        ['bar', 2],
+      ]);
+      expect(result).toEqual({ foo: 1, bar: 2 });
     });
   });
 });

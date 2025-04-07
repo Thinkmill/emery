@@ -5,7 +5,7 @@
 
 export type ErrorLike = { message: string };
 
-export type ObjectEntry<T> = { [K in keyof T]: [K, T[K]] }[keyof T];
+export type ObjectEntry<T> = { [K in keyof T]-?: [K, T[K]] }[keyof T];
 
 export type Nullish = null | undefined;
 
