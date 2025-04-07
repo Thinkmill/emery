@@ -1,5 +1,11 @@
 # emery
 
+## 1.4.4
+
+### Patch Changes
+
+- [#53](https://github.com/Thinkmill/emery/pull/53) [`9d3a10b`](https://github.com/Thinkmill/emery/commit/9d3a10b562d3f815ed06085d558837ad81aff8c2) Thanks [@jossmac](https://github.com/jossmac)! - Add `typedObjectFromEntries` utility, and improve `ObjectEntry` type.
+
 ## 1.4.3
 
 ### Patch Changes

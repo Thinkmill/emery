@@ -1,6 +1,6 @@
 {
   "name": "emery",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Utilities to help polish the rough parts of TypeScript.",
   "main": "dist/emery.cjs.js",
   "module": "dist/emery.esm.js",
