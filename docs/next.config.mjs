@@ -1,6 +1,6 @@
 import withMarkdoc from '@markdoc/next.js';
 
-const markdocConfig = { schemaPath: 'docs/markdoc' };
+const markdocConfig = { schemaPath: 'markdoc' };
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 // @ts-check
