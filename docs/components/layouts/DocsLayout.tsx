@@ -1,5 +1,5 @@
 import React from 'react';
-import { RenderableTreeNode, Tag } from '@markdoc/markdoc';
+import { RenderableTreeNode, RenderableTreeNodes, Tag } from '@markdoc/markdoc';
 
 import { Footer, SideNav, SectionNav, Section } from '../shell';
 import { LayoutProps } from './types';
@@ -107,7 +107,15 @@ function isTag(node: RenderableTreeNode): node is Tag {
   return Boolean(node) && typeof node !== 'string';
 }
 
-function collectSections(node: RenderableTreeNode, sections: Section[] = []) {
+function collectSections(node: RenderableTreeNodes, sections: Section[] = []): Section[] {
+  if (Array.isArray(node)) {
+    for (const child of node) {
+      collectSections(child, sections);
+    }
+
+    return sections;
+  }
+
   if (isTag(node)) {
     if (node.name === 'Heading') {
       const title = node.children[0];

@@ -19,7 +19,7 @@ jobs:
       - uses: ./.github/actions/setup-deps
 
       - name: Unit tests
-        run: yarn jest --ci --runInBand
+        run: pnpm jest --ci --runInBand
 
   linting:
     name: Linting
@@ -31,10 +31,10 @@ jobs:
       - uses: ./.github/actions/setup-deps
 
       - name: Prettier
-        run: yarn lint:prettier
+        run: pnpm lint:prettier
 
       - name: ESLint
-        run: yarn lint:eslint
+        run: pnpm lint:eslint
 
       - name: TypeScript
-        run: yarn lint:types
+        run: pnpm lint:types

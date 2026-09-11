@@ -2,26 +2,14 @@ name: 'Setup Dependencies'
 runs:
   using: 'composite'
   steps:
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+
     - name: Setup Node.js LTS
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: lts/*
-
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-      shell: bash
-
-    - uses: actions/cache@v3
-      id: yarn-cache
-      with:
-        path: |
-          ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          node_modules
-        key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
+        node-version: 24
 
     - name: Install Dependencies
-      run: yarn --frozen-lockfile
+      run: pnpm install --no-frozen-lockfile
       shell: bash
