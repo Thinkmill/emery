@@ -1,6 +1,6 @@
 # Emery
 
-<a href="https://emery-ts.vercel.app/">
+<a href="https://thinkmill.github.io/emery/">
   <img alt="Polish for the rough parts of TypeScript" src=".github/assets/banner.svg">
 </a>
 <p>
@@ -10,7 +10,7 @@
   <a title="View the project license" href="LICENSE">
     <img alt="License SDPX identifier" src="https://img.shields.io/npm/l/emery.svg?style=for-the-badge&labelColor=579805">
   </a>
-  <a title="View emery website" href="https://emery-ts.vercel.app/">
+  <a title="View emery website" href="https://thinkmill.github.io/emery/">
     <img alt="Website" src="https://img.shields.io/badge/Website-2F6BFF.svg?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLWdsb2JlIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCI+PC9jaXJjbGU+PGxpbmUgeDE9IjIiIHkxPSIxMiIgeDI9IjIyIiB5Mj0iMTIiPjwvbGluZT48cGF0aCBkPSJNMTIgMmExNS4zIDE1LjMgMCAwIDEgNCAxMCAxNS4zIDE1LjMgMCAwIDEtNCAxMCAxNS4zIDE1LjMgMCAwIDEtNC0xMCAxNS4zIDE1LjMgMCAwIDEgNC0xMHoiPjwvcGF0aD48L3N2Zz4=&labelColor=0737ad&locoColor=white&logoWidth=0">
   </a>
   <a title="Visit Thinkmill" href="https://www.thinkmill.com.au/open-source?utm_campaign=github-emery">

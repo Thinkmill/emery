@@ -26,6 +26,8 @@ type PageProps = MarkdocNextJsPageProps & {
 
 const BRAND = 'Emery';
 const SUMMARY = 'Polish for the rough parts of TypeScript.';
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || '';
+const SITE_URL = 'https://thinkmill.github.io/emery';
 
 export default function MyApp(props: AppProps<PageProps>) {
   const sidenavContext = useSidenavState();
@@ -72,10 +74,14 @@ export default function MyApp(props: AppProps<PageProps>) {
         <meta name="application-name" content="Emery" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="shortcut icon" href={`${BASE_PATH}/favicon.ico`} />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href={`${BASE_PATH}/favicon-180x180.png`}
+        />
+        <link rel="icon" type="image/png" sizes="32x32" href={`${BASE_PATH}/favicon-32x32.png`} />
+        <link rel="icon" type="image/png" sizes="16x16" href={`${BASE_PATH}/favicon-16x16.png`} />
 
         <meta name="twitter:site" content="@thethinkmill" />
         <meta name="twitter:creator" content="@jossmackison" />
@@ -117,7 +123,6 @@ export default function MyApp(props: AppProps<PageProps>) {
 // ------------------------------
 
 function canonicalUrl(path?: string) {
-  const url = 'https://emery-ts.vercel.app';
-  if (!path) return url;
-  return url + path;
+  if (!path) return SITE_URL;
+  return SITE_URL + path;
 }
